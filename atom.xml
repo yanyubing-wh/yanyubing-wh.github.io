@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yanyubing.xyz/"/>
-  <updated>2019-11-26T04:32:14.553Z</updated>
+  <updated>2019-11-26T05:25:04.355Z</updated>
   <id>https://yanyubing.xyz/</id>
   
   <author>
@@ -21,9 +21,20 @@
     <link href="https://yanyubing.xyz/2019/11/26/%E6%80%8E%E4%B9%88%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
     <id>https://yanyubing.xyz/2019/11/26/%E6%80%8E%E4%B9%88%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</id>
     <published>2019-11-26T04:32:14.553Z</published>
-    <updated>2019-11-26T04:32:14.553Z</updated>
+    <updated>2019-11-26T05:25:04.355Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一：工具准备"><a href="#一：工具准备" class="headerlink" title="一：工具准备"></a>一：工具准备</h1><p>node.js</p><p>git</p><p>hexo</p><p>github账号</p><p>自己购买的域名</p><h1 id="二：注意事项"><a href="#二：注意事项" class="headerlink" title="二：注意事项"></a>二：注意事项</h1><p>网上有很多基于hexo搭建github的博客可供参考：<a href="http://rosesnow.top/" target="_blank" rel="noopener">http://rosesnow.top</a> </p><p>这里主要描述流程和理解，方便遇到问题能够快速找到办法：</p><p>1：node.js是用于npm安装</p><p>2：hexo是本地博客servece</p><p>3：需要把hexo部署到github pages上</p><p>4：通过CNAME文件实现域名的重定向操作，最终实现自己的域名与hexo同步</p><p>5：直接在github上添加CANME文件可以实现一次转发，需要在blog/source目录下创建CNAME文件保证每次有效</p><p>6：最后在更新blog之后hexo  g ; hexo d 同步</p>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;一：工具准备&quot;&gt;&lt;a href=&quot;#一：工具准备&quot; class=&quot;headerlink&quot; title=&quot;一：工具准备&quot;&gt;&lt;/a&gt;一：工具准备&lt;/h1&gt;&lt;p&gt;node.js&lt;/p&gt;
+&lt;p&gt;git&lt;/p&gt;
+&lt;p&gt;hexo&lt;/p&gt;
+&lt;p&gt;github账号&lt;/p&gt;
+&lt;p&gt;
+      
     
     </summary>
     
