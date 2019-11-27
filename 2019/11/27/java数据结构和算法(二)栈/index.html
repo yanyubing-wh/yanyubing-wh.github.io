@@ -81,14 +81,12 @@
 
 
 
-<meta name="description" content="工具准备node.js git hexo github账号 自己购买的域名 注意事项网上有很多基于hexo搭建github的博客可供参考：http:&#x2F;&#x2F;rosesnow.top  这里主要描述流程和理解，方便遇到问题能够快速找到办法： 1：node.js是用于npm安装 2：hexo是本地博客servece 3：需要把hexo部署到github pages上 4：通过CNAME文件实现域名的重定向">
 <meta property="og:type" content="article">
-<meta property="og:title" content="怎么搭建自己的博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2019&#x2F;11&#x2F;26&#x2F;%E6%80%8E%E4%B9%88%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2&#x2F;index.html">
+<meta property="og:title" content="java数据结构和算法(二)栈">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2019&#x2F;11&#x2F;27&#x2F;java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E4%BA%8C)%E6%A0%88&#x2F;index.html">
 <meta property="og:site_name" content="鄢玉兵的博客">
-<meta property="og:description" content="工具准备node.js git hexo github账号 自己购买的域名 注意事项网上有很多基于hexo搭建github的博客可供参考：http:&#x2F;&#x2F;rosesnow.top  这里主要描述流程和理解，方便遇到问题能够快速找到办法： 1：node.js是用于npm安装 2：hexo是本地博客servece 3：需要把hexo部署到github pages上 4：通过CNAME文件实现域名的重定向">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-26T05:26:19.318Z">
+<meta property="og:updated_time" content="2019-11-27T08:55:10.889Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="https://yanyubing.xyz/2019/11/26/怎么搭建自己的博客/"/>
+  <link rel="canonical" href="https://yanyubing.xyz/2019/11/27/java数据结构和算法(二)栈/"/>
 
 
 
 
 
-  <title>怎么搭建自己的博客 | 鄢玉兵的博客</title>
+  <title>java数据结构和算法(二)栈 | 鄢玉兵的博客</title>
   
 
 
@@ -242,7 +240,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/11/26/%E6%80%8E%E4%B9%88%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/11/27/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E4%BA%8C)%E6%A0%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -259,7 +257,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">怎么搭建自己的博客</h1>
+          <h1 class="post-title" itemprop="name headline">java数据结构和算法(二)栈</h1>
         
 
         <div class="post-meta">
@@ -271,8 +269,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-26T12:32:14+08:00">
-                2019-11-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-27T16:55:10+08:00">
+                2019-11-27
               </time>
             
 
@@ -309,20 +307,7 @@
       
 
       
-        <h1 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h1><p>node.js</p>
-<p>git</p>
-<p>hexo</p>
-<p>github账号</p>
-<p>自己购买的域名</p>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>网上有很多基于hexo搭建github的博客可供参考：<a href="http://rosesnow.top/" target="_blank" rel="noopener">http://rosesnow.top</a> </p>
-<p>这里主要描述流程和理解，方便遇到问题能够快速找到办法：</p>
-<p>1：node.js是用于npm安装</p>
-<p>2：hexo是本地博客servece</p>
-<p>3：需要把hexo部署到github pages上</p>
-<p>4：通过CNAME文件实现域名的重定向操作，最终实现自己的域名与hexo同步</p>
-<p>5：直接在github上添加CANME文件可以实现一次转发，需要在blog/source目录下创建CNAME文件保证每次有效</p>
-<p>6：最后在更新blog之后hexo  g ; hexo d 同步</p>
-
+        
       
     </div>
     
@@ -360,15 +345,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/11/27/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E4%B8%80%EF%BC%89%E6%95%B0%E7%BB%84%EF%BC%8C%E9%98%9F%E5%88%97%EF%BC%8C%E9%93%BE%E8%A1%A8/" rel="next" title="java数据结构和算法(一）数组，队列，链表">
+                <i class="fa fa-chevron-left"></i> java数据结构和算法(一）数组，队列，链表
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/27/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E4%B8%80%EF%BC%89%E6%95%B0%E7%BB%84%EF%BC%8C%E9%98%9F%E5%88%97%EF%BC%8C%E9%93%BE%E8%A1%A8/" rel="prev" title="java数据结构和算法(一）数组，队列，链表">
-                java数据结构和算法(一）数组，队列，链表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -420,17 +405,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -479,22 +455,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#工具准备"><span class="nav-number">1.</span> <span class="nav-text">工具准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意事项"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
