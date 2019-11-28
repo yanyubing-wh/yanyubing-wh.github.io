@@ -240,6 +240,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/11/28/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E5%9B%9B)%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/28/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E5%9B%9B)%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" itemprop="url">java数据结构和算法(四)排序算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-28T16:07:33+08:00">
+                2019-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一：排序"><a href="#一：排序" class="headerlink" title="一：排序"></a>一：排序</h1><h3 id="1：排序的分类"><a href="#1：排序的分类" class="headerlink" title="1：排序的分类"></a>1：排序的分类</h3><p>1：内部排序（使用内存）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1：插入排序：直接插入排序，希尔排序</span><br><span class="line">2：选择排序：简单选择排序，堆排序</span><br><span class="line">3：交换排序：冒泡排序，快速排序</span><br><span class="line">4：归并排序</span><br><span class="line">5：基数排序</span><br></pre></td></tr></table></figure>
+
+<p>2：外部排序：数据量过大的情况</p>
+<h3 id="2：算法的时间复杂度"><a href="#2：算法的时间复杂度" class="headerlink" title="2：算法的时间复杂度"></a>2：算法的时间复杂度</h3><p>1：事后统计法：比较依赖机器性能</p>
+<p>2：事前估算的方法：分析</p>
+<p>3：时间频度：一个算法话费的时间与算法中语句执行次数成正比，哪个算法中语句执行次数多，它花费的时间就多</p>
+<p>4：时间频度简化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1：忽略常数项</span><br><span class="line">2：忽略低次项</span><br></pre></td></tr></table></figure>
+
+<p>5：时间复杂度(又叫渐进时间复杂度)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1：忽略低阶项</span><br><span class="line">2：取出最高阶系数</span><br><span class="line">3：只有常数阶O(1)</span><br></pre></td></tr></table></figure>
+
+<p>6：常见的时间复杂度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1：常数阶O(1)</span><br><span class="line">2：对数阶O(log2n)</span><br><span class="line">3：线性阶O(n)</span><br><span class="line">4：线性对数阶O(nlog2n)</span><br><span class="line">5：平方阶O(n^2)</span><br><span class="line">6：立方阶O(n^3)</span><br><span class="line">7：k次方阶O(n^k)</span><br><span class="line">8：指数阶O(2^n)</span><br><span class="line">时间复杂度从上到下依次变劣！</span><br></pre></td></tr></table></figure>
+
+<p>7：对数阶</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int i = 1;</span><br><span class="line">  while (i &lt; n) &#123;</span><br><span class="line">   i = i * 2;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/11/28/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E4%B8%89)%E9%80%92%E5%BD%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -969,7 +1119,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
