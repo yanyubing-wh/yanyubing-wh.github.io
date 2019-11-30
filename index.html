@@ -240,6 +240,146 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/11/29/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E7%BA%BF%E6%80%A7%E6%9F%A5%E6%89%BE%EF%BC%8C%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/29/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E7%BA%BF%E6%80%A7%E6%9F%A5%E6%89%BE%EF%BC%8C%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" itemprop="url">java数据结构和算法（五）线性查找，二分查找</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-29T21:26:09+08:00">
+                2019-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1：线性查找"><a href="#1：线性查找" class="headerlink" title="1：线性查找"></a>1：线性查找</h1><p>1：线性查找思路</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1：遍历数组，逐一匹配，相等即返回</span><br></pre></td></tr></table></figure>
+
+<p>2：代码实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package com.it.search;</span><br><span class="line"></span><br><span class="line">public class SeqSearch &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int arr[] = &#123;1, 9, 11, -1, 34, 89&#125;;</span><br><span class="line">        int value = 9;</span><br><span class="line">        System.out.println(seqSearch(arr, value));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static int seqSearch(int[] arr, int value) &#123;</span><br><span class="line">        for (int i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">            if (value == arr[i]) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2：二分查找"><a href="#2：二分查找" class="headerlink" title="2：二分查找"></a>2：二分查找</h3><p>1：二分查找思路</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1：要求数组有序（假设从下到大排序）</span><br><span class="line">2：首先确定该数组的中间的下标 mid=(left+right)/2</span><br><span class="line">3：arr[mid]与要查找的数val比较</span><br><span class="line">4：如果arr[mid]&gt;val，则表示val在arr[mid]左边，再次移动left和rigth继续查找</span><br><span class="line">5：相反arr[mid]&lt;val，同理</span><br><span class="line">6：arr[mid]==val则直接返回</span><br><span class="line">7：递归结束条件，rigth-left==1</span><br></pre></td></tr></table></figure>
+
+<p>2：代码实现（1）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//该代码只能找到只有一个匹配的值的索引</span><br><span class="line">package com.it.search;</span><br><span class="line"></span><br><span class="line">public class BinarySearch &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int arr[] = &#123;1, 8, 10, 89, 1000, 1234&#125;;</span><br><span class="line">        int res = binarySearch(arr, 0, arr.length - 1, 10);</span><br><span class="line">        System.out.println(res);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static int binarySearch(int[] arr, int left, int right, int findVal) &#123;</span><br><span class="line">        if (right - left == 0) &#123;</span><br><span class="line">            return -1;//说明递归已经完成，没找到</span><br><span class="line">        &#125;</span><br><span class="line">        int mid = (left + right) / 2;</span><br><span class="line">        if (arr[mid] &gt; findVal) &#123;//说明该值在左标</span><br><span class="line">            return binarySearch(arr, left, mid - 1, findVal);</span><br><span class="line">        &#125;</span><br><span class="line">        if (arr[mid] &lt; findVal) &#123;//说明该值在右标</span><br><span class="line">            return binarySearch(arr, mid + 1, right, findVal);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return mid;//最终找到的结果数据是这句话</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3：代码实现（二）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/11/28/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E5%9B%9B)%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1172,7 +1312,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
