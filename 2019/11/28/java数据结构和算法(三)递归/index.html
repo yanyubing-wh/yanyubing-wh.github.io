@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一：递归1：递归介绍1：递归的应用场景，迷宫问题（回溯），递归 2：概念，递归就是自己调用自己，每次传入一个不一样的参数 3：递归可以解决的问题：8皇后，汉若塔，阶乘问题，迷宫问题，球和篮子 4：各种算法，快排，归并，二分查找，分治算法等 5：将用栈解决的问题使用递归解决 6：递归使用遵守规则 123451：执行一个方法时，就春季了一个新的受保护的独立空间（栈空间）2：方法的局部变量是独立的，不会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java数据结构和算法(三)递归">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2019&#x2F;11&#x2F;28&#x2F;java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E4%B8%89)%E9%80%92%E5%BD%92&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="一：递归1：递归介绍1：递归的应用场景，迷宫问题（回溯），递归 2：概念，递归就是自己调用自己，每次传入一个不一样的参数 3：递归可以解决的问题：8皇后，汉若塔，阶乘问题，迷宫问题，球和篮子 4：各种算法，快排，归并，二分查找，分治算法等 5：将用栈解决的问题使用递归解决 6：递归使用遵守规则 123451：执行一个方法时，就春季了一个新的受保护的独立空间（栈空间）2：方法的局部变量是独立的，不会">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-28T08:06:58.671Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2019/11/28/java数据结构和算法(三)递归/"/>
+
+
+
+
+
+  <title>java数据结构和算法(三)递归 | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/11/28/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E4%B8%89)%E9%80%92%E5%BD%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java数据结构和算法(三)递归</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-28T12:00:40+08:00">
+                2019-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一：递归"><a href="#一：递归" class="headerlink" title="一：递归"></a>一：递归</h1><h3 id="1：递归介绍"><a href="#1：递归介绍" class="headerlink" title="1：递归介绍"></a>1：递归介绍</h3><p>1：递归的应用场景，迷宫问题（回溯），递归</p>
+<p>2：概念，递归就是自己调用自己，每次传入一个不一样的参数</p>
+<p>3：递归可以解决的问题：8皇后，汉若塔，阶乘问题，迷宫问题，球和篮子</p>
+<p>4：各种算法，快排，归并，二分查找，分治算法等</p>
+<p>5：将用栈解决的问题使用递归解决</p>
+<p>6：递归使用遵守规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1：执行一个方法时，就春季了一个新的受保护的独立空间（栈空间）</span><br><span class="line">2：方法的局部变量是独立的，不会相互影响</span><br><span class="line">3：如果方法中使用的是引用类型的变量，例如迷宫问题是的数组，就会共享该类型的数据</span><br><span class="line">4：递归必须向退出递归的条件逼近，否则就是无线递归，栈溢出stackOverflowError</span><br><span class="line">5：当一个方法执行完毕，或者遇到return，就会返回，遵守谁调用就把结果返回给谁；同时当方法执行完毕或者返回时，该方法也就执行完毕</span><br></pre></td></tr></table></figure>
+
+<h3 id="2：递归-迷宫问题"><a href="#2：递归-迷宫问题" class="headerlink" title="2：递归-迷宫问题"></a>2：递归-迷宫问题</h3><p>1：代码实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">package com.it.rescursion;</span><br><span class="line"></span><br><span class="line">public class MiGong &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //二维数组创建一个迷宫</span><br><span class="line">        int[][] map = new int[8][7];</span><br><span class="line">        //使用1表示墙</span><br><span class="line">        // 上下全置为1</span><br><span class="line">        for (int i = 0; i &lt; 7; i++) &#123;</span><br><span class="line">            map[0][i] = 1;</span><br><span class="line">            map[7][i] = 1;</span><br><span class="line">        &#125;</span><br><span class="line">        //左右置为1</span><br><span class="line">        for (int i = 0; i &lt; 8; i++) &#123;</span><br><span class="line">            map[i][0] = 1;</span><br><span class="line">            map[i][6] = 1;</span><br><span class="line">        &#125;</span><br><span class="line">        //设置相应挡板，1</span><br><span class="line">        map[3][1] = 1;</span><br><span class="line">        map[3][2] = 1;</span><br><span class="line">        //输出地图</span><br><span class="line">        for (int i = 0; i &lt; 8; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; 7; j++) &#123;</span><br><span class="line">                System.out.print(map[i][j] + &quot;\t&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;迷宫问题&quot;);</span><br><span class="line">        //使用递归回溯给小球找路</span><br><span class="line">        setWay(map, 1, 1);</span><br><span class="line">        //使用新的地图，小球走过，并表示过得地图</span><br><span class="line">        for (int i = 0; i &lt; 8; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; 7; j++) &#123;</span><br><span class="line">                System.out.print(map[i][j] + &quot;\t&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /*说明：</span><br><span class="line">        map表示地图，i，j 表示从地图哪个位置开始出发（1,1）</span><br><span class="line">     *如果小球能到map[6][5]位置，则说明通路找到</span><br><span class="line">     约定：当map[i][j]为</span><br><span class="line">     0表示没有走过</span><br><span class="line">     1表示墙，</span><br><span class="line">     2表示通路，可以走</span><br><span class="line">     3表示该位置已经走过，但是走不通。</span><br><span class="line">     在走迷宫时先确定一个策略（方法）下→右→上→左；如果该路走不通则回溯</span><br><span class="line">     * */</span><br><span class="line">    //使用递归回溯来给小球找路</span><br><span class="line">    public static boolean setWay(int[][] map, int i, int j) &#123;</span><br><span class="line">        if (map[6][5] == 2) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if (map[i][j] == 0) &#123;</span><br><span class="line">                //按照策略开始走   下→右→上→左</span><br><span class="line">                map[i][j] = 2;//假定可以走通</span><br><span class="line">                if (setWay(map, i + 1, j)) &#123;//向下走</span><br><span class="line">                    return true;</span><br><span class="line">                &#125; else if (setWay(map, i, j + 1)) &#123;//向右走</span><br><span class="line">                    return true;</span><br><span class="line">                &#125; else if (setWay(map, i - 1, j)) &#123;//向上走</span><br><span class="line">                    return true;</span><br><span class="line">                &#125; else if (setWay(map, i, j - 1)) &#123;//向左走</span><br><span class="line">                    return true;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    //都走不通，说明是死路</span><br><span class="line">                    map[i][j] = 3;</span><br><span class="line">                    return false;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            //如果map[i][j]!=0;可能是1,2,3</span><br><span class="line">            else &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3：递归-八皇后问题"><a href="#3：递归-八皇后问题" class="headerlink" title="3：递归-八皇后问题"></a>3：递归-八皇后问题</h3><p>1：思路</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1：第一个皇后放在第一行第一列</span><br><span class="line">2：第二个皇后放在第二行第一列，然后判断是否ok,如果不Ok,继续放在第二列、第三列...依次把所有列放完，找到一个合适的</span><br><span class="line">3：继续第三个皇后，还是第一列，第二列...直到第8个皇后也能放在一个不冲突的位置，算是找到一个正确解</span><br><span class="line">4：当得到一个正确时，在栈回退到上一个栈，就会开始回溯，即将第一个皇后放在第一列的所有正确解全部都得到</span><br><span class="line">5：然后回头继续第一个皇后放在第二列，后面继续执行1,2,3,4的步骤</span><br><span class="line">说明：理论上需要二维数组，但是实际上可以用一位数组的索引（index+1）表示第几行</span><br><span class="line">6：合计92种</span><br></pre></td></tr></table></figure>
+
+<p>2：代码实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">package com.it.rescursion;</span><br><span class="line"></span><br><span class="line">public class Queue8 &#123;</span><br><span class="line">    //先定义一个max表示共有多少个皇后</span><br><span class="line">    int max = 8;</span><br><span class="line">    //定义一个数组，保存皇后防止位置的结果，比如arr=&#123;0,4,7,5,2,6,1,3&#125;</span><br><span class="line">    int array[] = new int[max];</span><br><span class="line">    static int count = 0;</span><br><span class="line">    static int judgeCount = 0;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //测试</span><br><span class="line">        Queue8 queue8 = new Queue8();</span><br><span class="line">        queue8.check(0);</span><br><span class="line">        System.out.printf(&quot;一共有%d解法&quot;, count);</span><br><span class="line">        System.out.printf(&quot;一共判断冲突的次数%d次&quot;, judgeCount); // 1.5w</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //编写一个方法，放置第n个皇后</span><br><span class="line">    private void check(int n) &#123;</span><br><span class="line">        //n=8代表已经放完了8个皇后</span><br><span class="line">        if (n == max) &#123;</span><br><span class="line">            print();</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        //依次测试第n个皇后的放入，并判断是否冲突</span><br><span class="line">        for (int i = 0; i &lt; max; i++) &#123;</span><br><span class="line">            //i=0时，表示放置在第一列，i=1表示放置在第二列...</span><br><span class="line">            array[n] = i;</span><br><span class="line">            //判断当放置第N个皇后到i列时是否冲突；</span><br><span class="line">            if (judge(n)) &#123;</span><br><span class="line">                //接着放n+1个皇后</span><br><span class="line">                check(n + 1);</span><br><span class="line">            &#125;</span><br><span class="line">            //如果冲突，则继续执行循环，放置在i+1列</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //查看当我们放置第N个皇后时，就去检查该皇后是否和前面已经放置的皇后冲突</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @param n 表示第N个皇后</span><br><span class="line">     */</span><br><span class="line">    private boolean judge(int n) &#123;</span><br><span class="line">        judgeCount++;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            //array[i] == array[n]这里表示是不是在同一列</span><br><span class="line">            // Math.abs(n - 1) == Math.abs(array[n] - array[i])表示第n个皇后是不是和第i个皇后在45°线上</span><br><span class="line">            if (array[i] == array[n] || Math.abs(n -i ) == Math.abs(array[n] - array[i])) &#123;</span><br><span class="line">                return false;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //写一个方法可以将皇后摆放的位置输出</span><br><span class="line">        private void print () &#123;</span><br><span class="line">            count++;</span><br><span class="line">            for (int i = 0; i &lt; array.length; i++) &#123;</span><br><span class="line">                System.out.print(array[i] + &quot; &quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/27/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E4%BA%8C)%E6%A0%88/" rel="next" title="java数据结构和算法(二)栈">
+                <i class="fa fa-chevron-left"></i> java数据结构和算法(二)栈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/28/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95(%E5%9B%9B)%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="prev" title="java数据结构和算法(四)排序算法">
+                java数据结构和算法(四)排序算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一：递归"><span class="nav-number">1.</span> <span class="nav-text">一：递归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1：递归介绍"><span class="nav-number">1.0.1.</span> <span class="nav-text">1：递归介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2：递归-迷宫问题"><span class="nav-number">1.0.2.</span> <span class="nav-text">2：递归-迷宫问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3：递归-八皇后问题"><span class="nav-number">1.0.3.</span> <span class="nav-text">3：递归-八皇后问题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
