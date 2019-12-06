@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1：图1：图的常用概念 1234567891011121：顶点2：边3：路径4：无向图5：有向图6：带权图为什么要有图？数据结构：线性表和树线性表局限于一个直接前驱和一个直接后继的关系树也只有一个直接前驱也就是父节点当我们需要表示多对多关系时，这里我们就用到了图  2：图的表示方式 121：邻接矩阵：二维数组2：邻接表：数组+链表  3：图的遍历 1234567891011121：深度优先DFS：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java数据结构和算法（9）图">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2018&#x2F;07&#x2F;24&#x2F;java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%889%EF%BC%89%E5%9B%BE&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="1：图1：图的常用概念 1234567891011121：顶点2：边3：路径4：无向图5：有向图6：带权图为什么要有图？数据结构：线性表和树线性表局限于一个直接前驱和一个直接后继的关系树也只有一个直接前驱也就是父节点当我们需要表示多对多关系时，这里我们就用到了图  2：图的表示方式 121：邻接矩阵：二维数组2：邻接表：数组+链表  3：图的遍历 1234567891011121：深度优先DFS：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-06T01:22:18.888Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2018/07/24/java数据结构和算法（9）图/"/>
+
+
+
+
+
+  <title>java数据结构和算法（9）图 | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2018/07/24/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%889%EF%BC%89%E5%9B%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java数据结构和算法（9）图</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-24T21:46:12+08:00">
+                2018-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1：图"><a href="#1：图" class="headerlink" title="1：图"></a>1：图</h1><p>1：图的常用概念</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1：顶点</span><br><span class="line">2：边</span><br><span class="line">3：路径</span><br><span class="line">4：无向图</span><br><span class="line">5：有向图</span><br><span class="line">6：带权图</span><br><span class="line"></span><br><span class="line">为什么要有图？</span><br><span class="line">数据结构：线性表和树</span><br><span class="line">线性表局限于一个直接前驱和一个直接后继的关系</span><br><span class="line">树也只有一个直接前驱也就是父节点</span><br><span class="line">当我们需要表示多对多关系时，这里我们就用到了图</span><br></pre></td></tr></table></figure>
+
+<p>2：图的表示方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1：邻接矩阵：二维数组</span><br><span class="line">2：邻接表：数组+链表</span><br></pre></td></tr></table></figure>
+
+<p>3：图的遍历</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1：深度优先</span><br><span class="line">DFS：深度优先搜索法是树的先根遍历的推广，它的基本思想是：从图G的某个顶点v0出发，访问v0，然后选择一个与v0相邻且没被访问过的顶点vi访问，再从vi出发选择一个与vi相邻且未被访问的顶点vj进行访问，依次继续。如果当前被访问过的顶点的所有邻接顶点都已被访问，则退回到已被访问的顶点序列中最后一个拥有未被访问的相邻顶点的顶点w，从w出发按同样的方法向前遍历，直到图中所有顶点都被访问</span><br><span class="line"></span><br><span class="line">例如：A-(B,C,D)相邻，B-（A,C,F）相邻，C-（A,B,D,E）相邻，D-（A,C）相邻 E-(C)相邻...</span><br><span class="line">则访问顺序为：A --B--C--D--E--F(先访问A，然后A的相邻的B，然后与B相邻的C，然后与C相邻的D，因为与D相邻的都已经被访问，则回退访问与C相邻的E；因为与E相邻的都已经访问过了，则回退访问与C相邻的，而与C相邻的也已经全部访问过了，则回退访问与B相邻的F)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2：广度优先</span><br><span class="line">图的广度优先搜索是树的按层次遍历的推广，它的基本思想是：首先访问初始点vi，并将其标记为已访问过，接着访问vi的所有未被访问过的邻接点vi1,vi2,…, vi t，并均标记已访问过，然后再按照vi1,vi2,…, vi t的次序，访问每一个顶点的所有未被访问过的邻接点，并均标记为已访问过，依次类推，直到图中所有和初始点vi有路径相通的顶点都被访问过为止。</span><br><span class="line"></span><br><span class="line">例如：A-(B,C,D)相邻，B-（A,C,F）相邻，C-（A,B,D,E）相邻，D-（A,C）相邻 E-(C)相邻...</span><br><span class="line">则访问顺序为 A-B-C-D-F-E，先把本节点的相邻节点全部访问完成再访问扩展访问</span><br></pre></td></tr></table></figure>
+
+<p>4：遍历代码实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">深度优先遍历核心代码：</span><br><span class="line">while (w != -1) &#123;//说明存在临接节点</span><br><span class="line">            if (!isVisited[w]) &#123;</span><br><span class="line">                dfs(isVisited, w);//这里保证了递归的访问临接节点</span><br><span class="line">            &#125;</span><br><span class="line">            //临接节点都已经访问完开始弹栈，回溯</span><br><span class="line">            //如果w已经被访问，查找下一个临接节点</span><br><span class="line">            while ((w = getNextNeighbor(i, w)) != -1 &amp;&amp; !isVisited[w]) &#123;</span><br><span class="line">                //这时的临接节点存在且没有被访问的情况下继续访问下个临接节点</span><br><span class="line">                dfs(isVisited, w);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">广度优先遍历核心代码：</span><br><span class="line"> //所有访问的节点入队列，如果当前节点的所有临接节点都已经访问完，则出队列，进行下一个的所有临接节点的访问</span><br><span class="line">        LinkedList queue = new LinkedList();</span><br><span class="line">        //首先访问该节点</span><br><span class="line">        System.out.print(getValueByIndex(i) + &quot;→&quot;);</span><br><span class="line">        queue.addLast(i);//访问的节点入队列</span><br><span class="line">        //将该节点设置为已经访问</span><br><span class="line">        isVisited[i] = true;</span><br><span class="line">        while (!queue.isEmpty()) &#123;//队列不为空</span><br><span class="line">            //取出队列的头结点，并且移除</span><br><span class="line">            i = (int) queue.removeFirst();</span><br><span class="line">            //然后访问所有该节点的临接节点</span><br><span class="line">            int w = getFirstNeighbor(i);//访问第一个临接节点</span><br><span class="line">            if (!isVisited[w]) &#123;</span><br><span class="line">                System.out.print(getValueByIndex(w) + &quot;→&quot;);</span><br><span class="line">                queue.addLast(w);</span><br><span class="line">                isVisited[w]=true;</span><br><span class="line">            &#125;</span><br><span class="line">            while (getNextNeighbor(i, w) != -1) &#123;//进入循环证明有下一个临接节点</span><br><span class="line">                int x = getNextNeighbor(i, w);</span><br><span class="line">                if (!isVisited[x]) &#123;</span><br><span class="line">                    System.out.print(getValueByIndex(x) + &quot;→&quot;);</span><br><span class="line">                    queue.addLast(x);//x入队列</span><br><span class="line">                    isVisited[x]=true;</span><br><span class="line">                &#125;</span><br><span class="line">                w = x;//后移</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br></pre></td><td class="code"><pre><span class="line">package com.it.graph;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.LinkedList;</span><br><span class="line">import java.util.Queue;</span><br><span class="line"></span><br><span class="line">//用二维数组构建图</span><br><span class="line">public class Graph &#123;</span><br><span class="line">    private ArrayList&lt;String&gt; vertexList;   //存储顶点集合</span><br><span class="line">    private int[][] edges;                  //存储图的邻接矩阵，二维数组的大小是n*n</span><br><span class="line">    private int numOfEdges;                 //表示边的数目</span><br><span class="line">    private boolean[] isVisited;    //定义一个数组,表示当前节点是否被访问</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //测试图是否创建成功</span><br><span class="line">        int n = 8;//节点的个数</span><br><span class="line">        String vertexs[] = &#123;&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;G&quot;, &quot;H&quot;&#125;;</span><br><span class="line">        //创建图对象</span><br><span class="line">        Graph graph = new Graph(8);</span><br><span class="line">        //循环添加顶点</span><br><span class="line">        for (String vertex : vertexs) &#123;</span><br><span class="line">            graph.insertVertex(vertex);</span><br><span class="line">        &#125;</span><br><span class="line">        //添加边</span><br><span class="line">        //A-B  A-C A-G  B-C  B-D  B-E  C-F C-H D-H</span><br><span class="line">        graph.insertEdge(0, 1, 1);</span><br><span class="line">        graph.insertEdge(0, 2, 1);</span><br><span class="line">        graph.insertEdge(0, 6, 1);</span><br><span class="line">        graph.insertEdge(1, 2, 1);</span><br><span class="line">        graph.insertEdge(1, 3, 1);</span><br><span class="line">        graph.insertEdge(1, 4, 1);</span><br><span class="line">        graph.insertEdge(2, 5, 1);</span><br><span class="line">        graph.insertEdge(2, 7, 1);</span><br><span class="line">        graph.insertEdge(3, 7, 1);</span><br><span class="line">        //显示邻接矩阵</span><br><span class="line">        graph.showGraph();</span><br><span class="line">        //测试深度遍历</span><br><span class="line">        boolean[] isVisited1 = new boolean[n];</span><br><span class="line">        boolean[] isVisited2 = new boolean[n];</span><br><span class="line">        System.out.println(&quot;深度遍历&quot;);</span><br><span class="line">        graph.dfs(isVisited1, 0);</span><br><span class="line">        System.out.println();</span><br><span class="line">        System.out.println(&quot;广度遍历&quot;);</span><br><span class="line">        graph.bfs(isVisited2, 0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @param n //n表示顶点的个数</span><br><span class="line">     */</span><br><span class="line">    public Graph(int n) &#123;</span><br><span class="line">        //初始化矩阵和vertexList</span><br><span class="line">        edges = new int[n][n];</span><br><span class="line">        vertexList = new ArrayList&lt;String&gt;(n);</span><br><span class="line">        numOfEdges = 0;//边的数目初始化为0；</span><br><span class="line">        isVisited = new boolean[n];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @param index 传入当前节点的下标</span><br><span class="line">     * @return 返回临接节点的下标，如果没有则返回-1</span><br><span class="line">     */</span><br><span class="line">    //根据当前节点的索引得到一个临接节点的下标</span><br><span class="line">    public int getFirstNeighbor(int index) &#123;</span><br><span class="line">        for (int i = 0; i &lt; vertexList.size(); i++) &#123;</span><br><span class="line">            if (edges[index][i] &gt; 0) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @param v1 当前节点下标</span><br><span class="line">     * @param v2 v1前一个临接节点的下标</span><br><span class="line">     * @return 返回的是v1的除去v2的下一个临接节点</span><br><span class="line">     */</span><br><span class="line">    //根据前一个临接节点的下标来获取下一个临接节点</span><br><span class="line">    public int getNextNeighbor(int v1, int v2) &#123;</span><br><span class="line">        for (int i = v2 + 1; i &lt; vertexList.size(); i++) &#123;</span><br><span class="line">            if (edges[v1][i] &gt; 0) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //深度优先遍历算法,i第一次就是0</span><br><span class="line">    public void dfs(boolean[] isVisited, int i) &#123;</span><br><span class="line">        //首先访问该节点</span><br><span class="line">        System.out.print(getValueByIndex(i) + &quot;→&quot;);</span><br><span class="line">        //将该节点设置为已经访问</span><br><span class="line">        isVisited[i] = true;</span><br><span class="line">        //获取i的第一个临接节点w</span><br><span class="line">        int w = getFirstNeighbor(i);</span><br><span class="line">        while (w != -1) &#123;//说明存在临接节点</span><br><span class="line">            if (!isVisited[w]) &#123;</span><br><span class="line">                dfs(isVisited, w);//这里保证了递归的访问临接节点</span><br><span class="line">            &#125;//临接节点都已经访问完开始弹栈，回溯</span><br><span class="line">            //如果w已经被访问，查找下一个临接节点</span><br><span class="line">            while ((w = getNextNeighbor(i, w)) != -1 &amp;&amp; !isVisited[w]) &#123;</span><br><span class="line">                //这时的临接节点存在且没有被访问的情况下继续访问下个临接节点</span><br><span class="line">                dfs(isVisited, w);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //广度优先遍历</span><br><span class="line">    public void bfs(boolean[] isVisited, int i) &#123;</span><br><span class="line">        //所有访问的节点入队列，如果当前节点的所有临接节点都已经访问完，则出队列，进行下一个的所有临接节点的访问</span><br><span class="line">        LinkedList queue = new LinkedList();</span><br><span class="line">        //首先访问该节点</span><br><span class="line">        System.out.print(getValueByIndex(i) + &quot;→&quot;);</span><br><span class="line">        queue.addLast(i);//访问的节点入队列</span><br><span class="line">        //将该节点设置为已经访问</span><br><span class="line">        isVisited[i] = true;</span><br><span class="line">        while (!queue.isEmpty()) &#123;//队列不为空</span><br><span class="line">            //取出队列的头结点，并且移除</span><br><span class="line">            i = (int) queue.removeFirst();</span><br><span class="line">            //然后访问所有该节点的临接节点</span><br><span class="line">            int w = getFirstNeighbor(i);//访问第一个临接节点</span><br><span class="line">            if (!isVisited[w]) &#123;</span><br><span class="line">                System.out.print(getValueByIndex(w) + &quot;→&quot;);</span><br><span class="line">                queue.addLast(w);</span><br><span class="line">                isVisited[w]=true;</span><br><span class="line">            &#125;</span><br><span class="line">            while (getNextNeighbor(i, w) != -1) &#123;//进入循环证明有下一个临接节点</span><br><span class="line">                int x = getNextNeighbor(i, w);</span><br><span class="line">                if (!isVisited[x]) &#123;</span><br><span class="line">                    System.out.print(getValueByIndex(x) + &quot;→&quot;);</span><br><span class="line">                    queue.addLast(x);//x入队列</span><br><span class="line">                    isVisited[x]=true;</span><br><span class="line">                &#125;</span><br><span class="line">                w = x;//后移</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //图中常用的方法</span><br><span class="line">    //1:返回节点的个数</span><br><span class="line">    public int getNumOfVertex() &#123;</span><br><span class="line">        return vertexList.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //2:得到边的数目</span><br><span class="line">    public int getNumOfEdges() &#123;</span><br><span class="line">        return numOfEdges;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //3:返回节点i（下标）对应的数据 0-“A”  1-“B”</span><br><span class="line">    public String getValueByIndex(int i) &#123;</span><br><span class="line">        return vertexList.get(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //4:返回v1,v2对应的权值</span><br><span class="line">    public int getWeight(int v1, int v2) &#123;</span><br><span class="line">        return edges[v1][v2];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //5:显示图对应的矩阵（二维数组）</span><br><span class="line">    public void showGraph() &#123;</span><br><span class="line">        for (int[] edge : edges) &#123;</span><br><span class="line">            for (int i : edge) &#123;</span><br><span class="line">                System.out.print(i + &quot;\t&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //插入顶点,vertex：顶点的名称</span><br><span class="line">    public void insertVertex(String vertex) &#123;</span><br><span class="line">        //将顶点加入集合</span><br><span class="line">        vertexList.add(vertex);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @param v1     表示点的下标，即第几个顶点。“A”-“B”  “A”-0 “B”-1</span><br><span class="line">     * @param v2     表示点的下标，即第几个顶点。“A”-“B”  “A”-0 “B”-1</span><br><span class="line">     *               举例：要描述A和B的关系，则v1表示A的下标，v2表示B的下标</span><br><span class="line">     * @param weight 表示权值，即A,B两点之间的关系</span><br><span class="line">     */</span><br><span class="line">    //添加边</span><br><span class="line">    public void insertEdge(int v1, int v2, int weight) &#123;</span><br><span class="line">        edges[v1][v2] = weight;</span><br><span class="line">        edges[v2][v1] = weight;</span><br><span class="line">        numOfEdges++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/10/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%888%EF%BC%89%E6%A0%91/" rel="next" title="java数据结构和算法（8）树">
+                <i class="fa fa-chevron-left"></i> java数据结构和算法（8）树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/10/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%8810%EF%BC%8910%E7%A7%8D%E7%AE%97%E6%B3%95/" rel="prev" title="java数据结构和算法（10）10种算法">
+                java数据结构和算法（10）10种算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1：图"><span class="nav-number">1.</span> <span class="nav-text">1：图</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
