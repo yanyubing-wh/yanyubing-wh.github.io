@@ -81,14 +81,14 @@
 
 
 
-<meta name="description" content="1：离线数仓-用户行为数仓分层搭建总结1数仓理论书籍：《hadoop构建数据仓库实践》-王雪迎	 《数据仓库第四版》-William H.Inmon  1：数仓分层 1234ODS层：DWD层：DWS层：ADS层：  2：为什么要分层 1231：2：3：  3：数据集市和数据仓库概念 12">
+<meta name="description" content="1：离线数仓-用户行为数仓分层搭建总结1数仓理论书籍：《hadoop构建数据仓库实践》-王雪迎	 《数据仓库第四版》-William H.Inmon  1：数仓分层 1234ODS层：原始数据层，直接加载日志，数据，不做处理DWD层：结构和粒度和原表保持一致，对ODS层数据进行清洗（去除空置，脏数据，超过极限范围的数据）DWS层：以DWD为基础，进行轻度汇总，开始以某一个维度为线索，产生跨主题的多">
 <meta property="og:type" content="article">
 <meta property="og:title" content="离线数仓-用户行为数仓分层搭建总结">
 <meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2019&#x2F;12&#x2F;06&#x2F;%E7%A6%BB%E7%BA%BF%E6%95%B0%E4%BB%93-%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%95%B0%E4%BB%93%E5%88%86%E5%B1%82%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93&#x2F;index.html">
 <meta property="og:site_name" content="鄢玉兵的博客">
-<meta property="og:description" content="1：离线数仓-用户行为数仓分层搭建总结1数仓理论书籍：《hadoop构建数据仓库实践》-王雪迎	 《数据仓库第四版》-William H.Inmon  1：数仓分层 1234ODS层：DWD层：DWS层：ADS层：  2：为什么要分层 1231：2：3：  3：数据集市和数据仓库概念 12">
+<meta property="og:description" content="1：离线数仓-用户行为数仓分层搭建总结1数仓理论书籍：《hadoop构建数据仓库实践》-王雪迎	 《数据仓库第四版》-William H.Inmon  1：数仓分层 1234ODS层：原始数据层，直接加载日志，数据，不做处理DWD层：结构和粒度和原表保持一致，对ODS层数据进行清洗（去除空置，脏数据，超过极限范围的数据）DWS层：以DWD为基础，进行轻度汇总，开始以某一个维度为线索，产生跨主题的多">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-07T01:52:20.586Z">
+<meta property="og:updated_time" content="2019-12-07T14:22:41.070Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -292,13 +292,37 @@
         <h1 id="1：离线数仓-用户行为数仓分层搭建总结"><a href="#1：离线数仓-用户行为数仓分层搭建总结" class="headerlink" title="1：离线数仓-用户行为数仓分层搭建总结"></a>1：离线数仓-用户行为数仓分层搭建总结</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数仓理论书籍：《hadoop构建数据仓库实践》-王雪迎	 《数据仓库第四版》-William H.Inmon</span><br></pre></td></tr></table></figure>
 
 <p>1：数仓分层</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ODS层：</span><br><span class="line">DWD层：</span><br><span class="line">DWS层：</span><br><span class="line">ADS层：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ODS层：原始数据层，直接加载日志，数据，不做处理</span><br><span class="line">DWD层：结构和粒度和原表保持一致，对ODS层数据进行清洗（去除空置，脏数据，超过极限范围的数据）</span><br><span class="line">DWS层：以DWD为基础，进行轻度汇总，开始以某一个维度为线索，产生跨主题的多个宽表</span><br><span class="line">ADS层：展示数据，为各种报表系统提供数据</span><br></pre></td></tr></table></figure>
 
 <p>2：为什么要分层</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1：</span><br><span class="line">2：</span><br><span class="line">3：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1：把一个复杂的问题简单化 ，每一层只处理单一的步骤，比较简单，并且方便定位问题</span><br><span class="line">2：减少重复开发，通过中间层数据，能够减少极大的重复计算，增加一次计算结果的复用性</span><br><span class="line">3：隔离原始数据，使真实数据合统计数据解耦</span><br></pre></td></tr></table></figure>
 
 <p>3：数据集市和数据仓库概念</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1：数据集市一般指的部门级别的数据整合</span><br><span class="line">2：数据仓库是企业级别的</span><br></pre></td></tr></table></figure>
+
+<p>4：Hive运行引擎Tez</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tez可以将多个有依赖的作业转换为一个作业，这样只需写一次HDFS，且中间节点较少，从而大大提升作业的计算性能。</span><br></pre></td></tr></table></figure>
+
+<p>5：shell中单引号和双引号的区别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）单引号不取变量值</span><br><span class="line">（2）双引号取变量值</span><br><span class="line">（3）反引号`，执行引号中命令</span><br><span class="line">（4）双引号内部嵌套单引号，取出变量值</span><br><span class="line">（5）单引号内部嵌套双引号，不取出变量值</span><br></pre></td></tr></table></figure>
+
+<p>6： Hive和数据库比较</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Hive 和数据库除了拥有类似的查询语言，再无类似之处。</span><br><span class="line">1）数据存储位置</span><br><span class="line">Hive 存储在 HDFS 。数据库将数据保存在块设备或者本地文件系统中。</span><br><span class="line"></span><br><span class="line">2）数据更新</span><br><span class="line">Hive中不建议对数据的改写。而数据库中的数据通常是需要经常进行修改的， </span><br><span class="line"></span><br><span class="line">3）执行延迟</span><br><span class="line">Hive 执行延迟较高。数据库的执行延迟较低。当然，这个是有条件的，即数据规模较小，当数据规模大到超过数据库的处理能力的时候，Hive的并行计算显然能体现出优势。</span><br><span class="line"></span><br><span class="line">4）数据规模</span><br><span class="line">Hive支持很大规模的数据计算；数据库可以支持的数据规模较小。</span><br></pre></td></tr></table></figure>
+
+<p>7：内部表和外部表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1）管理表：当我们删除一个管理表时，Hive也会删除这个表中数据。管理表不适合和其他工具共享数据。</span><br><span class="line">2）外部表：删除该表并不会删除掉原始数据，删除的是表的元数据</span><br><span class="line"></span><br><span class="line">一般数据使用外部表储存，保证数据安全性；临时表或者备份表使用内部表，避免数据的积压。</span><br></pre></td></tr></table></figure>
+
+<p>8：4个By区别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1）Sort By：分区内有序；</span><br><span class="line">2）Order By：全局排序，只有一个Reducer；</span><br><span class="line">3）Distrbute By：类似MR中Partition，进行分区，结合sort by使用。</span><br><span class="line">4）Cluster By：当Distribute by和Sorts by字段相同时，可以使用Cluster by方式。Cluster by除了具有Distribute by的功能外还兼具Sort by的功能。但是排序只能是升序排序，不能指定排序规则为ASC或者DESC。</span><br></pre></td></tr></table></figure>
+
+<p>9：窗口函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1） OVER()：指定分析函数工作的数据窗口大小，这个数据窗口大小可能会随着行的变而变化</span><br><span class="line">2）CURRENT ROW：当前行</span><br><span class="line">3）n PRECEDING：往前n行数据</span><br><span class="line">4） n FOLLOWING：往后n行数据</span><br><span class="line">5）UNBOUNDED：起点，UNBOUNDED PRECEDING 表示从前面的起点， UNBOUNDED FOLLOWING表示到后面的终点</span><br><span class="line">6） LAG(col,n)：往前第n行数据</span><br><span class="line">7）LEAD(col,n)：往后第n行数据</span><br><span class="line">8） NTILE(n)：把有序分区中的行分发到指定数据的组中，各个组有编号，编号从1开始，对于每一行，NTILE返回此行所属的组的编号。注意：n必须为int类型。</span><br><span class="line"></span><br><span class="line">一般窗口函数结合By使用！</span><br></pre></td></tr></table></figure>
+
+<p>10：自定义UDF、UDTF函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用UDF函数解析公共字段；用UDTF函数解析事件字段。</span><br><span class="line"></span><br><span class="line">UDF一进一出，UDTF多进多出，实际上使用到的是一进多出</span><br></pre></td></tr></table></figure>
+
+<p>11： Hive优化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">1）MapJoin</span><br><span class="line">如果不指定MapJoin或者不符合MapJoin的条件，那么Hive解析器会将Join操作转换成Common Join，即：在Reduce阶段完成join。容易发生数据倾斜。可以用MapJoin把小表全部加载到内存在map端进行join，避免reducer处理。</span><br><span class="line"></span><br><span class="line">2）行列过滤</span><br><span class="line">列处理：在SELECT中，只拿需要的列，如果有，尽量使用分区过滤，少用SELECT *。</span><br><span class="line">行处理：在分区剪裁中，当使用外关联时，如果将副表的过滤条件写在Where后面，那么就会先全表关联，之后再过滤。 </span><br><span class="line"></span><br><span class="line">3）采用分桶技术</span><br><span class="line"></span><br><span class="line">4）采用分区技术</span><br><span class="line"></span><br><span class="line">5）合理设置Map数</span><br><span class="line">（1）通常情况下，作业会通过input的目录产生一个或者多个map任务。</span><br><span class="line">主要的决定因素有：input的文件总个数，input的文件大小，集群设置的文件块大小。</span><br><span class="line">（2）是不是map数越多越好？</span><br><span class="line">答案是否定的。如果一个任务有很多小文件（远远小于块大小128m），则每个小文件也会被当做一个块，用一个map任务来完成，而一个map任务启动和初始化的时间远远大于逻辑处理的时间，就会造成很大的资源浪费。而且，同时可执行的map数是受限的。</span><br><span class="line">（3）是不是保证每个map处理接近128m的文件块，就高枕无忧了？</span><br><span class="line">答案也是不一定。比如有一个127m的文件，正常会用一个map去完成，但这个文件只有一个或者两个小字段，却有几千万的记录，如果map处理的逻辑比较复杂，用一个map任务去做，肯定也比较耗时。</span><br><span class="line">针对上面的问题2和3，我们需要采取两种方式来解决：即减少map数和增加map数；</span><br><span class="line"></span><br><span class="line">6）小文件进行合并</span><br><span class="line">在Map执行前合并小文件，减少Map数：CombineHiveInputFormat具有对小文件进行合并的功能（系统默认的格式）。HiveInputFormat没有对小文件合并功能。</span><br><span class="line"></span><br><span class="line">7）合理设置Reduce数</span><br><span class="line">Reduce个数并不是越多越好</span><br><span class="line">（1）过多的启动和初始化Reduce也会消耗时间和资源；</span><br><span class="line">（2）另外，有多少个Reduce，就会有多少个输出文件，如果生成了很多个小文件，那么如果这些小文件作为下一个任务的输入，则也会出现小文件过多的问题；</span><br><span class="line">在设置Reduce个数的时候也需要考虑这两个原则：处理大数据量利用合适的Reduce数；使单个Reduce任务处理数据量大小要合适；</span><br><span class="line"></span><br><span class="line">8）常用参数</span><br><span class="line">// 输出合并小文件</span><br><span class="line">SET hive.merge.mapfiles = true; -- 默认true，在map-only任务结束时合并小文件</span><br><span class="line">SET hive.merge.mapredfiles = true; -- 默认false，在map-reduce任务结束时合并小文件</span><br><span class="line">SET hive.merge.size.per.task = 268435456; -- 默认256M</span><br><span class="line">SET hive.merge.smallfiles.avgsize = 16777216; -- 当输出文件的平均大小小于该值时，启动一个独立的map-reduce任务进行文件merge</span><br></pre></td></tr></table></figure>
 
 
       
@@ -347,6 +371,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/07/%E7%A6%BB%E7%BA%BF%E6%95%B0%E4%BB%93-%E7%B3%BB%E7%BB%9F%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E6%80%BB%E7%BB%93/" rel="prev" title="离线数仓-系统业务数据仓库总结">
+                离线数仓-系统业务数据仓库总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -423,7 +451,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
