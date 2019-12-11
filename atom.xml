@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yanyubing.xyz/"/>
-  <updated>2019-12-07T15:39:07.656Z</updated>
+  <updated>2019-12-11T01:56:56.010Z</updated>
   <id>https://yanyubing.xyz/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>搭建python环境（anaconda，pytorch，cuda，cudnn）</title>
+    <link href="https://yanyubing.xyz/2019/12/10/%E6%90%AD%E5%BB%BApython%E7%8E%AF%E5%A2%83%EF%BC%88anaconda%EF%BC%8Cpytorch%EF%BC%8Ccuda%EF%BC%8Ccudnn%EF%BC%89/"/>
+    <id>https://yanyubing.xyz/2019/12/10/%E6%90%AD%E5%BB%BApython%E7%8E%AF%E5%A2%83%EF%BC%88anaconda%EF%BC%8Cpytorch%EF%BC%8Ccuda%EF%BC%8Ccudnn%EF%BC%89/</id>
+    <published>2019-12-10T11:16:08.738Z</published>
+    <updated>2019-12-11T01:56:56.010Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="python环境搭建"><a href="#python环境搭建" class="headerlink" title="python环境搭建"></a>python环境搭建</h1><h3 id="1：Conda"><a href="#1：Conda" class="headerlink" title="1：Conda"></a>1：Conda</h3><p>1：说明</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Conda是一种通用包管理系统，当然包含管理Python（支持linux, mac, win）</span><br><span class="line">Anaconda：是一个开源的Python发行版本，包含了conda、python等180多个科学包及其依赖项</span><br></pre></td></tr></table></figure><p>2：下载</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://www.anaconda.com/distribution/#download-section</span><br><span class="line">选择python对应的版本</span><br></pre></td></tr></table></figure><p>3：安装</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">傻瓜式安装</span><br></pre></td></tr></table></figure><p>4：验证方式</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda -V</span><br><span class="line">conda 4.7.12</span><br></pre></td></tr></table></figure><h3 id="2：cuda"><a href="#2：cuda" class="headerlink" title="2：cuda"></a>2：cuda</h3><p>1：说明</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CUDA（Compute Unified Device Architecture），是显卡厂商NVIDIA推出的运算平台。 CUDA™是一种由NVIDIA推出的通用并行计算架构，该架构使GPU能够解决复杂的计算问题</span><br></pre></td></tr></table></figure><p>2：下载</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://developer.nvidia.com/cuda-toolkit-archive</span><br><span class="line">我下载的是和自己机器对应的版本10.0</span><br></pre></td></tr></table></figure><p>3：安装</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html</span><br></pre></td></tr></table></figure><p>4：注意</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">安装cuda依赖visual studio</span><br><span class="line">验证方式：nvcc -V</span><br><span class="line">nvcc: NVIDIA (R) Cuda compiler driver</span><br><span class="line">Copyright (c) 2005-2018 NVIDIA Corporation</span><br><span class="line">Built on Sat_Aug_25_21:08:04_Central_Daylight_Time_2018</span><br><span class="line">Cuda compilation tools, release 10.0, V10.0.130</span><br></pre></td></tr></table></figure><h3 id="3：cudnn"><a href="#3：cudnn" class="headerlink" title="3：cudnn"></a>3：cudnn</h3><p>1：说明</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cudnn是一个常见的神经网络层加速库文件，其能够很大程度的把加载到显卡上的网络层数据进行优化计算。cuda就像一个傻大粗的加速库，其主要是依靠的是显卡</span><br><span class="line"></span><br><span class="line">计算速度跟一些算法的优化，而且其也是进行显卡加速的入口。所以cudnn需要在有cuda的基础上进行。</span><br></pre></td></tr></table></figure><p>2：下载</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.nvidia.com/deeplearning/sdk/cudnn-install/#install-windows</span><br></pre></td></tr></table></figure><p>3：安装</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下载之后解压即可，把对应文件夹下的内容全部复制到cuda对应的目录下</span><br></pre></td></tr></table></figure><h3 id="4：pytorch"><a href="#4：pytorch" class="headerlink" title="4：pytorch"></a>4：pytorch</h3><p>1：说明</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PyTorch是一个基于Python的科学计算库</span><br></pre></td></tr></table></figure><p>2：下载，安装</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">查看，扎到对应操作系统，CUDA,Python版本对应的pytorch库</span><br><span class="line">https://pytorch.org</span><br><span class="line"></span><br><span class="line">我这里的安装命令是</span><br><span class="line">pip install torch==1.2.0 torchvision==0.4.0 -f https://download.pytorch.org/whl/torch_stable.html</span><br><span class="line"></span><br><span class="line">不知道为什么是对的，命令行显示的是u92</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;python环境搭建&quot;&gt;&lt;a href=&quot;#python环境搭建&quot; class=&quot;headerlink&quot; title=&quot;python环境搭建&quot;&gt;&lt;/a&gt;python环境搭建&lt;/h1&gt;&lt;h3 id=&quot;1：Conda&quot;&gt;&lt;a href=&quot;#1：Conda&quot; class
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>离线数仓-系统业务数据仓库总结</title>
