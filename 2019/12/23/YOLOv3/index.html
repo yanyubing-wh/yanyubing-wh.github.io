@@ -81,14 +81,14 @@
 
 
 
-<meta name="description" content="工具准备node.js git hexo github账号 自己购买的域名 注意事项网上有很多基于hexo搭建github的博客可供参考：http:&#x2F;&#x2F;rosesnow.top  这里主要描述流程和理解，方便遇到问题能够快速找到办法： 1：node.js是用于npm安装 2：hexo是本地博客servece 3：需要把hexo部署到github pages上 4：通过CNAME文件实现域名的重定向">
+<meta name="description" content="yoloV3从零实现-深度学习基于 https:&#x2F;&#x2F;github.com&#x2F;ultralytics&#x2F;yolov3  1：环境搭建1234操作系统环境windows10，需要查看对应的cuda版本1：控制面板2：NVIDIA控制面板3：帮助-系统信息-组件 NVCUDA==10.1.120  1234Python环境1：需求是3.5以上，本公司安装3.72：配置Python环境变量3：在cmd中输入p">
 <meta property="og:type" content="article">
-<meta property="og:title" content="怎么搭建自己的博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2018&#x2F;05&#x2F;20&#x2F;%E6%80%8E%E4%B9%88%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2&#x2F;index.html">
+<meta property="og:title" content="YOLOv3">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2019&#x2F;12&#x2F;23&#x2F;YOLOv3&#x2F;index.html">
 <meta property="og:site_name" content="鄢玉兵的博客">
-<meta property="og:description" content="工具准备node.js git hexo github账号 自己购买的域名 注意事项网上有很多基于hexo搭建github的博客可供参考：http:&#x2F;&#x2F;rosesnow.top  这里主要描述流程和理解，方便遇到问题能够快速找到办法： 1：node.js是用于npm安装 2：hexo是本地博客servece 3：需要把hexo部署到github pages上 4：通过CNAME文件实现域名的重定向">
+<meta property="og:description" content="yoloV3从零实现-深度学习基于 https:&#x2F;&#x2F;github.com&#x2F;ultralytics&#x2F;yolov3  1：环境搭建1234操作系统环境windows10，需要查看对应的cuda版本1：控制面板2：NVIDIA控制面板3：帮助-系统信息-组件 NVCUDA==10.1.120  1234Python环境1：需求是3.5以上，本公司安装3.72：配置Python环境变量3：在cmd中输入p">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-01T15:07:10.073Z">
+<meta property="og:updated_time" content="2019-12-23T01:31:34.371Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://yanyubing.xyz/2018/05/20/怎么搭建自己的博客/"/>
+  <link rel="canonical" href="https://yanyubing.xyz/2019/12/23/YOLOv3/"/>
 
 
 
 
 
-  <title>怎么搭建自己的博客 | 鄢玉兵的博客</title>
+  <title>YOLOv3 | 鄢玉兵的博客</title>
   
 
 
@@ -222,7 +222,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2018/05/20/%E6%80%8E%E4%B9%88%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/12/23/YOLOv3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -239,7 +239,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">怎么搭建自己的博客</h1>
+          <h1 class="post-title" itemprop="name headline">YOLOv3</h1>
         
 
         <div class="post-meta">
@@ -251,8 +251,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T21:46:12+08:00">
-                2018-05-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-23T09:31:34+08:00">
+                2019-12-23
               </time>
             
 
@@ -289,20 +289,32 @@
       
 
       
-        <h1 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h1><p>node.js</p>
-<p>git</p>
-<p>hexo</p>
-<p>github账号</p>
-<p>自己购买的域名</p>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>网上有很多基于hexo搭建github的博客可供参考：<a href="http://rosesnow.top/" target="_blank" rel="noopener">http://rosesnow.top</a> </p>
-<p>这里主要描述流程和理解，方便遇到问题能够快速找到办法：</p>
-<p>1：node.js是用于npm安装</p>
-<p>2：hexo是本地博客servece</p>
-<p>3：需要把hexo部署到github pages上</p>
-<p>4：通过CNAME文件实现域名的重定向操作，最终实现自己的域名与hexo同步</p>
-<p>5：直接在github上添加CANME文件可以实现一次转发，需要在blog/source目录下创建CNAME文件保证每次有效</p>
-<p>6：最后在更新blog之后hexo  g ; hexo d 同步</p>
+        <h1 id="yoloV3从零实现-深度学习"><a href="#yoloV3从零实现-深度学习" class="headerlink" title="yoloV3从零实现-深度学习"></a>yoloV3从零实现-深度学习</h1><p>基于 <a href="https://github.com/ultralytics/yolov3" target="_blank" rel="noopener">https://github.com/ultralytics/yolov3</a> </p>
+<h3 id="1：环境搭建"><a href="#1：环境搭建" class="headerlink" title="1：环境搭建"></a>1：环境搭建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统环境windows10，需要查看对应的cuda版本</span><br><span class="line">1：控制面板</span><br><span class="line">2：NVIDIA控制面板</span><br><span class="line">3：帮助-系统信息-组件 NVCUDA==10.1.120</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Python环境</span><br><span class="line">1：需求是3.5以上，本公司安装3.7</span><br><span class="line">2：配置Python环境变量</span><br><span class="line">3：在cmd中输入python可以进入编辑模式确定成功</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">开发工具Pycharm		</span><br><span class="line">1：选择最新版本2019.3</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Visual Studio</span><br><span class="line">1：选择2017版本，同时需要安装C++模块</span><br><span class="line">2：在安装cuda时，需要提前装好VS</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cuda</span><br><span class="line">1：版本与windows系统cuda版本保持一致10.1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cudnn</span><br><span class="line">1:cudnn版本根据cuda版本确定</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip  conda库 安装pytorch</span><br><span class="line">1：使用pip的方式安装对应版本</span><br><span class="line">2：使用conda的方式安装对应版本</span><br><span class="line">3：最终选择的是pip方式安装cuda10.1，pytoch版本为1.3.1（这里不知道为什么安装一致版本不行）</span><br></pre></td></tr></table></figure>
+
+<h3 id="2：相关组件详解"><a href="#2：相关组件详解" class="headerlink" title="2：相关组件详解"></a>2：相关组件详解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">train.py:训练代码</span><br><span class="line">训练的输入，输出是什么？需要哪些配置参数</span><br><span class="line"></span><br><span class="line">test.py:测试代码</span><br><span class="line">测试的输入输出是什么？需要哪些参数</span><br><span class="line"></span><br><span class="line">detect.py:具体实现的代码</span><br><span class="line">实现之后反馈的形式是什么？需要哪些参数</span><br><span class="line"></span><br><span class="line">models.py：模型</span><br><span class="line">具体使用到了哪些模型</span><br></pre></td></tr></table></figure>
+
+<h3 id="3：文件详解"><a href="#3：文件详解" class="headerlink" title="3：文件详解"></a>3：文件详解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/cfg     配置文件夹，与weights文件一起组合成不同的参数</span><br><span class="line">/weights 权重文件夹，与cfg文件一起合成不同的参数；其中.pt结尾的就是组合之后的一个成体文件</span><br><span class="line">/data    数据文件，包含获取coco数据集的脚本文件；一些kv对应的参数文件;/samples文件夹底下存放的是detect.py执行的检测文件</span><br><span class="line">/images  自己创建，用来存放需要训练coco2014数据集的图片文件train2014.zip val2014.zip</span><br><span class="line">/output  执行detect.py之后生成的文件夹，存放的图片被标注</span><br><span class="line">/utils   存放的函数工具类</span><br><span class="line">requirements.txt  需要准备的环境文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="4：代码详解"><a href="#4：代码详解" class="headerlink" title="4：代码详解"></a>4：代码详解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5：优化"><a href="#5：优化" class="headerlink" title="5：优化"></a>5：优化</h3><h3 id="6：产品实现"><a href="#6：产品实现" class="headerlink" title="6：产品实现"></a>6：产品实现</h3>
       
     </div>
     
@@ -340,14 +352,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/12/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-YOLOv3/" rel="next" title="深度学习-YOLOv3">
+                <i class="fa fa-chevron-left"></i> 深度学习-YOLOv3
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/28/java%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%881%EF%BC%89%E6%95%B0%E7%BB%84%EF%BC%8C%E9%98%9F%E5%88%97%EF%BC%8C%E9%93%BE%E8%A1%A8/" rel="prev" title="java数据结构和算法(1）数组，队列，链表">
-                java数据结构和算法(1）数组，队列，链表 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/12/23/AI%E5%AD%A6%E4%B9%A0/" rel="prev" title="AI学习">
+                AI学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -469,7 +485,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#工具准备"><span class="nav-number">1.</span> <span class="nav-text">工具准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意事项"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#yoloV3从零实现-深度学习"><span class="nav-number">1.</span> <span class="nav-text">yoloV3从零实现-深度学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1：环境搭建"><span class="nav-number">1.0.1.</span> <span class="nav-text">1：环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2：相关组件详解"><span class="nav-number">1.0.2.</span> <span class="nav-text">2：相关组件详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3：文件详解"><span class="nav-number">1.0.3.</span> <span class="nav-text">3：文件详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4：代码详解"><span class="nav-number">1.0.4.</span> <span class="nav-text">4：代码详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5：优化"><span class="nav-number">1.0.5.</span> <span class="nav-text">5：优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6：产品实现"><span class="nav-number">1.0.6.</span> <span class="nav-text">6：产品实现</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

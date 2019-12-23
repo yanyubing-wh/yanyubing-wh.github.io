@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="YOLOv3：增量改进概要： 我们对yolo做了一些更新！我们做了一点改变设计使它变得更加好。同时，也训练了新的网络表现得很好。相比较最后一次而言，这次网络大一点，但是更加准确。别担心，它已经速度很快。320*320的尺寸，yolov3跑完用22ms，并且平均精度为28.2，和SSD（Single Shot MultiBox Detector：单级式目标检测法）比较一样准确，但是速度快3倍。在旧的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YOLOv3论文翻译">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2019&#x2F;12&#x2F;23&#x2F;YOLOv3%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="YOLOv3：增量改进概要： 我们对yolo做了一些更新！我们做了一点改变设计使它变得更加好。同时，也训练了新的网络表现得很好。相比较最后一次而言，这次网络大一点，但是更加准确。别担心，它已经速度很快。320*320的尺寸，yolov3跑完用22ms，并且平均精度为28.2，和SSD（Single Shot MultiBox Detector：单级式目标检测法）比较一样准确，但是速度快3倍。在旧的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps1.jpg">
+<meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps2.jpg">
+<meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps3.jpg">
+<meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps4.jpg">
+<meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps5.jpg">
+<meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps6.jpg">
+<meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps7.jpg">
+<meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps8.jpg">
+<meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps9.jpg">
+<meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps10.jpg">
+<meta property="og:updated_time" content="2019-12-23T01:39:20.230Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2019/12/23/YOLOv3论文翻译/"/>
+
+
+
+
+
+  <title>YOLOv3论文翻译 | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/12/23/YOLOv3%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">YOLOv3论文翻译</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-23T09:37:10+08:00">
+                2019-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="YOLOv3：增量改进"><a href="#YOLOv3：增量改进" class="headerlink" title="YOLOv3：增量改进"></a>YOLOv3：增量改进</h1><p>概要：</p>
+<p>我们对yolo做了一些更新！我们做了一点改变设计使它变得更加好。同时，也训练了新的网络表现得很好。相比较最后一次而言，这次网络大一点，但是更加准确。别担心，它已经速度很快。320*320的尺寸，yolov3跑完用22ms，并且平均精度为28.2，和SSD（Single Shot MultiBox Detector：单级式目标检测法）比较一样准确，但是速度快3倍。在旧的检测指标.5IOU mAP上来看,yolov3非常优秀。在Titan X（英伟达的显卡）上花费51ms达到了58.9的精度，和RetinaNet（另一种检测模型，花费198ms达到了57.5的精度）比较，效果差不多，但是速度快3.8倍。代码：<a href="https://pjreddie.com/yolo/上。" target="_blank" rel="noopener">https://pjreddie.com/yolo/上。</a></p>
+<p>1：导论</p>
+<p>今年我没有花费很多时间再研究上面，而是偶尔打电话，有部分时间花费在了Twitter上。也研究了一下GANs模型（生成模型与判别模型）。去年我仅剩的一点动力设法去使yolo优化一点。但是，老实说，没有很大的改变，只是一大堆的小地方改变使yolo得到优化。我也希望对其他人的研究提供一点帮助。实际上，我现在要说的是关于yolo进行的随机更新，但是我们没有资源，因此准备了一份技术报告。技术报告的优点在于它不需要简介，你们都知道我在描述什么。在导论的结尾，将会有本论文的目录结构。首先，我们会告诉你yolov3的细节；然后，我们会说一下我们做了哪些尝试；最后，我们总结！</p>
+<p>2：细节</p>
+<p>这里是处理yolov3的细节，我们更多的采纳了来自其他人的好想法。我们还训练了一个新的识别网络，比任何一个都好。我们会从头开始带着你了解整个系统。图1：我们根据“焦点损失”论文更新了该图。在性能可以相比较的情况下，yolov3的运行速度明显快于其他检测方法。在相同GPU的情况下，是M40或者TitanX的几倍。</p>
+<p><img src="file:///C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps1.jpg" alt="img"> </p>
+<p>2.1：边框预测</p>
+<p>遵循YOLO9000，我们的系统会使用维簇作为锚定框预测边界。网络为每个边界框tx，ty，tw，th预测4个坐标。如果单元格从图像的左上角偏移了（cx，cy）并且先验边界框的宽度和高度为pw，ph，则预测对应于：</p>
+<p><img src="file:///C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps2.jpg" alt="img"><br>在训练期间，我们使用平方误差损失之和。如果某个坐标预测的真实值为t^<em>，我们的梯度是真实值（从真实值计算得出）减去我们的预测：t^</em> -t*。通过对上面的公式求逆，我们可以轻松求出真实值。Yolov3使用逻辑回归预测每个边界框的客观性得分，如果先验边框与真实值的重叠大于其他先验边界框，那么得分将为1。</p>
+<p><img src="file:///C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps3.jpg" alt="img"> </p>
+<p>不是最好的，但是确实与真实值重叠超过了某个阈值，我们使用的阈值为0.5。我们系统的不同之处在于，只为每个对象的真实值分配一个边界框，如果没有将先验边界框分配给真实值，则不会对坐标和类别预测造成任何损失，仅仅是客观上的损失。</p>
+<p>2.2：类别预测</p>
+<p>每个边框使用多边框分类预测可能包含的类别。我们不使用sofemax（一种应用于分类的函数），因为我们发现它不需要良好的性能，而是仅使用独立的逻辑分类器。我们在训练期间使用的是二进制交叉熵损失来进行类别预测。</p>
+<p>当我们处理更加复杂如开放图片数据集时，这个公式将更加有帮助。在这个数据集中有很多重叠的标签（如：人和女人）。使用sofemax会假设每个边框只会有一个类，但是通常并非如此。多标签的方法可以更好的对数据建模。</p>
+<p>2.3：多尺度预测</p>
+<p>Yolov3使用了3种不同的尺度预测边框，我们的系统从不同的尺度使用了相似的概念提取特征利用锥形网络。我们添加了几个卷积层在我们的基本特征提取器中。最后一个是预测3维张量编码边界框，对象和种类预测。在我们的实验中使用了COCO，我们在每个维度预测3个边框，因此，因此，对于4个边界框偏移，1个客观预测和80个类预测，张量为N×N×[3 *（4 +1 + 80）]。</p>
+<p>接下来，我们从先前的2层中获取特征图，并将其上采样2倍。 我们还从网络中较早的地方获取了一个特征图，并使用串联将其与我们的上采样特征合并。 这种方法使我们能够从上采样的特征中获取更有意义的语义信息，并从较早的特征图中获取更细粒度的信息。 然后，我们再添加一些卷积层以处理此组合特征图，并最终预测相似的张量，尽管现在的大小是原来的两倍。</p>
+<p>我们再执行一次相同的设计，以预测最终比例的盒子。 因此，我们对第3层的预测受益于所有先前的计算以及网络早期的细粒度功能。</p>
+<p>我们仍然使用k均值聚类来确定先验边界框。我们只是随意选择了9个聚类和3个尺度，然后将这些聚类在各个尺度之间平均分配。在COCO数据集上，有9个聚类是：（10×13），（16×30），（33×23），（30×61），（62×45），（59×119），（116×90），（156×198），（373×326）。</p>
+<p>2.4：特征提取器</p>
+<p>我们使用一个新的网络来执行特征提取。我们的新网络是YOLOv2，Darknet-19中使用的网络与新的残留网络内容之间的一种混合方法。 我们的网络使用了连续的3×3和1×1卷积层，但现在也有了一些快捷连接，并且规模更大。 它有53个卷积层，所以我们称它为….等待它….. Darknet-53！</p>
+<p><img src="file:///C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps4.jpg" alt="img"> </p>
+<p>这个新网络比Darknet19强大得多，但仍比ResNet-101或ResNet-152高效，下面是结果：</p>
+<p>   <img src="file:///C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps5.jpg" alt="img"></p>
+<p>每个网络都经过相同设置的训练，并以256×256的单作物精度进行测试。 运行时间是在Titan X上以256×256进行测量的。因此Darknet-53的性能与最新的分类器相当，但浮点运算更少，速度更高。 Darknet-53优于ResNet-101，并且快1.5倍。 Darknet-53具有与ResNet-152相似的性能，并且快2倍。Darknet-53还实现了每秒最高的测量浮点运算。 这意味着网络结构可以更好地利用GPU使评估速度更快，效率更高。这主要是因为ResNets（残差网络）层太多了，效率也不高。</p>
+<p>2.5：训练</p>
+<p>我们仍然会训练完整的图像，而不会进行任何艰苦的负面挖掘。 我们使用多尺度培训，大量数据扩充，批处理规范化以及所有标准内容。我们使用Darknet神经网络框架进行训练和测试。</p>
+<p>3：我们怎么做的</p>
+<p>YOLOv3很好！参见表3。在coco数据集上，平均君度损失与ssd变体相当的时候，速度快3倍。不过，在此指标上，它仍然比其他模型（例如RetinaNet）要落后很多。</p>
+<p><img src="file:///C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps6.jpg" alt="img"> </p>
+<p>但是，当我们查看“旧的”平均精度损失检测指标IOU = .5（或图表中的AP50）时非常强。 它几乎与RetinaNet相当，并且远远超过SSD变体。这表明YOLOv3是一个非常强大的检测器，擅长为对象制造合适的边框。但是，随着IOU阈值的增加，性能会显着下降，这表明YOLOv3难以使盒子与对象完美对齐。</p>
+<p>过去，YOLO一直在努力处理小物件。 但是，现在我们看到了这种趋势的逆转。 通过新的多尺度预测，我们看到YOLOv3具有相对较高的APS性能。 但是，它在中型和大型对象上的性能相对较差。 要深入了解这一点，还需要进行更多研究。</p>
+<p>当我们在AP50度量标准上绘制精度与速度的关系时（参见图5），我们看到YOLOv3比其他检测系统具有明显的优势。 即更快，更好。</p>
+<p><img src="file:///C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps7.jpg" alt="img"> </p>
+<p>4：无效的尝试</p>
+<p>在开发YOLOv3时，我们尝试了很多东西。 很多都行不通。 这是我们能记住的东西：</p>
+<p>1.锚框x，y偏移量预测：</p>
+<p>我们尝试使用普通的锚框预测机制，在该机制中，您可以使用线性激活将x，y偏移量预测为框宽度或高度的倍数。 我们发现此公式降低了模型的稳定性，并且效果不佳。</p>
+<p>2.线性x，y预测而不是逻辑预测：</p>
+<p>我们尝试使用线性激活来直接预测x，y偏移量，而不是逻辑激活。 这导致mAP下降了两点。</p>
+<p>3.失焦：</p>
+<p>我们尝试使用焦点损失。 它降低了我们的mAP大约2点。 YOLOv3可能已经对焦点损失试图解决的问题具有鲁棒性，因为它具有独立的客观性预测和条件类预测。 因此，对于大多数示例而言，分类预测不会带来损失吗？ 或者其他的东西？ 我们不太确定。</p>
+<p><img src="file:///C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps8.jpg" alt="img"> </p>
+<p><img src="file:///C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps9.jpg" alt="img"> </p>
+<p>4.双IOU阈值和真值分配:</p>
+<p>更快的RCNN在训练期间使用两个IOU阈值。 如果预测与基本事实的重叠为0.7，则为正例；由[.3-.7]进行的预测将被忽略；对于所有基本真实对象，小于0.3则为负例。 我们尝试了类似的策略，但未取得良好的效果。</p>
+<p>我们非常喜欢我们目前的表述，似乎至少是局部最优。 这些技术中的某些可能最终会产生良好的结果，也许它们只需要进行一些调整即可稳定训练。</p>
+<p>5：总结</p>
+<p>YOLOv3是一个很好的检测器。 快速，准确。 在.5至.95 IOU度量标准之间的COCO平均精度损失效果不佳。 但是，对于.5 IOU的旧检测指标而言，这非常好。</p>
+<p>为什么我们仍要转换指标？原始的COCO论文只是这样一个含糊的句子：“评估服务器完成后，将添加对评估指标的完整讨论”。 Russakovsky等人的报告指出，人类很难区分.3和.5的IOU。</p>
+<p>“令人惊讶的是，培训人员视觉检查IOU为0.3的边界框并将其与IOU为0.5的边界框区别开来是非常困难的。”如果人类很难分辨出差异，那么这有多重要？</p>
+<p>但是也许更好的问题是：“既然有了探测器，我们将如何处理这些探测器？”许多从事这项研究的人都在Google和Facebook上。我想至少我们知道该技术掌握得很好，并且绝对不会被用来收集您的个人信息并将其出售给…。等等，您是在说这正是它的用途？？ 哦。好吧，那些为视觉研究投入大量资金的人是军队，他们从来没有做过任何可怕的事情，例如用新技术杀死许多人，等等。</p>
+<p>我非常希望大多数使用计算机视觉的人都在用它做快乐的好事，例如计算国家公园中斑马的数量[13]或在猫徘徊在房子周围时追踪它们的猫。 但是计算机视觉已经被质疑使用，作为研究人员，我们有责任至少考虑我们的工作可能造成的危害并想办法减轻它。 我们欠世界那么多。 最后，不要@我。 （因为我终于退出了Twitter）。</p>
+<p><img src="file:///C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps10.jpg" alt="img"> </p>
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/23/AI%E5%AD%A6%E4%B9%A0/" rel="next" title="AI学习">
+                <i class="fa fa-chevron-left"></i> AI学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#YOLOv3：增量改进"><span class="nav-number">1.</span> <span class="nav-text">YOLOv3：增量改进</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

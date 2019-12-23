@@ -81,14 +81,14 @@
 
 
 
-<meta name="description" content="python环境搭建1：Conda1：说明 12Conda是一种通用包管理系统，当然包含管理Python（支持linux, mac, win）Anaconda：是一个开源的Python发行版本，包含了conda、python等180多个科学包及其依赖项  2：下载 12https:&#x2F;&#x2F;www.anaconda.com&#x2F;distribution&#x2F;#download-section选择python对应">
+<meta name="description" content="深度学习-YOLOv3基于 https:&#x2F;&#x2F;github.com&#x2F;ultralytics&#x2F;yolov3  1：环境搭建1234操作系统环境windows10，需要查看对应的cuda版本1：控制面板2：NVIDIA控制面板3：帮助-系统信息-组件 NVCUDA==10.1.120  1234Python环境1：需求是3.5以上，本公司安装3.72：配置Python环境变量3：在cmd中输入pytho">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建python环境（anaconda，pytorch，cuda，cudnn）">
-<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2019&#x2F;12&#x2F;10&#x2F;%E6%90%AD%E5%BB%BApython%E7%8E%AF%E5%A2%83%EF%BC%88anaconda%EF%BC%8Cpytorch%EF%BC%8Ccuda%EF%BC%8Ccudnn%EF%BC%89&#x2F;index.html">
+<meta property="og:title" content="深度学习-YOLOv3">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2019&#x2F;12&#x2F;13&#x2F;%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-YOLOv3&#x2F;index.html">
 <meta property="og:site_name" content="鄢玉兵的博客">
-<meta property="og:description" content="python环境搭建1：Conda1：说明 12Conda是一种通用包管理系统，当然包含管理Python（支持linux, mac, win）Anaconda：是一个开源的Python发行版本，包含了conda、python等180多个科学包及其依赖项  2：下载 12https:&#x2F;&#x2F;www.anaconda.com&#x2F;distribution&#x2F;#download-section选择python对应">
+<meta property="og:description" content="深度学习-YOLOv3基于 https:&#x2F;&#x2F;github.com&#x2F;ultralytics&#x2F;yolov3  1：环境搭建1234操作系统环境windows10，需要查看对应的cuda版本1：控制面板2：NVIDIA控制面板3：帮助-系统信息-组件 NVCUDA==10.1.120  1234Python环境1：需求是3.5以上，本公司安装3.72：配置Python环境变量3：在cmd中输入pytho">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-11T01:56:56.010Z">
+<meta property="og:updated_time" content="2019-12-23T01:32:24.860Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://yanyubing.xyz/2019/12/10/搭建python环境（anaconda，pytorch，cuda，cudnn）/"/>
+  <link rel="canonical" href="https://yanyubing.xyz/2019/12/13/深度学习-YOLOv3/"/>
 
 
 
 
 
-  <title>搭建python环境（anaconda，pytorch，cuda，cudnn） | 鄢玉兵的博客</title>
+  <title>深度学习-YOLOv3 | 鄢玉兵的博客</title>
   
 
 
@@ -222,7 +222,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/12/10/%E6%90%AD%E5%BB%BApython%E7%8E%AF%E5%A2%83%EF%BC%88anaconda%EF%BC%8Cpytorch%EF%BC%8Ccuda%EF%BC%8Ccudnn%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/12/13/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-YOLOv3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -239,7 +239,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">搭建python环境（anaconda，pytorch，cuda，cudnn）</h1>
+          <h1 class="post-title" itemprop="name headline">深度学习-YOLOv3</h1>
         
 
         <div class="post-meta">
@@ -251,8 +251,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-10T19:16:08+08:00">
-                2019-12-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-13T09:20:37+08:00">
+                2019-12-13
               </time>
             
 
@@ -289,46 +289,32 @@
       
 
       
-        <h1 id="python环境搭建"><a href="#python环境搭建" class="headerlink" title="python环境搭建"></a>python环境搭建</h1><h3 id="1：Conda"><a href="#1：Conda" class="headerlink" title="1：Conda"></a>1：Conda</h3><p>1：说明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Conda是一种通用包管理系统，当然包含管理Python（支持linux, mac, win）</span><br><span class="line">Anaconda：是一个开源的Python发行版本，包含了conda、python等180多个科学包及其依赖项</span><br></pre></td></tr></table></figure>
+        <h1 id="深度学习-YOLOv3"><a href="#深度学习-YOLOv3" class="headerlink" title="深度学习-YOLOv3"></a>深度学习-YOLOv3</h1><p>基于 <a href="https://github.com/ultralytics/yolov3" target="_blank" rel="noopener">https://github.com/ultralytics/yolov3</a> </p>
+<h3 id="1：环境搭建"><a href="#1：环境搭建" class="headerlink" title="1：环境搭建"></a>1：环境搭建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">操作系统环境windows10，需要查看对应的cuda版本</span><br><span class="line">1：控制面板</span><br><span class="line">2：NVIDIA控制面板</span><br><span class="line">3：帮助-系统信息-组件 NVCUDA==10.1.120</span><br></pre></td></tr></table></figure>
 
-<p>2：下载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://www.anaconda.com/distribution/#download-section</span><br><span class="line">选择python对应的版本</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Python环境</span><br><span class="line">1：需求是3.5以上，本公司安装3.7</span><br><span class="line">2：配置Python环境变量</span><br><span class="line">3：在cmd中输入python可以进入编辑模式确定成功</span><br></pre></td></tr></table></figure>
 
-<p>3：安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">傻瓜式安装</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">开发工具Pycharm		</span><br><span class="line">1：选择最新版本2019.3</span><br></pre></td></tr></table></figure>
 
-<p>4：验证方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda -V</span><br><span class="line">conda 4.7.12</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Visual Studio</span><br><span class="line">1：选择2017版本，同时需要安装C++模块</span><br><span class="line">2：在安装cuda时，需要提前装好VS</span><br></pre></td></tr></table></figure>
 
-<h3 id="2：cuda"><a href="#2：cuda" class="headerlink" title="2：cuda"></a>2：cuda</h3><p>1：说明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CUDA（Compute Unified Device Architecture），是显卡厂商NVIDIA推出的运算平台。 CUDA™是一种由NVIDIA推出的通用并行计算架构，该架构使GPU能够解决复杂的计算问题</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cuda</span><br><span class="line">1：版本与windows系统cuda版本保持一致10.1</span><br></pre></td></tr></table></figure>
 
-<p>2：下载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://developer.nvidia.com/cuda-toolkit-archive</span><br><span class="line">我下载的是和自己机器对应的版本10.0</span><br></pre></td></tr></table></figure>
-
-<p>3：安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html</span><br></pre></td></tr></table></figure>
-
-<p>4：注意</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">安装cuda依赖visual studio</span><br><span class="line">验证方式：nvcc -V</span><br><span class="line">nvcc: NVIDIA (R) Cuda compiler driver</span><br><span class="line">Copyright (c) 2005-2018 NVIDIA Corporation</span><br><span class="line">Built on Sat_Aug_25_21:08:04_Central_Daylight_Time_2018</span><br><span class="line">Cuda compilation tools, release 10.0, V10.0.130</span><br></pre></td></tr></table></figure>
-
-<h3 id="3：cudnn"><a href="#3：cudnn" class="headerlink" title="3：cudnn"></a>3：cudnn</h3><p>1：说明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cudnn是一个常见的神经网络层加速库文件，其能够很大程度的把加载到显卡上的网络层数据进行优化计算。cuda就像一个傻大粗的加速库，其主要是依靠的是显卡</span><br><span class="line"></span><br><span class="line">计算速度跟一些算法的优化，而且其也是进行显卡加速的入口。所以cudnn需要在有cuda的基础上进行。</span><br></pre></td></tr></table></figure>
-
-<p>2：下载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.nvidia.com/deeplearning/sdk/cudnn-install/#install-windows</span><br></pre></td></tr></table></figure>
-
-<p>3：安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下载之后解压即可，把对应文件夹下的内容全部复制到cuda对应的目录下</span><br></pre></td></tr></table></figure>
-
-<h3 id="4：pytorch"><a href="#4：pytorch" class="headerlink" title="4：pytorch"></a>4：pytorch</h3><p>1：说明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PyTorch是一个基于Python的科学计算库</span><br></pre></td></tr></table></figure>
-
-<p>2：下载，安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">查看，扎到对应操作系统，CUDA,Python版本对应的pytorch库</span><br><span class="line">https://pytorch.org</span><br><span class="line"></span><br><span class="line">我这里的安装命令是</span><br><span class="line">pip install torch==1.2.0 torchvision==0.4.0 -f https://download.pytorch.org/whl/torch_stable.html</span><br><span class="line"></span><br><span class="line">不知道为什么是对的，命令行显示的是u92</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cudnn</span><br><span class="line">1:cudnn版本根据cuda版本确定</span><br></pre></td></tr></table></figure>
 
 
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip  conda库 安装pytorch</span><br><span class="line">1：使用pip的方式安装对应版本</span><br><span class="line">2：使用conda的方式安装对应版本</span><br><span class="line">3：最终选择的是pip方式安装cuda10.1，pytoch版本为1.3.1（这里不知道为什么安装一致版本不行）</span><br></pre></td></tr></table></figure>
+
+<h3 id="2：相关组件详解"><a href="#2：相关组件详解" class="headerlink" title="2：相关组件详解"></a>2：相关组件详解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">train.py:训练代码</span><br><span class="line">训练的输入，输出是什么？需要哪些配置参数</span><br><span class="line"></span><br><span class="line">test.py:测试代码</span><br><span class="line">测试的输入输出是什么？需要哪些参数</span><br><span class="line"></span><br><span class="line">detect.py:具体实现的代码</span><br><span class="line">实现之后反馈的形式是什么？需要哪些参数</span><br><span class="line"></span><br><span class="line">models.py：模型</span><br><span class="line">具体使用到了哪些模型</span><br></pre></td></tr></table></figure>
+
+<h3 id="3：文件详解"><a href="#3：文件详解" class="headerlink" title="3：文件详解"></a>3：文件详解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/cfg     配置文件夹，与weights文件一起组合成不同的参数</span><br><span class="line">/weights 权重文件夹，与cfg文件一起合成不同的参数；其中.pt结尾的就是组合之后的一个成体文件</span><br><span class="line">/data    数据文件，包含获取coco数据集的脚本文件；一些kv对应的参数文件;/samples文件夹底下存放的是detect.py执行的检测文件</span><br><span class="line">/images  自己创建，用来存放需要训练coco2014数据集的图片文件train2014.zip val2014.zip</span><br><span class="line">/output  执行detect.py之后生成的文件夹，存放的图片被标注</span><br><span class="line">/utils   存放的函数工具类</span><br><span class="line">requirements.txt  需要准备的环境文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="4：代码详解"><a href="#4：代码详解" class="headerlink" title="4：代码详解"></a>4：代码详解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5：优化"><a href="#5：优化" class="headerlink" title="5：优化"></a>5：优化</h3><h3 id="6：产品实现"><a href="#6：产品实现" class="headerlink" title="6：产品实现"></a>6：产品实现</h3>
       
     </div>
     
@@ -375,6 +361,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/23/YOLOv3/" rel="prev" title="YOLOv3">
+                YOLOv3 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -451,7 +441,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -495,7 +485,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python环境搭建"><span class="nav-number">1.</span> <span class="nav-text">python环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1：Conda"><span class="nav-number">1.0.1.</span> <span class="nav-text">1：Conda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2：cuda"><span class="nav-number">1.0.2.</span> <span class="nav-text">2：cuda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3：cudnn"><span class="nav-number">1.0.3.</span> <span class="nav-text">3：cudnn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4：pytorch"><span class="nav-number">1.0.4.</span> <span class="nav-text">4：pytorch</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#深度学习-YOLOv3"><span class="nav-number">1.</span> <span class="nav-text">深度学习-YOLOv3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1：环境搭建"><span class="nav-number">1.0.1.</span> <span class="nav-text">1：环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2：相关组件详解"><span class="nav-number">1.0.2.</span> <span class="nav-text">2：相关组件详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3：文件详解"><span class="nav-number">1.0.3.</span> <span class="nav-text">3：文件详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4：代码详解"><span class="nav-number">1.0.4.</span> <span class="nav-text">4：代码详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5：优化"><span class="nav-number">1.0.5.</span> <span class="nav-text">5：优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6：产品实现"><span class="nav-number">1.0.6.</span> <span class="nav-text">6：产品实现</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
