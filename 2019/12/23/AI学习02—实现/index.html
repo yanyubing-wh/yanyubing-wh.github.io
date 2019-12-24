@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="人工智能1：深度学习简介123456上一代框架发展（处理的数据量小，逻辑简单）：	强分类：SVM，随机森林	上一代提出了思想，但是无硬件条件支撑，无法得到实现和验证新一代框架发展（处理数据量大，逻辑复杂）：		深度神经网络依赖于大数据体系:数据量大，结构体系大	硬件的更新：GPU的发展，适合矩阵运算（英伟达，AMD），另外CPU适合于逻辑运算  2：深度学习发展123456前馈神经网络（BP网络）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI学习02—实现">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2019&#x2F;12&#x2F;23&#x2F;AI%E5%AD%A6%E4%B9%A002%E2%80%94%E5%AE%9E%E7%8E%B0&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="人工智能1：深度学习简介123456上一代框架发展（处理的数据量小，逻辑简单）：	强分类：SVM，随机森林	上一代提出了思想，但是无硬件条件支撑，无法得到实现和验证新一代框架发展（处理数据量大，逻辑复杂）：		深度神经网络依赖于大数据体系:数据量大，结构体系大	硬件的更新：GPU的发展，适合矩阵运算（英伟达，AMD），另外CPU适合于逻辑运算  2：深度学习发展123456前馈神经网络（BP网络）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-23T11:47:28.697Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2019/12/23/AI学习02—实现/"/>
+
+
+
+
+
+  <title>AI学习02—实现 | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/12/23/AI%E5%AD%A6%E4%B9%A002%E2%80%94%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AI学习02—实现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-23T15:44:07+08:00">
+                2019-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="人工智能"><a href="#人工智能" class="headerlink" title="人工智能"></a>人工智能</h1><h3 id="1：深度学习简介"><a href="#1：深度学习简介" class="headerlink" title="1：深度学习简介"></a>1：深度学习简介</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">上一代框架发展（处理的数据量小，逻辑简单）：</span><br><span class="line">	强分类：SVM，随机森林</span><br><span class="line">	上一代提出了思想，但是无硬件条件支撑，无法得到实现和验证</span><br><span class="line">新一代框架发展（处理数据量大，逻辑复杂）：	</span><br><span class="line">	深度神经网络依赖于大数据体系:数据量大，结构体系大</span><br><span class="line">	硬件的更新：GPU的发展，适合矩阵运算（英伟达，AMD），另外CPU适合于逻辑运算</span><br></pre></td></tr></table></figure>
+
+<h3 id="2：深度学习发展"><a href="#2：深度学习发展" class="headerlink" title="2：深度学习发展"></a>2：深度学习发展</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">前馈神经网络（BP网络）：</span><br><span class="line">	增加input尺寸</span><br><span class="line">	增加隐层数目</span><br><span class="line">	全连接网络</span><br><span class="line">用反向传播解决网络参数</span><br><span class="line">随机梯度下降：随机步长、初始化点多样</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3：深度学习框架"><a href="#3：深度学习框架" class="headerlink" title="3：深度学习框架"></a>3：深度学习框架</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">TensorFlow:Google</span><br><span class="line">Torch7：facebook</span><br><span class="line">Caffe</span><br><span class="line">Karas</span><br><span class="line">CNTK</span><br><span class="line">MXNet</span><br><span class="line">Theano</span><br><span class="line">Deeplearning4J</span><br></pre></td></tr></table></figure>
+
+<h3 id="4：TensorFlow"><a href="#4：TensorFlow" class="headerlink" title="4：TensorFlow"></a>4：TensorFlow</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1：TensorFlow™ 是一个采用数据流图（data flow graphs），用于数值计算的开源软件库。节点（Nodes）在图中表示数学操作，图中的线（edges）则表示在节点间相互联系的多维数据数组，即张量（tensor）。它灵活的架构让你可以在多种平台上展开计算，例如台式计算机中的一个或多个CPU（或GPU），服务器，移动设备等等。TensorFlow 最初由Google大脑小组（隶属于Google机器智能研究机构）的研究员和工程师们开发出来，用于机器学习和深度神经网络方面的研究，但这个系统的通用性使其也可广泛用于其他计算领域。</span><br><span class="line">2：优势：灵活性，可移植性，多语言支持Go，Java，Lua，Javascript，或者是R。</span><br></pre></td></tr></table></figure>
+
+<h3 id="5：深度学习框架涉及的概念"><a href="#5：深度学习框架涉及的概念" class="headerlink" title="5：深度学习框架涉及的概念"></a>5：深度学习框架涉及的概念</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">人工智能&gt;机器学习&gt;深度学习</span><br><span class="line">人工智能是一个大的概念：图灵测验</span><br><span class="line">机器学习：是实现人工智能的一致方法</span><br><span class="line">深度学习：是实现机器学习的一种技术</span><br><span class="line"></span><br><span class="line">tensor:张量=容器</span><br><span class="line">张量是现代机器学习的基础。它的核心是一个数据容器，多数情况下，它包含数字，有时候它也包含字符串，但这种情况比较少。因此把它想象成一个数字的水桶。</span><br><span class="line">张量有多种形式，首先让我们来看最基本的形式，你会在深度学习中偶然遇到，它们在0维到5维之间。</span><br><span class="line">0维张量/标量；1维张量：数组；2维张量称为矩阵；3维=时间序列；4维=图像；5维=视频</span><br><span class="line"></span><br><span class="line">graph:数据结构，图。从任何一点出发都能走遍所有节点</span><br><span class="line"></span><br><span class="line">constant:常量</span><br><span class="line"></span><br><span class="line">variable:变量</span><br><span class="line">a=tf.variable(x)</span><br><span class="line">其中a是python变量，tf.variable(x)是tf中的变量</span><br><span class="line"></span><br><span class="line">operator: 操作符，tf中内置的操作符，和python中完全不一样</span><br><span class="line"></span><br><span class="line">session：会话，定义图之后创建会话才能操作图</span><br><span class="line"></span><br><span class="line">initalizer：初始化器，一般是参数，模型...的初始化</span><br><span class="line"></span><br><span class="line">optimizer:优化器，其中随机梯度下降SGD就是其中一种优化手段，相当于对图的最后一个节点操作，从而使图动起来，执行流程</span><br><span class="line"></span><br><span class="line">placeholder:占位符，当信息传递到了input之后，占位符常用是从数据源接收数据的作用</span><br><span class="line"></span><br><span class="line">device:CPU或者GPU</span><br><span class="line"></span><br><span class="line">tf.nn：tensorflow.nn模块是tensorflow用于深度学习计算的核心模块</span><br><span class="line"></span><br><span class="line">tf.train：训练模块</span><br><span class="line"></span><br><span class="line">tf.summary：可视化模块</span><br></pre></td></tr></table></figure>
+
+<h3 id="6：计算机视觉，卷积神经网络cnn"><a href="#6：计算机视觉，卷积神经网络cnn" class="headerlink" title="6：计算机视觉，卷积神经网络cnn"></a>6：计算机视觉，卷积神经网络cnn</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7：语义理解，循环神经网络rnn"><a href="#7：语义理解，循环神经网络rnn" class="headerlink" title="7：语义理解，循环神经网络rnn"></a>7：语义理解，循环神经网络rnn</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/23/YOLOv3%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91/" rel="next" title="YOLOv3论文翻译">
+                <i class="fa fa-chevron-left"></i> YOLOv3论文翻译
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/24/AI%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%90%B4%E6%81%A9%E8%BE%BE%EF%BC%8901%E2%80%94%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%92%8C%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="prev" title="AI学习（吴恩达）01—深度学习和神经网络">
+                AI学习（吴恩达）01—深度学习和神经网络 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#人工智能"><span class="nav-number">1.</span> <span class="nav-text">人工智能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1：深度学习简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">1：深度学习简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2：深度学习发展"><span class="nav-number">1.0.2.</span> <span class="nav-text">2：深度学习发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3：深度学习框架"><span class="nav-number">1.0.3.</span> <span class="nav-text">3：深度学习框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4：TensorFlow"><span class="nav-number">1.0.4.</span> <span class="nav-text">4：TensorFlow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5：深度学习框架涉及的概念"><span class="nav-number">1.0.5.</span> <span class="nav-text">5：深度学习框架涉及的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6：计算机视觉，卷积神经网络cnn"><span class="nav-number">1.0.6.</span> <span class="nav-text">6：计算机视觉，卷积神经网络cnn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7：语义理解，循环神经网络rnn"><span class="nav-number">1.0.7.</span> <span class="nav-text">7：语义理解，循环神经网络rnn</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
