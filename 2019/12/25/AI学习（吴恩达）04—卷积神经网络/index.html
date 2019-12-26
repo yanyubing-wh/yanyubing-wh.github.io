@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="卷积神经网络1：卷积神经网络1：计算机视觉 1234应用：图片识别目标检测问题：假设图片是64*64的，那么输入x的维度是64*64*3；如果图片像素是1000*1000（大小约1M），第一层隐藏层有1000个神经元，使用的标准的全连接网络，那么w^[1]的维度是1000*3百万；这意味着矩阵w^[1]会有30亿个参数  2：边缘检测—卷积神经网络cnn入门 1234567891011121314">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI学习（吴恩达）04—卷积神经网络">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2019&#x2F;12&#x2F;25&#x2F;AI%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%90%B4%E6%81%A9%E8%BE%BE%EF%BC%8904%E2%80%94%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="卷积神经网络1：卷积神经网络1：计算机视觉 1234应用：图片识别目标检测问题：假设图片是64*64的，那么输入x的维度是64*64*3；如果图片像素是1000*1000（大小约1M），第一层隐藏层有1000个神经元，使用的标准的全连接网络，那么w^[1]的维度是1000*3百万；这意味着矩阵w^[1]会有30亿个参数  2：边缘检测—卷积神经网络cnn入门 1234567891011121314">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-26T04:02:40.468Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2019/12/25/AI学习（吴恩达）04—卷积神经网络/"/>
+
+
+
+
+
+  <title>AI学习（吴恩达）04—卷积神经网络 | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2019/12/25/AI%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%90%B4%E6%81%A9%E8%BE%BE%EF%BC%8904%E2%80%94%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AI学习（吴恩达）04—卷积神经网络</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-25T17:55:35+08:00">
+                2019-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h1><h3 id="1：卷积神经网络"><a href="#1：卷积神经网络" class="headerlink" title="1：卷积神经网络"></a>1：卷积神经网络</h3><p>1：计算机视觉</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">应用：</span><br><span class="line">图片识别</span><br><span class="line">目标检测</span><br><span class="line">问题：假设图片是64*64的，那么输入x的维度是64*64*3；如果图片像素是1000*1000（大小约1M），第一层隐藏层有1000个神经元，使用的标准的全连接网络，那么w^[1]的维度是1000*3百万；这意味着矩阵w^[1]会有30亿个参数</span><br></pre></td></tr></table></figure>
+
+<p>2：边缘检测—卷积神经网络cnn入门</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">流向：输入图片→第一层→...→输出层</span><br><span class="line"></span><br><span class="line">第一层做的就是边缘检测：①垂直检测②水平检测</span><br><span class="line">例如要检测一个6*6*1灰度的输入：</span><br><span class="line">第一步：这里会创建一个过滤器(filter)3*3，或者有的时候会被叫做核（kernel），filter初始化为如下矩阵,</span><br><span class="line">[1,0,-1</span><br><span class="line"> 1,0,-1</span><br><span class="line"> 1,0,-1]</span><br><span class="line">第二步：把输入（6,6）矩阵和（3,3）filter进行卷积运算*（这里的*表示卷积运算），得到一个(4,4)的矩阵</span><br><span class="line">第三步：卷积运算的过程相当于是用filter去遍历输入矩阵，对应覆盖值相乘之后相加得到对应输出矩阵位置的值。计算完成之后就得到了最终的输出矩阵各个元素值；</span><br><span class="line">python中conv.forword表示*卷积运算；</span><br><span class="line">transflow中用tf.nn.conv2d表示*卷积运算</span><br><span class="line">kersa框架中用conv2D表示*卷积运算</span><br><span class="line">第四步：为什么可以作为垂直检测？得到的最终输出矩阵（也可以看出图片）的竖线上灰度值一样就表示为当前位置为垂直</span><br></pre></td></tr></table></figure>
+
+<p>3：更多边缘检测的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">上面提到，边缘检测一般作为第一个隐藏层的内容，另外：</span><br><span class="line">1：过滤器可以检测物体亮度的变化，由最终得出的图片矩阵+-值来确定</span><br><span class="line">2：水平检测的filter为</span><br><span class="line">[1,1,1</span><br><span class="line">0,0,0</span><br><span class="line">-1,-1,-1],和垂直检测一样，表示的上方亮，下方暗。</span><br><span class="line">3:Sobel filter：可以增加结果的鲁棒性</span><br><span class="line">[1,0,-1</span><br><span class="line"> 2,0,-2</span><br><span class="line"> 1,0,-1]</span><br><span class="line"> 4：等等还有其他的filter</span><br><span class="line"> 5：你也可以把（3*3）的矩阵都当成参数，通过反向传播，让系统自己学习这个filter，这也许会更加出色；例如检测45°或者70°角或者任意边缘的角度</span><br><span class="line"> </span><br><span class="line">总结：需要实现更加复杂的边缘检测，通过反向传播来学习；最主要的就是这些都依赖于卷积运算</span><br></pre></td></tr></table></figure>
+
+<p>4：padding</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">当你做卷积运算的时候，输入（n,n）,filter为(f,f)，则输出为（n-f+1,n-f+1）：</span><br><span class="line">这里会出现2个问题，①输出图片像素变低，最终会变为1*1②输入图片的边缘只会被filter覆盖1次但是中间区域会被覆盖多次，意味着边缘数据没有完全利用</span><br><span class="line">优化padding：将需要识别的输入图片边缘扩充1个像素，那么原输入变为（n+2,n+2），这样既可以照顾到边缘，也可以使生成的图片还是原来的像素(n,n)，填充的点可以使用0</span><br><span class="line"></span><br><span class="line">总结：卷积的两种方式：①Valid不填充②Same填充</span><br><span class="line">f一般为奇数，即过滤器一般是奇数过滤器，考虑到的是对称</span><br></pre></td></tr></table></figure>
+
+<p>5：卷积步长</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">前面提到的，卷积步长是1的情况，即1步1步的往后面或者下方移动；</span><br><span class="line">当步长为2时，filter右边移动或者往下面移动都是2的步长。</span><br><span class="line">变量：输入（n,n），filter为（f,f），p增加的像素，s为步长；最终得到的输出矩阵为((n+2p-f)/s+1,(n+2p-f)/s+1)，这里有个问题就是最终输出为前面矩阵单边取整。、</span><br><span class="line"></span><br><span class="line">总结：按照机器学习的惯例，我们对filter不需要做任何操作，与输入进行卷积运算。</span><br><span class="line">但是在数学领域或者其他方面：需要把filter进行上下和左右翻转之后再与原输入做运算。这个叫做互相关性！</span><br></pre></td></tr></table></figure>
+
+<p>6：卷积为何有效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">前面讲的都是二维的卷积（图片灰度），接下来讲的是RGB彩色图像的特征。</span><br><span class="line">当像素为6*6时，那么这个矩阵就是6*6*3；3个6*6的堆叠，3表示通道的数量（channels）;这个时候filter的维度为3*3*3，注意最后一个3也是表示通道的数量，filter与input的通道数需要保持一致。</span><br><span class="line">我们需要知道的是6*6*3  *  3*3*3进行卷积运算之后得到的是4*4*1</span><br><span class="line">计算原理与二维一样，6*6*3中仅仅包含3*3*3有4*4种可能性</span><br><span class="line">这个时候的过滤器可能是之前二维的filter后面接上全为0的两个3*3矩阵；但是具体过滤器随着你需要的功能调整，也可以作为参数来调整。</span><br><span class="line"></span><br><span class="line">总结：</span><br><span class="line">①input和filter通道数一致时候，得到的输出维度和二维状态下一致。理论上来讲，过滤器只用来检测红色通道上的边缘，但实际上你可以自行确定参数来实现对应的功能！</span><br><span class="line">②你也可以使用m种不同的过滤器在一层作用，最终可以得到的输出维度是（n-f+1,n-f+1，n）,当然这里没有padding和步长为1</span><br><span class="line">③最最最重要的是，你可以用不同的过滤器检测不同的特征，也就是你可以同时检测10种，20种...得特征，只要调整m即可，</span><br></pre></td></tr></table></figure>
+
+<p>7：单层卷积网络</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">卷积神经网络第一层的演变：</span><br><span class="line">6*6*3通过2个filter变为4*4*2，即a^[0]变为a^[1]的过程；如果有10个过滤器，则输出变为4*4*10。</span><br><span class="line">f^[l]=filter size </span><br><span class="line">p^[l]=padding</span><br><span class="line">s^[l]=stride(步长)</span><br><span class="line">Input:(n_H^[l-1],n_w^[l-1].n_c[l-1])  #图片的长宽也可能不同</span><br><span class="line">Output:(n_H^[l],n_w^[l],n_c^[l])</span><br><span class="line">输出：n_h^[l]=(n_h^(l-1)+2p^[l]-f^[l])/s^[l]  +1</span><br><span class="line">同理可以算出输出的宽，输出的通道数就是这一层所使用的过滤器数量</span><br><span class="line">该层的filter：(f^[l],f^[l],n_c^[l-1])</span><br><span class="line">activations：a^[l]=(n_H^[l],n_w^[l],n_c^[l],如果该层有m个神经元，则A^[l]=m*(n_H^[l],n_w^[l],n_c^[l]</span><br><span class="line">Weights:f^[l],f^[l],n_c^[l-1]*n_c^[l]  #权重数就是过滤器的个数的乘积</span><br><span class="line">bias:</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/25/AI%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%90%B4%E6%81%A9%E8%BE%BE%EF%BC%8902%E2%80%94%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E3%80%81%E6%AD%A3%E5%88%99%E5%8C%96%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96/" rel="next" title="AI学习（吴恩达）02—超参数调试、正则化以及优化">
+                <i class="fa fa-chevron-left"></i> AI学习（吴恩达）02—超参数调试、正则化以及优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#卷积神经网络"><span class="nav-number">1.</span> <span class="nav-text">卷积神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1：卷积神经网络"><span class="nav-number">1.0.1.</span> <span class="nav-text">1：卷积神经网络</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
