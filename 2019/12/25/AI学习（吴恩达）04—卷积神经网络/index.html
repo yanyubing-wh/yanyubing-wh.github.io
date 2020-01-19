@@ -88,8 +88,10 @@
 <meta property="og:site_name" content="鄢玉兵的博客">
 <meta property="og:description" content="卷积神经网络1：卷积神经网络1：计算机视觉 1234应用：图片识别目标检测问题：假设图片是64*64的，那么输入x的维度是64*64*3；如果图片像素是1000*1000（大小约1M），第一层隐藏层有1000个神经元，使用的标准的全连接网络，那么w^[1]的维度是1000*3百万；这意味着矩阵w^[1]会有30亿个参数  2：边缘检测—卷积神经网络cnn入门 1234567891011121314">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-26T04:02:40.468Z">
+<meta property="og:image" content="c:%5CUsers%5Cyanyubing%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191226133809069.png">
+<meta property="og:updated_time" content="2019-12-26T08:59:29.384Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5Cyanyubing%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191226133809069.png">
 
 
 
@@ -310,6 +312,11 @@
 <p>7：单层卷积网络</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">卷积神经网络第一层的演变：</span><br><span class="line">6*6*3通过2个filter变为4*4*2，即a^[0]变为a^[1]的过程；如果有10个过滤器，则输出变为4*4*10。</span><br><span class="line">f^[l]=filter size </span><br><span class="line">p^[l]=padding</span><br><span class="line">s^[l]=stride(步长)</span><br><span class="line">Input:(n_H^[l-1],n_w^[l-1].n_c[l-1])  #图片的长宽也可能不同</span><br><span class="line">Output:(n_H^[l],n_w^[l],n_c^[l])</span><br><span class="line">输出：n_h^[l]=(n_h^(l-1)+2p^[l]-f^[l])/s^[l]  +1</span><br><span class="line">同理可以算出输出的宽，输出的通道数就是这一层所使用的过滤器数量</span><br><span class="line">该层的filter：(f^[l],f^[l],n_c^[l-1])</span><br><span class="line">activations：a^[l]=(n_H^[l],n_w^[l],n_c^[l],如果该层有m个神经元，则A^[l]=m*(n_H^[l],n_w^[l],n_c^[l]</span><br><span class="line">Weights:f^[l],f^[l],n_c^[l-1]*n_c^[l]  #权重数就是过滤器的个数的乘积</span><br><span class="line">bias:</span><br></pre></td></tr></table></figure>
 
+<p>8:简单卷积网络实例</p>
+<p><img src="C:%5CUsers%5Cyanyubing%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191226133809069.png" alt="image-20191226133809069"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">总结：随着深度的增加，维度在减少，而通道数再增加；除了卷积层之外一般还搭配有池化层和全连接层。</span><br></pre></td></tr></table></figure>
+
+<p>9：</p>
 
       
     </div>
@@ -357,6 +364,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/28/YOLOv3-0n-android/" rel="prev" title="YOLOv3-0n-android">
+                YOLOv3-0n-android <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -433,7 +444,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -497,7 +508,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

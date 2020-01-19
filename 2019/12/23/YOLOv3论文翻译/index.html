@@ -98,7 +98,7 @@
 <meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps8.jpg">
 <meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps9.jpg">
 <meta property="og:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps10.jpg">
-<meta property="og:updated_time" content="2019-12-23T01:39:20.230Z">
+<meta property="og:updated_time" content="2020-01-16T02:49:11.715Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="file:&#x2F;&#x2F;&#x2F;C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps1.jpg">
 
@@ -316,7 +316,7 @@
 <p>每个边框使用多边框分类预测可能包含的类别。我们不使用sofemax（一种应用于分类的函数），因为我们发现它不需要良好的性能，而是仅使用独立的逻辑分类器。我们在训练期间使用的是二进制交叉熵损失来进行类别预测。</p>
 <p>当我们处理更加复杂如开放图片数据集时，这个公式将更加有帮助。在这个数据集中有很多重叠的标签（如：人和女人）。使用sofemax会假设每个边框只会有一个类，但是通常并非如此。多标签的方法可以更好的对数据建模。</p>
 <p>2.3：多尺度预测</p>
-<p>Yolov3使用了3种不同的尺度预测边框，我们的系统从不同的尺度使用了相似的概念提取特征利用锥形网络。我们添加了几个卷积层在我们的基本特征提取器中。最后一个是预测3维张量编码边界框，对象和种类预测。在我们的实验中使用了COCO，我们在每个维度预测3个边框，因此，因此，对于4个边界框偏移，1个客观预测和80个类预测，张量为N×N×[3 *（4 +1 + 80）]。</p>
+<p>Yolov3使用了3种不同的尺度预测边框，我们的系统从不同的尺度使用了相似的概念提取特征利用锥形网络。我们添加了几个卷积层在我们的基本特征提取器中。最后一个是预测3维张量编码边界框，对象和种类预测。在我们的实验中使用了COCO，我们在每个维度预测3个边框，因此，对于4个边界框偏移，1个客观预测和80个类预测，张量为N×N×[3 *（4 +1 + 80）]。</p>
 <p>接下来，我们从先前的2层中获取特征图，并将其上采样2倍。 我们还从网络中较早的地方获取了一个特征图，并使用串联将其与我们的上采样特征合并。 这种方法使我们能够从上采样的特征中获取更有意义的语义信息，并从较早的特征图中获取更细粒度的信息。 然后，我们再添加一些卷积层以处理此组合特征图，并最终预测相似的张量，尽管现在的大小是原来的两倍。</p>
 <p>我们再执行一次相同的设计，以预测最终比例的盒子。 因此，我们对第3层的预测受益于所有先前的计算以及网络早期的细粒度功能。</p>
 <p>我们仍然使用k均值聚类来确定先验边界框。我们只是随意选择了9个聚类和3个尺度，然后将这些聚类在各个尺度之间平均分配。在COCO数据集上，有9个聚类是：（10×13），（16×30），（33×23），（30×61），（62×45），（59×119），（116×90），（156×198），（373×326）。</p>
@@ -329,7 +329,7 @@
 <p>2.5：训练</p>
 <p>我们仍然会训练完整的图像，而不会进行任何艰苦的负面挖掘。 我们使用多尺度培训，大量数据扩充，批处理规范化以及所有标准内容。我们使用Darknet神经网络框架进行训练和测试。</p>
 <p>3：我们怎么做的</p>
-<p>YOLOv3很好！参见表3。在coco数据集上，平均君度损失与ssd变体相当的时候，速度快3倍。不过，在此指标上，它仍然比其他模型（例如RetinaNet）要落后很多。</p>
+<p>YOLOv3很好！参见表3。在coco数据集上，平均精度损失与ssd变体相当的时候，速度快3倍。不过，在此指标上，它仍然比其他模型（例如RetinaNet）要落后很多。</p>
 <p><img src="file:///C:%5CUsers%5CYANYUB~1%5CAppData%5CLocal%5CTemp%5Cksohtml4396%5Cwps6.jpg" alt="img"> </p>
 <p>但是，当我们查看“旧的”平均精度损失检测指标IOU = .5（或图表中的AP50）时非常强。 它几乎与RetinaNet相当，并且远远超过SSD变体。这表明YOLOv3是一个非常强大的检测器，擅长为对象制造合适的边框。但是，随着IOU阈值的增加，性能会显着下降，这表明YOLOv3难以使盒子与对象完美对齐。</p>
 <p>过去，YOLO一直在努力处理小物件。 但是，现在我们看到了这种趋势的逆转。 通过新的多尺度预测，我们看到YOLOv3具有相对较高的APS性能。 但是，它在中型和大型对象上的性能相对较差。 要深入了解这一点，还需要进行更多研究。</p>
@@ -482,7 +482,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -546,7 +546,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

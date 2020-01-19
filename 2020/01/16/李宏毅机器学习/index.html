@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="李宏毅机器学习1：Regression（回归） 12345678910111213机器学习步骤：①找一个model（function set）②根据Training data找到合适的function，实际上是合适的参数（这里是定义Loss function,L(f)=L(w,b)损失函数来表示我们函数的好坏，损失函数越大，则函数越差）③获得最好的function，损失函数最小线性回归：y=wx+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李宏毅机器学习">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;01&#x2F;16&#x2F;%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="李宏毅机器学习1：Regression（回归） 12345678910111213机器学习步骤：①找一个model（function set）②根据Training data找到合适的function，实际上是合适的参数（这里是定义Loss function,L(f)=L(w,b)损失函数来表示我们函数的好坏，损失函数越大，则函数越差）③获得最好的function，损失函数最小线性回归：y=wx+">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-17T03:00:13.513Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/01/16/李宏毅机器学习/"/>
+
+
+
+
+
+  <title>李宏毅机器学习 | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/01/16/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">李宏毅机器学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-16T11:24:18+08:00">
+                2020-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="李宏毅机器学习"><a href="#李宏毅机器学习" class="headerlink" title="李宏毅机器学习"></a>李宏毅机器学习</h1><p>1：Regression（回归）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">机器学习步骤：①找一个model（function set）②根据Training data找到合适的function，实际上是合适的参数（这里是定义Loss function,L(f)=L(w,b)损失函数来表示我们函数的好坏，损失函数越大，则函数越差）③获得最好的function，损失函数最小</span><br><span class="line"></span><br><span class="line">线性回归：y=wx+b  w:weight b:bias</span><br><span class="line"></span><br><span class="line">Gradient Descent（梯度下降）作用：求出最小的损失函数L(w,b)。</span><br><span class="line">①随机选取w0，对L(w,b)求导，涉及到学习率，更新w0</span><br><span class="line">②重复，直到w0处，L(w,b)最低，Local optimal</span><br><span class="line">③梯度下降的worry：存在多个最小损失函数值（多个局部最小值）</span><br><span class="line">④定义合适的损失函数，使得局部最低值就是全局最低值</span><br><span class="line"></span><br><span class="line">总结：①选取合适的模型②通过损失函数最小值，来获取最合适的参数③模型越复杂，在train data上得到的损失函数值可能越低，但是同时可能在test data上得到的损失值越高，这要看如何把控。</span><br><span class="line"></span><br><span class="line">Regularization（正则化）：回归可能会出现在train data上损失函数很低，但是在test data上出现损失函数过高的情况。这里可以使用正则化，在损失函数最后+λ∑（wi）²,使得曲线边平滑，得到低的test data损失函数，正则化的过程不需要考虑b（bias）。2：梯度下降代码实现</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"># 梯度下降</span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">x_data = [338., 333., 328., 207., 226., 25., 179., 60., 208., 606.]</span><br><span class="line">y_data = [640., 633., 619., 393., 428., 27., 192., 66., 226., 1591.]</span><br><span class="line"># ydata=b+w*xdata</span><br><span class="line">x = np.arange(-200, -100, 1)  # bias</span><br><span class="line">y = np.arange(-5, 5, 0.1)  # weight</span><br><span class="line">z = np.zeros((len(x), len(y)))</span><br><span class="line">X, Y = np.meshgrid(x, y)</span><br><span class="line">for i in range(len(x)):</span><br><span class="line">    for j in range(len(y)):</span><br><span class="line">        b = x[i]</span><br><span class="line">        w = y[j]</span><br><span class="line">        z[j][i] = 0</span><br><span class="line">        for n in range(len(x_data)):</span><br><span class="line">            z[j][i] = z[j][i] + (y_data[n] - b - w * x_data[n]) ** 2</span><br><span class="line">        z[j][i] = z[j][i] / len(x_data)</span><br><span class="line">b = -120</span><br><span class="line">w = -4</span><br><span class="line">lr = 1  # learning rate</span><br><span class="line">iteration = 100000</span><br><span class="line"></span><br><span class="line"># store initial</span><br><span class="line">b_history = [b]</span><br><span class="line">w_history = [w]</span><br><span class="line"></span><br><span class="line">lr_b = 0</span><br><span class="line">lr_w = 0</span><br><span class="line"># Iterations</span><br><span class="line">for i in range(iteration):</span><br><span class="line">    b_grad = 0.0</span><br><span class="line">    w_grad = 0.0</span><br><span class="line">    for n in range(len(x_data)):</span><br><span class="line">        b_grad = b_grad - 2.0 * (y_data[n] - b - w * x_data[n]) * 1.0</span><br><span class="line">        w_grad = w_grad - 2.0 * (y_data[n] - b - w * x_data[n]) * x_data[n]</span><br><span class="line"></span><br><span class="line">    lr_b = lr_b + b_grad ** 2</span><br><span class="line">    lr_w = lr_w + w_grad ** 2</span><br><span class="line">    # 更新参数</span><br><span class="line">    b = b - lr / np.sqrt(lr_b) * b_grad</span><br><span class="line">    w = w - lr / np.sqrt(lr_w) * w_grad</span><br><span class="line"></span><br><span class="line">    # store parameters</span><br><span class="line">    b_history.append(b)</span><br><span class="line">    w_history.append(w)</span><br><span class="line"></span><br><span class="line"># plot the figure</span><br><span class="line">plt.contourf(x, y, z, 50, alpha=0.5, cmap=plt.get_cmap(&apos;jet&apos;))</span><br><span class="line">plt.plot([-188.4], [2.67], &apos;x&apos;, ms=12, markeredgewidth=3, color=&apos;orange&apos;)</span><br><span class="line">plt.plot(b_history, w_history, &apos;o-&apos;, ms=3, lw=1.5, color=&apos;black&apos;)</span><br><span class="line">plt.ylim(-5, 5)</span><br><span class="line">plt.xlabel(r&apos;$b$&apos;, fontsize=16)</span><br><span class="line">plt.ylabel(r&apos;$w$&apos;, fontsize=16)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>2：误差哪里来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">error due to &apos;bias&apos;（偏差） and  error due to &apos;variance&apos; （方差）</span><br><span class="line">概率论中的方差和期望。</span><br><span class="line">最优的方式是Low Bias ，Low Variance</span><br><span class="line">①简单的model模型：Bias比较大，但是Variance比较小；复杂的model，则相反</span><br><span class="line">②当Bias较大时，可能需要重新设计你的model</span><br><span class="line">③当Variance较大时，需要更多的data(很难)【但是可以通过变化增加数据】，或者Regularization(正则化)【正则化可能会增加Bias】</span><br></pre></td></tr></table></figure>
+
+<p>3：data set</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Training Set一般分为训练集和验证集：一部分用来训练模型，验证集部分来选择模型。</span><br><span class="line">原因：在training set 上产生的error一定是要小于实际的Testing Set上面的error，所有提前在training data上就知道error大小</span><br><span class="line">可行方案：把training set分为三等分，分别选择一份为验证集，得到avg error 最低的模型，把该模型在返回来在整个trainning上面</span><br></pre></td></tr></table></figure>
+
+<p>4：Gradient Descent（梯度下降）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Loss function（损失函数）：求一组参数，使得损失函数最小</span><br><span class="line">①随机选取初始参数w,b</span><br><span class="line">②计算参数的偏微分</span><br><span class="line">③更新w,b</span><br><span class="line">④继续操作，得到偏微分=0（最小值）</span><br><span class="line"></span><br><span class="line">learning rate(学习率):</span><br><span class="line">学习率比较小的时候，可能很慢达到最低点</span><br><span class="line">学习率比较大的时候，可能达不到最低点，持续震荡趋势</span><br><span class="line">①学习率自动更新：开始时候较大，最后靠近最低点的时候变得越小</span><br><span class="line">②对不同的参数给不同的学习率，同时学习率根据前面的数据改变：</span><br><span class="line">方案一（Adagrad）</span><br><span class="line">b = b - lr / np.sqrt(lr_b) * b_grad</span><br><span class="line">w = w - lr / np.sqrt(lr_w) * w_grad</span><br><span class="line"></span><br><span class="line">stochastic Gradient Descent（随机梯度下降）：一次example就更新一次参数</span><br><span class="line"></span><br><span class="line">feature scaling（特征缩放）：y=b+w1*x1+w2*x2，当x1,x2的缩放不一致的时候，把其中大的变小</span><br></pre></td></tr></table></figure>
+
+<p>5:分类：概率生成模型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">二分分类：已知training data，有100只狗，做完训练之后需要用该模型去判断不在这个training data中的1只狗是狗的概率。</span><br><span class="line">①把training data中的feature提取出来，做正太分布，求出μ和∑，得到正态分布函数</span><br><span class="line">②将检测对象的特征带入到正太分布函数，得到概率</span><br><span class="line"></span><br><span class="line">maximum likelihood（极大似然估计）：求μ和∑所用的方式</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/10/%E6%9D%8E%E5%AE%8F%E6%AF%85%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="next" title="李宏毅线性代数">
+                <i class="fa fa-chevron-left"></i> 李宏毅线性代数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/19/android%E5%BC%80%E5%8F%91/" rel="prev" title="android开发">
+                android开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#李宏毅机器学习"><span class="nav-number">1.</span> <span class="nav-text">李宏毅机器学习</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

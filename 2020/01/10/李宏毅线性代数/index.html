@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="李宏毅线性代数1：我们将学习什么1：系统 12系统（function）：给定输入，得到输出线性系统：①输入和输出倍数增长②输入x1输出y1，输入x2输出y2；则输入x1+x2，得到y1+y2  2：线性系统举例 12345电路系统信号和系统PM2.5，温度等：线性系统是近似取值，不一定实际真的是线性！y=w1*x1+w2*x2+w3*x3；参数w就是自己设置的初始化权值参数！最终通过机器学习得到最">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李宏毅线性代数">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;01&#x2F;10&#x2F;%E6%9D%8E%E5%AE%8F%E6%AF%85%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="李宏毅线性代数1：我们将学习什么1：系统 12系统（function）：给定输入，得到输出线性系统：①输入和输出倍数增长②输入x1输出y1，输入x2输出y2；则输入x1+x2，得到y1+y2  2：线性系统举例 12345电路系统信号和系统PM2.5，温度等：线性系统是近似取值，不一定实际真的是线性！y=w1*x1+w2*x2+w3*x3；参数w就是自己设置的初始化权值参数！最终通过机器学习得到最">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-15T11:06:11.144Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/01/10/李宏毅线性代数/"/>
+
+
+
+
+
+  <title>李宏毅线性代数 | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/01/10/%E6%9D%8E%E5%AE%8F%E6%AF%85%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">李宏毅线性代数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-10T09:21:30+08:00">
+                2020-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="李宏毅线性代数"><a href="#李宏毅线性代数" class="headerlink" title="李宏毅线性代数"></a>李宏毅线性代数</h1><h3 id="1：我们将学习什么"><a href="#1：我们将学习什么" class="headerlink" title="1：我们将学习什么"></a>1：我们将学习什么</h3><p>1：系统</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">系统（function）：给定输入，得到输出</span><br><span class="line">线性系统：①输入和输出倍数增长②输入x1输出y1，输入x2输出y2；则输入x1+x2，得到y1+y2</span><br></pre></td></tr></table></figure>
+
+<p>2：线性系统举例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">电路系统</span><br><span class="line">信号和系统</span><br><span class="line">PM2.5，温度等：线性系统是近似取值，不一定实际真的是线性！y=w1*x1+w2*x2+w3*x3；参数w就是自己设置的初始化权值参数！最终通过机器学习得到最优的w参数！</span><br><span class="line">预测房价</span><br><span class="line">谷歌PageRank，网页重要性排序</span><br></pre></td></tr></table></figure>
+
+<p>3：线性方程组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">线性系统一定可以写成一个线性方程组</span><br></pre></td></tr></table></figure>
+
+<p>4：向量（Vectors）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">二维向量，三维向量，等等...</span><br><span class="line">向量的倍数扩展和求和</span><br><span class="line">n维向量的集合记作Rn(n为上标)</span><br><span class="line">向量的交换律:u+v=v+u</span><br><span class="line">向量0+u=u</span><br><span class="line">u&apos;+u=0，u&apos;为u的-1倍</span><br><span class="line">(ab)u=a(bu)</span><br><span class="line">(a+b)u=au+bu</span><br><span class="line">a(u+v)=au+av</span><br><span class="line">不是向量有以上特质，而是有这些特质的叫做向量</span><br></pre></td></tr></table></figure>
+
+<p>5：矩阵（Matrix）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">把n个m维度的向量放在一起，就是m*n的矩阵,m行n列，m-rows，先行在列</span><br><span class="line">矩阵的转置：A是m*n的矩阵，则AT是n*m的矩阵</span><br></pre></td></tr></table></figure>
+
+<p>6：矩阵-向量的乘法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">矩阵和向量相乘：m*n的矩阵只能和n维向量相乘，得到m维向量</span><br><span class="line">矩阵向量的运算：A,B是m*n的矩阵；u，v是n维的向量，则：</span><br><span class="line">A(u+v)=Au+Av</span><br><span class="line">A(cu)=c(Au)=(cA)u</span><br><span class="line">(A+B)u=Au+Bu</span><br></pre></td></tr></table></figure>
+
+<p>7：是否可解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如果两个向量不是平行的，则这两个向量可以组合扫描过整个二维空间；即u≠cv，au+bv可以得到任意的二维空间向量。</span><br><span class="line">非平行-有解；有解不一定非平行，也可能平行。</span><br><span class="line">Span:扩张</span><br><span class="line">Ax=b有没有解：①b是不是A的线性组合②b是不是A做span形成的</span><br></pre></td></tr></table></figure>
+
+<p>8：有多少解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">①只有可能是唯一解和无穷多解</span><br><span class="line">②dependent：对于矩阵A&#123;a1,a2,a3...an&#125;，如果存在x1,x2,x3...xn（不全是0），使得x1*a1+x2*a2+x3*a3+...xn*an=0，则A是dependent的。即在A中存在ai，使得ai可以是其他向量的结合。</span><br><span class="line">③如果Ax=b有解，且A是dependent，则有无穷多解 </span><br><span class="line">④如果Ax=b有无穷多解，则A是dependent</span><br><span class="line">⑤矩阵的Rank数为矩阵中最大的independent的列数</span><br><span class="line">⑥矩阵的Nullity数=矩阵列的数-Rank数</span><br><span class="line">⑦一个矩阵中只有一个非0向量的时候，该矩阵是independent</span><br></pre></td></tr></table></figure>
+
+<p>9：求解线性方程系统（上）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">等价（equivalent）：如果两个方程有相同的解，则这两个方程等价</span><br><span class="line">高斯消去法：</span><br><span class="line">①等式顺序交换</span><br><span class="line">②等式乘以n倍</span><br><span class="line">③等式乘以n倍在加上另一个等式</span><br><span class="line"></span><br><span class="line">多元多次方程组的系数可以看成矩阵，未知数看成向量，等式右边可以看成向量。最终求解的就是未知数的向量。通过高斯消去法，最终得到</span><br><span class="line">1 0 0 3</span><br><span class="line">0 1 0 4</span><br><span class="line">0 0 1 7 这样的矩阵，即:</span><br><span class="line">1*x1+0*x2+0*x3=3</span><br><span class="line">0*x1+1*x2+0*x3=4</span><br><span class="line">0*x1+0*x2+1*x3=7</span><br><span class="line">得到最终的解，RREF（Reduced Row echelon form）就是最终可以直接看出来解的矩阵。REF可能有多个，但是RREF是惟一的。</span><br></pre></td></tr></table></figure>
+
+<p>10：求解线性方程系统（下）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">步骤：</span><br><span class="line">①第一个row下面第一行全为0</span><br><span class="line">②交换row的位置</span><br><span class="line">③继续把下面的行变为0</span><br><span class="line">④把第一位非0的值变为1</span><br><span class="line">⑤得到最终的RREF</span><br><span class="line">对于RREF，可以直接看出是唯一解，还是无穷多解，还是无解</span><br></pre></td></tr></table></figure>
+
+<p>11：从RREF中可以学到什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A=[a1...an]通过RREF得到R=[r1...rn]</span><br><span class="line">①如果a5=-a1+a4则r5=-r1+r4;同理，如果R中有关系，则对应的A中也有这种关系</span><br><span class="line">②[A b]通过RREF得到[R b&apos;]则A通过RREF得到R</span><br><span class="line">③[A b]通过RREF得到[R b&apos;]，则Ax=b和Rx=b&apos;解相同</span><br><span class="line">④A通过REFF得到R，则Ax=0与Rx=0解相同</span><br><span class="line">⑤矮胖型的一定依赖的，即n个m行的矩阵，如果m&lt;n，则一定是依赖的，例如二维空间，两个(非平行)向量一定可以组合成第三个向量；同理三维（非平面）向量一定可以组成第四个向量...</span><br></pre></td></tr></table></figure>
+
+<p>12：矩阵相乘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">矩阵A为m*n，矩阵B为n*p，A*B之后得到m*p的矩阵，可以把B看成p个含有n个元素的列向量 </span><br><span class="line">composition:x通过f(x)结果在通过g(x)，则叫做composition</span><br><span class="line">①矩阵的乘法可以看成：n*1的矩阵和1*p的矩阵相乘，之后求和得到最终n*p的矩阵。</span><br><span class="line">②partition：矩阵可以分割变为小的矩阵，进行组合再运算，结果是一样，注意：partition一定要是可以进行运算的，并且进行partition是可以简化运算的</span><br><span class="line"></span><br><span class="line">Diagonal Matrix：只有对角线有值</span><br><span class="line">Symmetric Matrix:A转置=A</span><br></pre></td></tr></table></figure>
+
+<p>13：矩阵的逆</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A*B=I，则A，B互为逆</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/28/YOLOv3-0n-android/" rel="next" title="YOLOv3-0n-android">
+                <i class="fa fa-chevron-left"></i> YOLOv3-0n-android
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/16/%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="prev" title="李宏毅机器学习">
+                李宏毅机器学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#李宏毅线性代数"><span class="nav-number">1.</span> <span class="nav-text">李宏毅线性代数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1：我们将学习什么"><span class="nav-number">1.0.1.</span> <span class="nav-text">1：我们将学习什么</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
