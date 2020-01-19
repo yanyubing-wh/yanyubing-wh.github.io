@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yanyubing.xyz/"/>
-  <updated>2020-01-19T02:37:58.065Z</updated>
+  <updated>2020-01-19T02:48:44.875Z</updated>
   <id>https://yanyubing.xyz/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="https://yanyubing.xyz/2020/01/19/android%E5%BC%80%E5%8F%91/"/>
     <id>https://yanyubing.xyz/2020/01/19/android%E5%BC%80%E5%8F%91/</id>
     <published>2020-01-19T02:33:24.991Z</published>
-    <updated>2020-01-19T02:37:58.065Z</updated>
+    <updated>2020-01-19T02:48:44.875Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="android开发"><a href="#android开发" class="headerlink" title="android开发"></a>android开发</h1><p>1：安装和配置jdk</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="android开发"><a href="#android开发" class="headerlink" title="android开发"></a>android开发</h1><p>1：安装和配置jdk（环境变量等）</p><p>2：安装android studio，配置</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;android开发&quot;&gt;&lt;a href=&quot;#android开发&quot; class=&quot;headerlink&quot; title=&quot;android开发&quot;&gt;&lt;/a&gt;android开发&lt;/h1&gt;&lt;p&gt;1：安装和配置jdk&lt;/p&gt;
-
+        &lt;h1 id=&quot;android开发&quot;&gt;&lt;a href=&quot;#android开发&quot; class=&quot;headerlink&quot; title=&quot;android开发&quot;&gt;&lt;/a&gt;android开发&lt;/h1&gt;&lt;p&gt;1：安装和配置jdk（环境变量等）&lt;/p&gt;
+&lt;p&gt;2：安装android studi
       
     
     </summary>
