@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1：Introduction to OpenCV 12341：Mac ，Windows,Linux系统都可以2：c,c++,python3：开源4：易于安装  2：How to Install OpenCV for Python on Windows 10 123pip install opencv-pythonimport cv2cv2.__version__  3: How to Read,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openCV-python">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;03&#x2F;06&#x2F;openCV-python&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="1：Introduction to OpenCV 12341：Mac ，Windows,Linux系统都可以2：c,c++,python3：开源4：易于安装  2：How to Install OpenCV for Python on Windows 10 123pip install opencv-pythonimport cv2cv2.__version__  3: How to Read,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-10T20:23:09.558Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/03/06/openCV-python/"/>
+
+
+
+
+
+  <title>openCV-python | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/03/06/openCV-python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">openCV-python</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-06T20:06:09+08:00">
+                2020-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1：Introduction to OpenCV</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1：Mac ，Windows,Linux系统都可以</span><br><span class="line">2：c,c++,python</span><br><span class="line">3：开源</span><br><span class="line">4：易于安装</span><br></pre></td></tr></table></figure>
+
+<p>2：How to Install OpenCV for Python on Windows 10</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install opencv-python</span><br><span class="line">import cv2</span><br><span class="line">cv2.__version__</span><br></pre></td></tr></table></figure>
+
+<p>3: How to Read, Write, Show Images in OpenCV</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"># 读取图片,第二个参数0,-1,1含义不同</span><br><span class="line">img = cv2.imread(&quot;lena.jpg&quot;, 0)</span><br><span class="line"></span><br><span class="line">print(img)</span><br><span class="line"># 显示图片</span><br><span class="line">cv2.imshow(&apos;img&apos;, img)</span><br><span class="line"># 增加显示图片的时间,0代表一直显示</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line"># 中断程序</span><br><span class="line">cv2.destroyAllWindows()</span><br><span class="line"># Write图片</span><br><span class="line">cv2.imwrite(&apos;lena_copy.png&apos;, img)</span><br></pre></td></tr></table></figure>
+
+<p>4：How to Read, Write, Show Videos from Camera in OpenCV</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"># 参数0，代表默认的camera</span><br><span class="line">cap = cv2.VideoCapture(0)</span><br><span class="line"></span><br><span class="line">fourcc = cv2.VideoWriter_fourcc(*&apos;XVID&apos;)</span><br><span class="line"># 摄像头视频保存</span><br><span class="line">out = cv2.VideoWriter(&apos;output.avi&apos;, fourcc, 20.0, (640, 480))</span><br><span class="line"># 没有打开正确的摄像头则进不去</span><br><span class="line">while cap.isOpened():</span><br><span class="line">    # 开始读取</span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    # 有帧返回</span><br><span class="line">    if ret == True:</span><br><span class="line">        # 获取每一帧的宽和高</span><br><span class="line">        print(cap.get(cv2.CAP_PROP_FRAME_WIDTH))</span><br><span class="line">        print(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))</span><br><span class="line">        # 每一帧写出</span><br><span class="line">        out.write(frame)</span><br><span class="line">        # 把每一帧转化为了灰度图片</span><br><span class="line">        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">        # 展示</span><br><span class="line">        cv2.imshow(&apos;frame&apos;, gray)</span><br><span class="line"></span><br><span class="line">        if cv2.waitKey(1) &amp; 0xff == ord(&apos;q&apos;):</span><br><span class="line">            break</span><br><span class="line">    else:</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line"># 释放资源</span><br><span class="line">cap.release()</span><br><span class="line">out.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>5：Draw geometric shapes on images using Python OpenCV</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;lena.jpg&apos;, 1)</span><br><span class="line"># 转化为黑色图片</span><br><span class="line">img = np.zeros([512, 512, 3], np.uint8)</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">直线</span><br><span class="line">图片，起始点，终点，颜色，厚度</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">img = cv2.line(img, (0, 0), (255, 255), (255, 0, 0), 5)</span><br><span class="line"># 箭头</span><br><span class="line">img = cv2.arrowedLine(img, (100, 0), (100, 100), (255, 255, 0), 10)</span><br><span class="line"># 长方形</span><br><span class="line">img = cv2.rectangle(img, (50, 50), (100, 200), (0, 255, 0), 15)</span><br><span class="line"></span><br><span class="line"># 圆</span><br><span class="line">img = cv2.circle(img, (150, 150), 50, (255, 0, 0), 10)</span><br><span class="line"></span><br><span class="line"># font(字形)</span><br><span class="line">font = cv2.FONT_HERSHEY_SIMPLEX</span><br><span class="line">img = cv2.putText(img, &apos;openCV&apos;, (10, 500), font, 4, (255, 255, 255), 10, cv2.LINE_AA)</span><br><span class="line">cv2.imshow(&apos;image&apos;, img)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line"></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>6：Show Date and Time on Videos using OpenCV Python</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import datetime</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(0)</span><br><span class="line">print(cap.get(cv2.CAP_PROP_FRAME_WIDTH))</span><br><span class="line">print(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))</span><br><span class="line"></span><br><span class="line">cap.set(3, 3000)</span><br><span class="line">cap.set(4, 3000)</span><br><span class="line"></span><br><span class="line">while cap.isOpened():</span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    if ret == True:</span><br><span class="line">        font = cv2.FONT_HERSHEY_SIMPLEX</span><br><span class="line">        # 文本</span><br><span class="line">        text = &apos;Width:&apos; + str(cap.get(3)) + &apos;  Height&apos; + str(cap.get(4))</span><br><span class="line">        # 时间</span><br><span class="line">        datet = str(datetime.datetime.now())</span><br><span class="line">        # 添加文本</span><br><span class="line">        frame = cv2.putText(frame, datet, (10, 50), font,</span><br><span class="line">                            1, (0, 255, 255), 2, cv2.LINE_AA)</span><br><span class="line"></span><br><span class="line">        cv2.imshow(&apos;frame&apos;, frame)</span><br><span class="line"></span><br><span class="line">        if cv2.waitKey(1) &amp; 0xff == ord(&apos;q&apos;):</span><br><span class="line">            break</span><br><span class="line">    else:</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>7：Handle Mouse Events in OpenCV</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># # 获取所有的EVENT事件名</span><br><span class="line"># events = [i for i in dir(cv2) if &apos;EVENT&apos; in i]</span><br><span class="line">#</span><br><span class="line"># print(events)</span><br><span class="line"></span><br><span class="line">def click_event(event, x, y, flags, param):</span><br><span class="line">    # 双击事件</span><br><span class="line">    if event == cv2.EVENT_LBUTTONDBLCLK:</span><br><span class="line">        print(x, &apos;,&apos;, y)</span><br><span class="line">        font = cv2.FONT_HERSHEY_SIMPLEX</span><br><span class="line">        strXY = str(x) + &apos;,&apos; + str(y)</span><br><span class="line">        cv2.putText(img, strXY, (x, y), font, .5, (0, 255, 0), 2)</span><br><span class="line">        cv2.imshow(&apos;image&apos;, img)</span><br><span class="line">    # 右键</span><br><span class="line">    if event == cv2.EVENT_RBUTTONDOWN:</span><br><span class="line">        # https://docs.opencv.org/3.4/d5/d98/tutorial_mat_operations.html</span><br><span class="line">        # 获取BGR</span><br><span class="line">        blue = img[y, x, 0]</span><br><span class="line">        green = img[y, x, 1]</span><br><span class="line">        red = img[y, x, 2]</span><br><span class="line"></span><br><span class="line">        font = cv2.FONT_HERSHEY_SIMPLEX</span><br><span class="line">        strBGR = str(blue) + &apos;,&apos; + str(green) + &apos;,&apos; + str(red)</span><br><span class="line">        cv2.putText(img, strBGR, (x, y), font, .5, (0, 255, 255), 2)</span><br><span class="line">        cv2.imshow(&apos;image&apos;, img)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># img = np.zeros((512, 512, 3), np.uint8)</span><br><span class="line">img = cv2.imread(&apos;lena.jpg&apos;)</span><br><span class="line">cv2.imshow(&apos;image&apos;, img)</span><br><span class="line"></span><br><span class="line">cv2.setMouseCallback(&apos;image&apos;, click_event)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line"></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>8：More Mouse Event Examples in OpenCV Python</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># # 获取所有的EVENT事件名</span><br><span class="line"># events = [i for i in dir(cv2) if &apos;EVENT&apos; in i]</span><br><span class="line">#</span><br><span class="line"># print(events)</span><br><span class="line"></span><br><span class="line">def click_event(event, x, y, flags, param):</span><br><span class="line">    #</span><br><span class="line">    if event == cv2.EVENT_LBUTTONDOWN:</span><br><span class="line">        cv2.circle(img, (x, y), 3, (0, 0, 225), -1)</span><br><span class="line">        # 点击的点储存在points中</span><br><span class="line">        points.append((x, y))</span><br><span class="line">        # 点超过两次</span><br><span class="line">        if len(points) &gt;= 2:</span><br><span class="line">            cv2.line(img, points[-1], points[-2], (255, 0, 0), 5)</span><br><span class="line">        cv2.imshow(&apos;image&apos;, img)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">img = np.zeros((512, 512, 3), np.uint8)</span><br><span class="line"># img = cv2.imread(&apos;lena.jpg&apos;)</span><br><span class="line">cv2.imshow(&apos;image&apos;, img)</span><br><span class="line"></span><br><span class="line">points = []</span><br><span class="line"></span><br><span class="line">cv2.setMouseCallback(&apos;image&apos;, click_event)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line"></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>9：cv.split, cv.merge, cv.resize, cv.add, cv.addWeighted, ROI</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import numpy as py</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;messi5.jpg&apos;)</span><br><span class="line">img2 = cv2.imread(&apos;opencv-logo.png&apos;)</span><br><span class="line"></span><br><span class="line">print(img.shape)  # returns a tuple of number of rows,columns,and channels,(342, 548, 3)</span><br><span class="line">print(img.size)  # returns  Total number of pixels is accessed,562248。等于上面长宽通道数的乘积</span><br><span class="line">print(img.dtype)  # returns Image datatype is obtained,返回获得图像数据类型uint8</span><br><span class="line"># 获取b,g,r channel</span><br><span class="line">b, g, r = cv2.split(img)</span><br><span class="line"># 合并b,g,r channel</span><br><span class="line">img = cv2.merge((b, g, r))</span><br><span class="line"></span><br><span class="line"># 获取球的坐标</span><br><span class="line">ball = img[280:340, 330:390]</span><br><span class="line">img[273:333, 100:160] = ball</span><br><span class="line"></span><br><span class="line"># 合并图片,前提是arraySize一致</span><br><span class="line">img = cv2.resize(img, (512, 512))</span><br><span class="line">img2 = cv2.resize(img2, (512, 512))</span><br><span class="line">dst = cv2.add(img, img2)</span><br><span class="line"></span><br><span class="line"># 合并图片2，增加不同的权值,权值之和1</span><br><span class="line">dst2 = cv2.addWeighted(img, 0.8, img2, 0.2, 0)</span><br><span class="line">cv2.imshow(&apos;img&apos;, dst2)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>10：Bitwise Operations (bitwise AND, OR, NOT and XOR)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"># 制作两个图片</span><br><span class="line">img1 = np.zeros((250, 500, 3), np.uint8)</span><br><span class="line">img1 = cv2.rectangle(img1, (200, 0), (300, 100), (255, 255, 255), -1)</span><br><span class="line"></span><br><span class="line">img2 = np.zeros((250, 500, 3), np.uint8)</span><br><span class="line">img2 = cv2.rectangle(img2, (250, 0), (500, 250), (255, 255, 255), -1)</span><br><span class="line">cv2.imwrite(&apos;image_1.png&apos;, img1)</span><br><span class="line">cv2.imwrite(&apos;image_2.png&apos;, img2)</span><br><span class="line"></span><br><span class="line"># 读取图片</span><br><span class="line">img1 = cv2.imread(&apos;image_1.png&apos;)</span><br><span class="line">img2 = cv2.imread(&apos;image_2.png&apos;)</span><br><span class="line"></span><br><span class="line"># 二进制操作</span><br><span class="line"># URL:https://docs.opencv.org/2.4/modules/core/doc/operations_on_arrays.html#bitwise-and</span><br><span class="line"># 逻辑and：全白才为白，有黑即为黑,底层进行的是255的二进制&amp;运算</span><br><span class="line">bitAnd = cv2.bitwise_and(img1, img2)</span><br><span class="line"># or,有白就白</span><br><span class="line">bitOr = cv2.bitwise_or(img1, img2)</span><br><span class="line"># not:取反</span><br><span class="line">bitNot1 = cv2.bitwise_not(img1)</span><br><span class="line">bitNot2 = cv2.bitwise_not(img2)</span><br><span class="line"># XOR:一样取黑，不一样取白</span><br><span class="line">bitxor = cv2.bitwise_xor(img1, img2)</span><br><span class="line"># 合并之后的图片展示</span><br><span class="line">cv2.imshow(&apos;bitAnd&apos;, bitAnd)</span><br><span class="line">cv2.imshow(&apos;bitOr&apos;, bitOr)</span><br><span class="line">cv2.imshow(&apos;bitNot1&apos;, bitNot1)</span><br><span class="line">cv2.imshow(&apos;bitNot2&apos;, bitNot2)</span><br><span class="line">cv2.imshow(&apos;bitXor&apos;, bitxor)</span><br><span class="line"></span><br><span class="line"># cv2.imshow(&apos;img1&apos;, img1)</span><br><span class="line"># cv2.imshow(&apos;img2&apos;, img2)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>11：How to Bind Trackbar To OpenCV Windows</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"># 创建一个黑图片和window</span><br><span class="line">img = np.zeros((300, 512, 3), np.uint8)</span><br><span class="line">cv2.namedWindow(&apos;image&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def nothing(x):</span><br><span class="line">    print(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 创建调色栏</span><br><span class="line">cv2.createTrackbar(&apos;B&apos;, &apos;image&apos;, 0, 255, nothing)</span><br><span class="line">cv2.createTrackbar(&apos;G&apos;, &apos;image&apos;, 0, 255, nothing)</span><br><span class="line">cv2.createTrackbar(&apos;R&apos;, &apos;image&apos;, 0, 255, nothing)</span><br><span class="line"></span><br><span class="line"># 创建切换按钮</span><br><span class="line">switch = &apos;0:OFF\n1:ON&apos;</span><br><span class="line">cv2.createTrackbar(switch, &apos;image&apos;, 0, 1, nothing)</span><br><span class="line"></span><br><span class="line">while True:</span><br><span class="line">    # 展示</span><br><span class="line">    cv2.imshow(&apos;image&apos;, img)</span><br><span class="line">    k = cv2.waitKey(1) &amp; 0xff</span><br><span class="line">    if k == 27:</span><br><span class="line">        break</span><br><span class="line">    # 获取b,r,g</span><br><span class="line">    b = cv2.getTrackbarPos(&apos;B&apos;, &apos;image&apos;)</span><br><span class="line">    r = cv2.getTrackbarPos(&apos;R&apos;, &apos;image&apos;)</span><br><span class="line">    g = cv2.getTrackbarPos(&apos;G&apos;, &apos;image&apos;)</span><br><span class="line">    s = cv2.getTrackbarPos(switch, &apos;image&apos;)</span><br><span class="line">    if s == 0:</span><br><span class="line">        img[:] = 0</span><br><span class="line">    else:</span><br><span class="line">        # 图片三通道赋值</span><br><span class="line">        img[:] = [b, r, g]</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>12：Object Detection and Object Tracking Using HSV Color Space</p>
+<p>（使用HSV颜色空间进行目标检测和目标跟踪：Hue,Saturation and  Valu色相，饱和度和值）</p>
+<p>H指的就是色相，是以红色为0<a href="https://zh.wikipedia.org/wiki/角度" target="_blank" rel="noopener">度</a>（360度）；黄色为60度；绿色为120度；青色为180度；蓝色为240度；品红色为300度 </p>
+<p>S值0-1：色相的权重</p>
+<p>V值0-1：颜色的亮度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def nothing(x):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 摄像头</span><br><span class="line">cap = cv2.VideoCapture(0)</span><br><span class="line"></span><br><span class="line">cv2.namedWindow(&apos;Tracking&apos;)</span><br><span class="line"># ,范围不是很好确定，使用TrackBar来微调</span><br><span class="line">cv2.createTrackbar(&apos;LH&apos;, &apos;Tracking&apos;, 0, 255, nothing)</span><br><span class="line">cv2.createTrackbar(&apos;UH&apos;, &apos;Tracking&apos;, 255, 255, nothing)</span><br><span class="line">cv2.createTrackbar(&apos;LS&apos;, &apos;Tracking&apos;, 0, 255, nothing)</span><br><span class="line">cv2.createTrackbar(&apos;US&apos;, &apos;Tracking&apos;, 255, 255, nothing)</span><br><span class="line">cv2.createTrackbar(&apos;LV&apos;, &apos;Tracking&apos;, 0, 255, nothing)</span><br><span class="line">cv2.createTrackbar(&apos;UV&apos;, &apos;Tracking&apos;, 255, 255, nothing)</span><br><span class="line"></span><br><span class="line">while True:</span><br><span class="line">    # frame = cv2.imread(&apos;smarties.png&apos;)</span><br><span class="line">    # 转换为摄像头</span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    # 转换为hsv</span><br><span class="line">    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)</span><br><span class="line"></span><br><span class="line">    l_h = cv2.getTrackbarPos(&apos;LH&apos;, &apos;Tracking&apos;)</span><br><span class="line">    l_s = cv2.getTrackbarPos(&apos;LS&apos;, &apos;Tracking&apos;)</span><br><span class="line">    l_v = cv2.getTrackbarPos(&apos;LV&apos;, &apos;Tracking&apos;)</span><br><span class="line"></span><br><span class="line">    u_h = cv2.getTrackbarPos(&apos;UH&apos;, &apos;Tracking&apos;)</span><br><span class="line">    u_s = cv2.getTrackbarPos(&apos;US&apos;, &apos;Tracking&apos;)</span><br><span class="line">    u_v = cv2.getTrackbarPos(&apos;UV&apos;, &apos;Tracking&apos;)</span><br><span class="line"></span><br><span class="line">    l_b = np.array([l_h, l_s, l_v])</span><br><span class="line">    u_b = np.array([u_h, u_s, u_v])</span><br><span class="line"></span><br><span class="line">    # # 蓝色低范围</span><br><span class="line">    # l_b = np.array([110, 50, 50])</span><br><span class="line">    # # 蓝色高范围</span><br><span class="line">    # u_b = np.array([130, 255, 255])</span><br><span class="line">    # 标记区间</span><br><span class="line">    mask = cv2.inRange(hsv, l_b, u_b)</span><br><span class="line">    # 结果</span><br><span class="line">    res = cv2.bitwise_and(frame, frame, mask=mask)</span><br><span class="line"></span><br><span class="line">    cv2.imshow(&apos;frame&apos;, frame)</span><br><span class="line">    cv2.imshow(&apos;mask&apos;, mask)</span><br><span class="line">    cv2.imshow(&apos;res&apos;, res)</span><br><span class="line"></span><br><span class="line">    key = cv2.waitKey(1)</span><br><span class="line">    if key == 27:</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>13：Simple Image Thresholding</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># Simple Image Thresholding</span><br><span class="line"># 简单阈值:</span><br><span class="line"># 对于每个像素，应用相同的阈值。如果像素值小于阈值，则将其设置为0，</span><br><span class="line"># 否则将其设置为最大值。函数cv.threshold用于应用阈值。</span><br><span class="line"># 第一个参数是源图像，它应该是灰度图像。</span><br><span class="line"># 第二个参数是阈值，用于对像素值进行分类。</span><br><span class="line"># 第三个参数是分配给超过阈值的像素值的最大值。</span><br><span class="line"># OpenCV提供了不同类型的阈值，这由函数的第四个参数给出。</span><br><span class="line"># 通过使用类型cv.THRESH_BINARY完成上述基本阈值处理。所有简单的阈值类型为：</span><br><span class="line"># https://docs.opencv.org/master/d7/d4d/tutorial_py_thresholding.html</span><br><span class="line"></span><br><span class="line">import cv2 as cv</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv.imread(&apos;gradient.png&apos;, 0)</span><br><span class="line">ret, thresh1 = cv.threshold(img, 127, 255, cv.THRESH_BINARY)</span><br><span class="line">ret, thresh2 = cv.threshold(img, 127, 255, cv.THRESH_BINARY_INV)</span><br><span class="line">ret, thresh3 = cv.threshold(img, 127, 255, cv.THRESH_TRUNC)</span><br><span class="line">ret, thresh4 = cv.threshold(img, 127, 255, cv.THRESH_TOZERO)</span><br><span class="line">ret, thresh5 = cv.threshold(img, 127, 255, cv.THRESH_TOZERO_INV)</span><br><span class="line">titles = [&apos;Original Image&apos;, &apos;BINARY&apos;, &apos;BINARY_INV&apos;, &apos;TRUNC&apos;, &apos;TOZERO&apos;, &apos;TOZERO_INV&apos;]</span><br><span class="line">images = [img, thresh1, thresh2, thresh3, thresh4, thresh5]</span><br><span class="line">for i in range(6):</span><br><span class="line">#绘图</span><br><span class="line">    plt.subplot(2, 3, i + 1), plt.imshow(images[i], &apos;gray&apos;)</span><br><span class="line">    plt.title(titles[i])</span><br><span class="line">    plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>14：Adaptive Thresholding</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;sudoku.png&apos;, 0)</span><br><span class="line">_, th1 = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)</span><br><span class="line"># https://docs.opencv.org/3.4/d7/d1b/group__imgproc__misc.html</span><br><span class="line">th2 = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C,</span><br><span class="line">                            cv2.THRESH_BINARY, 11, 2)</span><br><span class="line">th3 = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,</span><br><span class="line">                            cv2.THRESH_BINARY, 11, 2)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;image&apos;, img)</span><br><span class="line"># cv2.imshow(&apos;th1&apos;, th1)</span><br><span class="line">cv2.imshow(&apos;th2&apos;, th2)</span><br><span class="line">cv2.imshow(&apos;th3&apos;, th3)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>15：matplotlib with OpenCV（ <a href="https://matplotlib.org/" target="_blank" rel="noopener">https://matplotlib.org/</a> ）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install matplotlib</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;lena.jpg&apos;, -1)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;image&apos;, img)</span><br><span class="line"># 图片转换</span><br><span class="line"># img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line"></span><br><span class="line">plt.imshow(img)</span><br><span class="line"></span><br><span class="line"># 隐藏坐标</span><br><span class="line"># plt.xticks([]), plt.yticks([])</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>16：Morphological Transformations</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;smarties.png&apos;, cv2.IMREAD_GRAYSCALE)</span><br><span class="line"></span><br><span class="line">_, mask = cv2.threshold(img, 220, 255, cv2.THRESH_BINARY_INV)</span><br><span class="line"></span><br><span class="line"># 返回给定形状和类型的新数组，并填充为1。</span><br><span class="line">kernel = np.ones((2, 2), np.uint8)</span><br><span class="line"># 通过使用特定的结构元素来扩展图像。</span><br><span class="line">dilation = cv2.dilate(mask, kernel, iterations=2)</span><br><span class="line"># 通过使用特定的结构元素腐蚀图像。</span><br><span class="line">erosion = cv2.erode(mask, kernel, iterations=1)</span><br><span class="line"># morphologyEx可以使用侵蚀和膨胀来执行高级形态转换</span><br><span class="line">opening = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)</span><br><span class="line">closing = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)</span><br><span class="line"></span><br><span class="line">title = [&apos;image&apos;, &apos;mask&apos;, &apos;dilation&apos;, &apos;erosion&apos;, &apos;opening&apos;, &apos;closing&apos;]</span><br><span class="line"></span><br><span class="line">images = [img, mask, dilation, erosion, opening, closing]</span><br><span class="line"></span><br><span class="line">for i in range(6):</span><br><span class="line">    plt.subplot(3, 3, i + 1), plt.imshow(images[i], &apos;gray&apos;)</span><br><span class="line">    plt.title(title[i])</span><br><span class="line">    plt.xticks([]), plt.yticks([])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>17：Smoothing Images | Blurring Images OpenCV</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line"># OpenCV读取的是BGR格式</span><br><span class="line">img = cv2.imread(&apos;lena.jpg&apos;)</span><br><span class="line"># matplotlib读取的是RGB格式，所以需要转换格式</span><br><span class="line">img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)</span><br><span class="line"></span><br><span class="line">kernel = np.ones((5, 5), np.float32) / 25</span><br><span class="line"># 均质过滤器,进行去噪</span><br><span class="line">dst = cv2.filter2D(img, -1, kernel)</span><br><span class="line"># 模糊化</span><br><span class="line">blur = cv2.blur(img, (5, 5))</span><br><span class="line"># 高斯过滤器</span><br><span class="line">gblur = cv2.GaussianBlur(img, (5, 5), 0)</span><br><span class="line"># Salt-and-pepper noise is a form of noise sometimes seen on images. ...</span><br><span class="line"># This noise can be caused by sharp and sudden disturbances in the image signal.</span><br><span class="line"># It presents itself as sparsely occurring white and black pixels.</span><br><span class="line"># An effective noise reduction method for this type of noise is a median filter or a morphological filter.</span><br><span class="line"># kernelSize的大小为奇数，1除外</span><br><span class="line">median = cv2.medianBlur(img, 5)</span><br><span class="line">titles = [&apos;image&apos;, &apos;2D Convolution&apos;, &apos;blur&apos;, &apos;GaussianBlur&apos;, &apos;median&apos;]</span><br><span class="line">images = [img, dst, blur, gblur, median]</span><br><span class="line"></span><br><span class="line">for i in range(5):</span><br><span class="line">    plt.subplot(2, 3, i + 1), plt.imshow(images[i], &apos;gray&apos;)</span><br><span class="line">    plt.title(titles[i])</span><br><span class="line">    plt.xticks([]), plt.yticks([])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>18：Image Gradients and Edge Detection</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># 图片梯度和边缘检测</span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;sudoku.png&apos;, cv2.IMREAD_GRAYSCALE)</span><br><span class="line"></span><br><span class="line"># 拉普拉斯方法</span><br><span class="line">lap = cv2.Laplacian(img, cv2.CV_64F, ksize=3)  # 转换成拉普拉斯方法适应的数据格式</span><br><span class="line">lap = np.uint8(np.absolute(lap))</span><br><span class="line"></span><br><span class="line"># Sobel方法</span><br><span class="line"># dx=1,dy=0</span><br><span class="line">sobelX = cv2.Sobel(img, cv2.CV_64F, 1, 0)</span><br><span class="line"># dx=0,dy=0</span><br><span class="line">sobelY = cv2.Sobel(img, cv2.CV_64F, 0, 1)</span><br><span class="line"></span><br><span class="line">sobelX = np.uint8(np.absolute(sobelX))</span><br><span class="line">sobelY = np.uint8(np.absolute(sobelY))</span><br><span class="line"></span><br><span class="line">sobelCombined = cv2.bitwise_or(sobelY, sobelY)</span><br><span class="line"></span><br><span class="line">title = [&apos;image&apos;, &quot;laplacian&quot;, &apos;sobelX&apos;, &apos;sobelY&apos;, &apos;sobelCombined&apos;]</span><br><span class="line">images = [img, lap, sobelX, sobelY, sobelCombined]</span><br><span class="line"></span><br><span class="line">for i in range(5):</span><br><span class="line">    plt.subplot(2, 3, i + 1), plt.imshow(images[i], &apos;gray&apos;)</span><br><span class="line">    plt.title(title[i])</span><br><span class="line">    plt.xticks([]), plt.yticks([])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>19：Canny Edge Detection in OpenCV</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 图片梯度和边缘检测</span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;messi5.jpg&apos;, cv2.IMREAD_GRAYSCALE)</span><br><span class="line"></span><br><span class="line"># 拉普拉斯方法</span><br><span class="line">lap = cv2.Laplacian(img, cv2.CV_64F, ksize=3)  # 转换成拉普拉斯方法适应的数据格式</span><br><span class="line">lap = np.uint8(np.absolute(lap))</span><br><span class="line"></span><br><span class="line"># Sobel方法</span><br><span class="line"># dx=1,dy=0</span><br><span class="line">sobelX = cv2.Sobel(img, cv2.CV_64F, 1, 0)</span><br><span class="line"># dx=0,dy=0</span><br><span class="line">sobelY = cv2.Sobel(img, cv2.CV_64F, 0, 1)</span><br><span class="line"></span><br><span class="line">sobelX = np.uint8(np.absolute(sobelX))</span><br><span class="line">sobelY = np.uint8(np.absolute(sobelY))</span><br><span class="line"></span><br><span class="line">sobelCombined = cv2.bitwise_or(sobelY, sobelY)</span><br><span class="line"></span><br><span class="line">canny = cv2.Canny(img, 100, 200)</span><br><span class="line"></span><br><span class="line">title = [&apos;image&apos;, &quot;laplacian&quot;, &apos;sobelX&apos;, &apos;sobelY&apos;, &apos;sobelCombined&apos;, &apos;canny&apos;]</span><br><span class="line">images = [img, lap, sobelX, sobelY, sobelCombined, canny]</span><br><span class="line"></span><br><span class="line">for i in range(6):</span><br><span class="line">    plt.subplot(2, 3, i + 1), plt.imshow(images[i], &apos;gray&apos;)</span><br><span class="line">    plt.title(title[i])</span><br><span class="line">    plt.xticks([]), plt.yticks([])</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>20： Image Pyramids with Python and OpenCV</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># Pyramid, or pyramid representation, is a type of multi-scale signal representation developed by the computer vision,</span><br><span class="line"># image processing and signal processing communities, in which a signal or an image is subject to repeated smoothing and subsampling</span><br><span class="line"># Pyramid representation is a predecessor to scale-space representation and multiresolution analysis.</span><br><span class="line"></span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;lena.jpg&apos;)</span><br><span class="line"># 图片尺寸缩小为1/4</span><br><span class="line">lr1 = cv2.pyrDown(img)</span><br><span class="line">lr2 = cv2.pyrDown(lr1)</span><br><span class="line"># 图片尺寸增大为4倍，但是清晰度降低，因为在缩小过程中部分信息丢失</span><br><span class="line">lh2 = cv2.pyrUp(lr2)</span><br><span class="line"># 高斯金字塔可以解决上面问题</span><br><span class="line">layer = img.copy()</span><br><span class="line">gp = [layer]</span><br><span class="line">for i in range(6):</span><br><span class="line">    layer = cv2.pyrDown(layer)</span><br><span class="line">    gp.append(layer)</span><br><span class="line">    # cv2.imshow(str(i + 1), layer)</span><br><span class="line"></span><br><span class="line"># 拉普拉斯金字塔,显示的不同尺寸的边缘检测</span><br><span class="line"># 获取最后一个图片</span><br><span class="line">layer = gp[-1]</span><br><span class="line">cv2.imshow(&apos;upper level Gaussian Pyramid&apos;, layer)</span><br><span class="line">lp = [layer]</span><br><span class="line">for i in range(5, 0, -1):</span><br><span class="line">    guassian_extened = cv2.pyrUp(gp[i])</span><br><span class="line">    laplacian = cv2.subtract(gp[i - 1], guassian_extened)</span><br><span class="line">    cv2.imshow(str(i), laplacian)</span><br><span class="line"></span><br><span class="line"># cv2.imshow(&apos;Original image&apos;, img)</span><br><span class="line"># cv2.imshow(&apos;pyrDown 1 image&apos;, lr1)</span><br><span class="line"># cv2.imshow(&apos;pyrDown 2 image&apos;, lr2)</span><br><span class="line"># cv2.imshow(&apos;pyrUp 1 image&apos;, lh2)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>21：Image Blending using Pyramids in OpenCV</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"># 图片之间的融合</span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">apple = cv2.imread(&apos;apple.jpg&apos;)</span><br><span class="line">orange = cv2.imread(&apos;orange.jpg&apos;)</span><br><span class="line"></span><br><span class="line"># 打印尺度</span><br><span class="line">print(apple.shape)</span><br><span class="line">print(orange.shape)</span><br><span class="line"></span><br><span class="line"># 合并</span><br><span class="line">apple_orange = np.hstack((apple[:, :256], orange[:, 256:]))</span><br><span class="line"># 合并的问题是中间存在明显的痕迹，使用高斯金字塔或者拉普拉斯金字塔处理</span><br><span class="line"># step1:高斯金字塔</span><br><span class="line">apple_copy = apple.copy()</span><br><span class="line">gp_apple = [apple_copy]</span><br><span class="line">for i in range(6):</span><br><span class="line">    apple_copy = cv2.pyrDown(apple_copy)</span><br><span class="line">    gp_apple.append(apple_copy)</span><br><span class="line"></span><br><span class="line">orange_copy = orange.copy()</span><br><span class="line">gp_orange = [orange_copy]</span><br><span class="line">for i in range(6):</span><br><span class="line">    orange_copy = cv2.pyrDown(orange_copy)</span><br><span class="line">    gp_orange.append(orange_copy)</span><br><span class="line"></span><br><span class="line"># step2:拉普拉斯金字塔</span><br><span class="line">apple_copy = gp_apple[5]</span><br><span class="line">lp_apple = [apple_copy]</span><br><span class="line">for i in range(5, 0, -1):</span><br><span class="line">    gaussian_expanded = cv2.pyrUp(gp_apple[i])</span><br><span class="line">    laplacian = cv2.subtract(gp_apple[i - 1], gaussian_expanded)</span><br><span class="line">    lp_apple.append(laplacian)</span><br><span class="line"></span><br><span class="line">orange_copy = gp_orange[5]</span><br><span class="line">lp_orange = [orange_copy]</span><br><span class="line">for i in range(5, 0, -1):</span><br><span class="line">    gaussian_expanded = cv2.pyrUp(gp_orange[i])</span><br><span class="line">    laplacian = cv2.subtract(gp_orange[i - 1], gaussian_expanded)</span><br><span class="line">    lp_orange.append(laplacian)</span><br><span class="line"></span><br><span class="line"># step3:合并</span><br><span class="line">apple_orange_pyramid = []</span><br><span class="line">n = 0</span><br><span class="line">for apple_lap, orange_lap in zip(lp_apple, lp_orange):</span><br><span class="line">    n += 1</span><br><span class="line">    cols, rows, ch = apple_lap.shape</span><br><span class="line">    laplacian = np.hstack((apple_lap[:, 0:int(cols / 2)], orange_lap[:, int(cols / 2):]))</span><br><span class="line">    apple_orange_pyramid.append(laplacian)</span><br><span class="line"></span><br><span class="line"># step4:重构</span><br><span class="line">apple_orange_reconstruct = apple_orange_pyramid[0]</span><br><span class="line">for i in range(1, 6):</span><br><span class="line">    apple_orange_reconstruct = cv2.pyrUp(apple_orange_reconstruct)</span><br><span class="line">    print(apple_orange_reconstruct.shape)</span><br><span class="line">    print(apple_orange_pyramid[i].shape)</span><br><span class="line">    apple_orange_reconstruct = cv2.add(apple_orange_pyramid[i], apple_orange_reconstruct)</span><br><span class="line"></span><br><span class="line"># cv2.imshow(&apos;apple_orange&apos;, apple_orange)</span><br><span class="line"># cv2.imshow(&apos;apple&apos;, apple)</span><br><span class="line"># cv2.imshow(&apos;orange&apos;, orange)</span><br><span class="line">cv2.imshow(&apos;apple_orange_reconstruct&apos;, apple_orange_reconstruct)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>22： Find and Draw Contours with OpenCV in Python（绘制轮廓）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># 绘制轮廓</span><br><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"># 读取图片</span><br><span class="line">img = cv2.imread(&apos;opencv-logo.png&apos;)</span><br><span class="line"># 转换成灰度图片</span><br><span class="line">imgray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"># 阈值处理</span><br><span class="line">ret, thresh = cv2.threshold(imgray, 127, 255, 0)</span><br><span class="line"># 轮廓检测</span><br><span class="line">contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)</span><br><span class="line">print(&apos;Number of contours:&apos; + str(len(contours)))</span><br><span class="line"># 绘制轮廓，-1表示所有轮廓，contours为lists</span><br><span class="line">cv2.drawContours(img, contours, -1, (0, 255, 0), 3)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;image&apos;, img)</span><br><span class="line">cv2.imshow(&apos;imagray&apos;, imgray)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>23： Motion Detection and Tracking Using Opencv Contours（使用Opencv轮廓进行运动检测和跟踪 ）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"># 读取视频</span><br><span class="line">cap = cv2.VideoCapture(&apos;vtest.avi&apos;)</span><br><span class="line"># cap = cv2.VideoCapture(0)</span><br><span class="line"># 获取两个读取对象</span><br><span class="line">ret, frame1 = cap.read()</span><br><span class="line">ret, frame2 = cap.read()</span><br><span class="line"></span><br><span class="line">while cap.isOpened():</span><br><span class="line">    # 获取两个读取对象的不同,用于跟踪</span><br><span class="line">    diff = cv2.absdiff(frame1, frame2)</span><br><span class="line">    # 转换成灰度利于进行轮廓检测</span><br><span class="line">    gray = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)</span><br><span class="line">    # 模糊化处理</span><br><span class="line">    blur = cv2.GaussianBlur(gray, (5, 5), 0)</span><br><span class="line">    # 阈值处理</span><br><span class="line">    _, thresh = cv2.threshold(blur, 20, 225, cv2.THRESH_BINARY)</span><br><span class="line">    # 扩张处理</span><br><span class="line">    dilated = cv2.dilate(thresh, None, iterations=3)</span><br><span class="line">    # 轮廓检测</span><br><span class="line">    contours, _ = cv2.findContours(dilated, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)</span><br><span class="line">    # 绘制轮廓,问题在于所有变化的轮廓都会被绘制出来，且不是矩形边框</span><br><span class="line">    for contour in contours:</span><br><span class="line">        # 轮廓转换成矩形边框</span><br><span class="line">        (x, y, w, h) = cv2.boundingRect(contour)</span><br><span class="line">        # 只处理区域大于700的轮廓(去噪)</span><br><span class="line">        if cv2.contourArea(contour) &lt; 1000:</span><br><span class="line">            continue</span><br><span class="line">        # 绘制矩形框，参数是左上和右下</span><br><span class="line">        cv2.rectangle(frame1, (x, y), (x + w, y + h), (0, 255, 0), 2)</span><br><span class="line">        cv2.putText(frame1, &apos;Status: &#123;&#125;&apos;.format(&apos;Movement&apos;), (10, 20), cv2.FONT_HERSHEY_SIMPLEX</span><br><span class="line">                    , 1, (0, 0, 255), 3)</span><br><span class="line">    # cv2.drawContours(frame1, contours, -1, (0, 255, 0), 2)</span><br><span class="line">    # 展示</span><br><span class="line">    cv2.imshow(&apos;inter&apos;, frame1)</span><br><span class="line">    # 赋值,进行循环</span><br><span class="line">    frame1 = frame2</span><br><span class="line">    ret, frame2 = cap.read()</span><br><span class="line"></span><br><span class="line">    if cv2.waitKey(40) == 27:</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">cv2.destroyAllWindows()</span><br><span class="line">cap.release()</span><br></pre></td></tr></table></figure>
+
+<p>24：Detect Simple Geometric Shapes using OpenCV in Python(在Python中使用OpenCV检测简单的几何形状)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">putText()不支持中文</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"># Detect Simple Geometric</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"># 读取图片</span><br><span class="line">img = cv2.imread(&apos;shape.png&apos;)</span><br><span class="line"># 图片处理</span><br><span class="line">imGrey = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">_, thrash = cv2.threshold(imGrey, 240, 255, cv2.THRESH_BINARY)</span><br><span class="line"># 轮廓检测</span><br><span class="line">contours, _ = cv2.findContours(thrash, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)</span><br><span class="line"></span><br><span class="line">for contour in contours:</span><br><span class="line">    # 获取边的个数</span><br><span class="line">    approx = cv2.approxPolyDP(contour, 0.01 * cv2.arcLength(contour, True), True)</span><br><span class="line">    # 绘制轮廓</span><br><span class="line">    cv2.drawContours(img, [approx], 0, (0, 0, 0), 5)</span><br><span class="line">    # 标记点</span><br><span class="line">    x = approx.ravel()[0]</span><br><span class="line">    # 上移10，更加清晰</span><br><span class="line">    y = approx.ravel()[1]+20</span><br><span class="line">    # 判断</span><br><span class="line">    if len(approx) == 3:</span><br><span class="line">        cv2.putText(img, &quot;sanjiaoxing&quot;, (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))</span><br><span class="line">    elif len(approx) == 4:</span><br><span class="line">        # 获取宽和高,判断是正方形还是一般矩形</span><br><span class="line">        x, y, w, h = cv2.boundingRect(approx)</span><br><span class="line">        aspectRatio = float(w) / h</span><br><span class="line">        if 0.95 &lt;= aspectRatio &lt;= 1.05:</span><br><span class="line">            cv2.putText(img, &quot;zhengfangxing&quot;, (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))</span><br><span class="line">        else:</span><br><span class="line">            cv2.putText(img, &quot;changfangxing&quot;, (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))</span><br><span class="line">    elif len(approx) == 5:</span><br><span class="line">        cv2.putText(img, &quot;wubianxing&quot;, (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))</span><br><span class="line">    elif len(approx) == 6:</span><br><span class="line">        cv2.putText(img, &quot;liubianxing&quot;, (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))</span><br><span class="line">    else:</span><br><span class="line">        cv2.putText(img, &quot;yuan&quot;, (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;shape&apos;, img)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>25：Understanding image Histograms using OpenCV Python</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># Understanding image Histograms using OpenCV Python</span><br><span class="line"># 使用OpenCV Python了解图像直方图(),横坐标表示像素点的值，纵坐标表示该像素点值的个数</span><br><span class="line">import cv2</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;lena.jpg&apos;)</span><br><span class="line"></span><br><span class="line">hist = cv2.calcHist([img], [0], None, [256], [0, 256])</span><br><span class="line">plt.plot(hist)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>26：Template matching using OpenCV in Python（在Python中使用OpenCV进行模板匹配）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># Template matching using OpenCV in Python</span><br><span class="line"># 用图片的一部分去匹配整个图片</span><br><span class="line"></span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;messi5.jpg&apos;)</span><br><span class="line">grey_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">template = cv2.imread(&apos;messi_face.jpg&apos;, 0)</span><br><span class="line"># 获取需要匹配图片的宽和高</span><br><span class="line">w, h = template.shape[::-1]</span><br><span class="line"></span><br><span class="line"># 得到所有匹配的点的数组</span><br><span class="line">res = cv2.matchTemplate(grey_img, template, cv2.TM_CCOEFF_NORMED)</span><br><span class="line">print(res)</span><br><span class="line"># 设置阈值，去噪</span><br><span class="line">threshold = 0.62</span><br><span class="line"># 得到左上和右下点的数组</span><br><span class="line">loc = np.where(res &gt;= threshold)</span><br><span class="line">print(loc)</span><br><span class="line"></span><br><span class="line">for pt in zip(*loc[::-1]):</span><br><span class="line">    cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 2)</span><br><span class="line">cv2.imshow(&apos;img&apos;, img)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>27：Hough Line Transform Theory（霍夫线变换理论）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用于检测形状shape，尽管边缘破损或者有一点点非闭合。</span><br><span class="line">主要理论依据：多点在xy坐标轴上是一条直线，那么在mc（斜率和截距）坐标轴上必定经过同一点！</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;sudoku.png&apos;)</span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">edges = cv2.Canny(gray, 50, 150, apertureSize=3)</span><br><span class="line">lines = cv2.HoughLines(edges, 1, np.pi / 180, 200)</span><br><span class="line"></span><br><span class="line">for line in lines:</span><br><span class="line">    rho, theta = line[0]</span><br><span class="line">    a = np.cos(theta)</span><br><span class="line">    b = np.sin(theta)</span><br><span class="line">    x0 = a * rho</span><br><span class="line">    y0 = b * rho</span><br><span class="line">#显示结果线没有截止位置</span><br><span class="line">    x1 = int(x0 + 1000 * (-b))</span><br><span class="line">    y1 = int(y0 + 1000 * (a))</span><br><span class="line">    x2 = int(x0 - 1000 * (-b))</span><br><span class="line">    y2 = int(y0 - 1000 * (a))</span><br><span class="line">    cv2.line(img, (x1, y1), (x2, y2), (0, 0, 255), 2)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;img&apos;, img)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>28：Probabilistic Hough Transform using HoughLinesP in OpenCV</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"># 道路检测一定要确定范围，否则区域内的直线都被检测出来</span><br><span class="line">img = cv2.imread(&apos;test_image.jpg&apos;)</span><br><span class="line">grey = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">edges = cv2.Canny(grey, 50, 150, apertureSize=3)</span><br><span class="line">cv2.imshow(&apos;edges&apos;, edges)</span><br><span class="line"></span><br><span class="line">lines = cv2.HoughLinesP(edges, 1, np.pi / 180, 100, minLineLength=100, maxLineGap=10)</span><br><span class="line">for line in lines:</span><br><span class="line">    x1, y1, x2, y2 = line[0]</span><br><span class="line">    cv2.line(img, (x1, y1), (x2, y2), (0, 255, 0), 2)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;image&apos;, img)</span><br><span class="line">k = cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>29：Circle Detection using OpenCV Hough Circle Transform</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># Circle Detection using OpenCV Hough Circle Transform</span><br><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"># 读取图片</span><br><span class="line">img = cv2.imread(&apos;shape.png&apos;)</span><br><span class="line">output = img.copy()</span><br><span class="line"># 转换格式</span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"># 处理图片</span><br><span class="line">gray = cv2.medianBlur(gray, 5)</span><br><span class="line"># 检测</span><br><span class="line">circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, 20,</span><br><span class="line">                           param1=50, param2=30, minRadius=0, maxRadius=0)</span><br><span class="line"># 格式转换</span><br><span class="line">detected_circles = np.uint16(np.around(circles))</span><br><span class="line">print(detected_circles)</span><br><span class="line">for (x, y, r) in detected_circles[0, :]:</span><br><span class="line">    # 绘制圆</span><br><span class="line">    cv2.circle(output, (x, y), r, (0, 255, 0), 3)</span><br><span class="line">    # 绘制一个圆心</span><br><span class="line">    cv2.circle(output, (x, y), 2, (0, 255, 255), 3)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;output&apos;, output)</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>30：Face Detection using Haar Cascade Classifiers</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># Face Detection using Haar Cascade Classifiers</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">face_cascade = cv2.CascadeClassifier(&apos;haarcascade_frontalface_default.xml&apos;)</span><br><span class="line"># img = cv2.imread(&apos;face.jpg&apos;)</span><br><span class="line">cap = cv2.VideoCapture(0)</span><br><span class="line">while cap.isOpened():</span><br><span class="line">    _, img = cap.read()</span><br><span class="line">    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">    # 面部检测</span><br><span class="line">    faces = face_cascade.detectMultiScale(gray, 1.1, 4)</span><br><span class="line"></span><br><span class="line">    for (x, y, w, h) in faces:</span><br><span class="line">        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 3)</span><br><span class="line"></span><br><span class="line">    cv2.imshow(&apos;img&apos;, img)</span><br><span class="line">    # cv2.waitKey()</span><br><span class="line">    if cv2.waitKey(1) &amp; 0xff == ord(&apos;q&apos;):</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">cap.release()</span><br><span class="line"># cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>31：Eye Detection Haar Feature based Cascade Classifiers</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># Eye Detection Haar Feature based Cascade Classifiers</span><br><span class="line"></span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">face_cascade = cv2.CascadeClassifier(&apos;haarcascade_frontalface_default.xml&apos;)</span><br><span class="line">eye_cascade = cv2.CascadeClassifier(&apos;haarcascade_eye_tree_eyeglasses.xml&apos;)</span><br><span class="line">cap = cv2.VideoCapture(0)</span><br><span class="line"></span><br><span class="line">while cap.isOpened():</span><br><span class="line">    _, img = cap.read()</span><br><span class="line">    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line">    faces = face_cascade.detectMultiScale(gray, 1.1, 4)</span><br><span class="line"></span><br><span class="line">    for (x, y, w, h) in faces:</span><br><span class="line">        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 3)</span><br><span class="line">        roi_gray = gray[y:y + h, x:x + w]</span><br><span class="line">        roi_color = img[y:y + h, x:x + w]</span><br><span class="line">        eyes = eye_cascade.detectMultiScale(roi_gray)</span><br><span class="line">        for (ex, ey, ew, eh) in eyes:</span><br><span class="line">            cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 5)</span><br><span class="line">    cv2.imshow(&apos;img&apos;, img)</span><br><span class="line">    if cv2.waitKey(1) &amp; 0xff == ord(&apos;q&apos;):</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">cap.release()</span><br></pre></td></tr></table></figure>
+
+<p>32：Detect Corners with Harris Corner Detector in OpenCV(使用OpenCV中的Harris角落检测器检测角落 )</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;chessboard_img.png&apos;)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;img&apos;, img)</span><br><span class="line"></span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">gray = np.float32(gray)</span><br><span class="line">cv2.imshow(&apos;gray&apos;, gray)</span><br><span class="line">dst = cv2.cornerHarris(gray, 2, 3, 0.04)</span><br><span class="line"></span><br><span class="line">dse = cv2.dilate(dst, None)</span><br><span class="line">print(dst)</span><br><span class="line"></span><br><span class="line">img[dst &gt; 0.01 * dst.max()] = [0, 0, 255]</span><br><span class="line">cv2.imshow(&apos;dst&apos;, img)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">if cv2.waitKey(0) &amp; 0xff == 27:</span><br><span class="line">    cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>33：Detect Corners with Shi Tomasi Corner Detector in OpenCV(使用OpenCV中的Shi Tomasi拐角检测器检测拐角 )</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">img = cv2.imread(&apos;pic1.png&apos;)</span><br><span class="line"></span><br><span class="line">gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">corners = cv2.goodFeaturesToTrack(gray, 100, 0.01, 10)</span><br><span class="line"></span><br><span class="line">corners = np.int0(corners)</span><br><span class="line"></span><br><span class="line">for i in corners:</span><br><span class="line">    x, y = i.ravel()</span><br><span class="line">    cv2.circle(img, (x, y), 3, 255, -1)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;dst&apos;, img)</span><br><span class="line"></span><br><span class="line">if cv2.waitKey() &amp; 0xff == 27:</span><br><span class="line">    cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<p>34：How to Use Background Subtraction Methods in OpenCV（如何在OpenCV中使用背景减法）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import cv2</span><br><span class="line"></span><br><span class="line">cap = cv2.VideoCapture(&apos;vtest.avi&apos;)</span><br><span class="line"></span><br><span class="line">fgbg = cv2.createBackgroundSubtractorMOG2()</span><br><span class="line"></span><br><span class="line">while True:</span><br><span class="line">    ret, frame = cap.read()</span><br><span class="line">    if frame is None:</span><br><span class="line">        break</span><br><span class="line">    fgmask = fgbg.apply(frame)</span><br><span class="line"></span><br><span class="line">    cv2.imshow(&apos;frame&apos;, frame)</span><br><span class="line">    cv2.imshow(&apos;FG MASK Frame&apos;, fgmask)</span><br><span class="line"></span><br><span class="line">    keyboard = cv2.waitKey(30)</span><br><span class="line">    if keyboard == &apos;q&apos; or keyboard == 27:</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">cap.release()</span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/26/Python/" rel="next" title="Python">
+                <i class="fa fa-chevron-left"></i> Python
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/11/numpy/" rel="prev" title="numpy">
+                numpy <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
