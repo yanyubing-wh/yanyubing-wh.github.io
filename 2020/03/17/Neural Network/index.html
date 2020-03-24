@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1：Introduction to Neural Network 1234分层(layer)：Input输入层 Hidden隐藏层Output输出层  2：Transfer (Activation) Functions（转换函数） 1The transfer function translates the input signals to output signals. Four types of">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Neural Network">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;03&#x2F;17&#x2F;Neural%20Network&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="1：Introduction to Neural Network 1234分层(layer)：Input输入层 Hidden隐藏层Output输出层  2：Transfer (Activation) Functions（转换函数） 1The transfer function translates the input signals to output signals. Four types of">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-18T04:07:40.406Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/03/17/Neural Network/"/>
+
+
+
+
+
+  <title>Neural Network | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/03/17/Neural%20Network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Neural Network</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-17T18:53:47+08:00">
+                2020-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1：Introduction to Neural Network</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">分层(layer)：</span><br><span class="line">Input输入层 </span><br><span class="line">Hidden隐藏层</span><br><span class="line">Output输出层</span><br></pre></td></tr></table></figure>
+
+<p>2：Transfer (Activation) Functions（转换函数）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The transfer function translates the input signals to output signals. Four types of transfer functions are commonly used, Unit step (threshold), sigmoid, piecewise linear, and Gaussian.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">五种常用的转换函数：</span><br><span class="line">Unit step (threshold)：</span><br><span class="line">The output is set at one of two levels, depending on whether the total input is greater than or less than some threshold value.</span><br><span class="line"></span><br><span class="line">Sigmoid：</span><br><span class="line">The sigmoid function consists of 2 functions, logistic and tangential. The values of logistic function range from 0 and 1 and -1 to +1 for tangential function.</span><br><span class="line"></span><br><span class="line">Piecewise Linear： 		</span><br><span class="line">The output is proportional to the total weighted output.</span><br><span class="line">Gaussian：</span><br><span class="line"></span><br><span class="line">Gaussian functions are bell-shaped curves that are continuous. The node output (high/low) is interpreted in terms of class membership (1/0), depending on how close the net input is to a chosen value of average. </span><br><span class="line"></span><br><span class="line">Linear		</span><br><span class="line">Like a linear regression, a linear activation function transforms the weighted sum inputs of the neuron to an output using a linear function.</span><br></pre></td></tr></table></figure>
+
+<p>3：Perceptron Learning Algorithm(感知器算法)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Perceptron 算法结构是最简单神经网路算法，用来解决二分类问题。可以说Percptron 是神经网络最初的原型，是神经网络和支持向量机的基础。把分类问题抽象成空间坐标点，那么就可能存在一个超平面分离两种类别，Perceptron旨在找出这个超平面，为了找出超平面引入了基于误分类的损失函数，利用梯度下降得出最优化的损失函数。</span><br></pre></td></tr></table></figure>
+
+<p>4：Implementing The Perceptron Algorithm In Python</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line"># 重新播种旧版MT19937 BitGenerator</span><br><span class="line">np.random.seed(42)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 输出结果函数</span><br><span class="line">def stepFunction(t):</span><br><span class="line">    if t &gt;= 0:</span><br><span class="line">        return 1</span><br><span class="line">    return 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 预测函数</span><br><span class="line">def prediction(X, W, b):</span><br><span class="line">    # W,X矩阵的乘积</span><br><span class="line">    return stepFunction((np.matmul(X, W) + b)[0])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># def prediction(X, W1, W2, b):</span><br><span class="line">#     return stepFunction()</span><br><span class="line"></span><br><span class="line"># 迭代，更新W,b</span><br><span class="line">def perceptronStep(X, y, W, b, learn_rate=0.00001):</span><br><span class="line">    for i in range(len(X)):</span><br><span class="line">        # 返回预测值</span><br><span class="line">        y_pred = prediction(X[i], W, b)</span><br><span class="line">        if y[i] - y_pred == 1:</span><br><span class="line"></span><br><span class="line">            W[0] += X[i][0] * learn_rate</span><br><span class="line"></span><br><span class="line">            W[1] += X[i][1] * learn_rate</span><br><span class="line"></span><br><span class="line">            b += learn_rate</span><br><span class="line">        elif y[i] - y_pred == -1:</span><br><span class="line">            W[0] -= X[i][0] * learn_rate</span><br><span class="line">            W[1] -= X[i][1] * learn_rate</span><br><span class="line">            b -= learn_rate</span><br><span class="line">    return W, b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def trainPerceptronAlgo(X, y, learn_rate=0.00001, num_epochs=25000):</span><br><span class="line">    # 转置之后取第一个值</span><br><span class="line">    X_max = max(X.T[0])</span><br><span class="line">    # 初始化：随机生成W的array(2,1)</span><br><span class="line">    W = np.array(np.random.rand(2, 1))</span><br><span class="line">    # 初始化：随机生成b</span><br><span class="line">    b = np.random.rand(1)[0] + X_max</span><br><span class="line"></span><br><span class="line">    boundary_lines = []</span><br><span class="line"></span><br><span class="line">    # 开始迭代epoch</span><br><span class="line">    for i in range(num_epochs):</span><br><span class="line">        W, b = perceptronStep(X, y, W, b, learn_rate)</span><br><span class="line"></span><br><span class="line">        boundary_lines.append((-W[0] / W[1], -b / W[1]))</span><br><span class="line"></span><br><span class="line">    return boundary_lines</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data = pd.read_csv(&apos;data.csv&apos;)</span><br><span class="line">data.head()</span><br><span class="line">X = data.loc[:, [&apos;math&apos;, &apos;english&apos;]]</span><br><span class="line">y = data.loc[:, &apos;pass&apos;]</span><br><span class="line">X = X.values</span><br><span class="line">y = y.values</span><br><span class="line"></span><br><span class="line">plt.scatter(X[:, 0], X[:, 1], c=y)</span><br><span class="line"></span><br><span class="line">result = trainPerceptronAlgo(X, y)</span><br><span class="line"></span><br><span class="line">for i, j in result:</span><br><span class="line">    print(&quot;w=&quot;, i, &quot;b=&quot;, j)</span><br><span class="line"></span><br><span class="line">plt.scatter(X[:, 0], X[:, 1], c=y)</span><br><span class="line"># W和b的数组，取最后一组</span><br><span class="line">vals = result[-1]</span><br><span class="line">theta = vals[0][0]</span><br><span class="line">intercept = vals[1][0]</span><br><span class="line"># 得到的预测函数</span><br><span class="line">y2 = X * theta + intercept</span><br><span class="line">plt.plot(X, y2, color=&apos;red&apos;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>5：Theory of the MLP (Multi-Layer Perceptron) model in neural networks（多层感知器）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Forword pass：calculates the outputs corresponding to the inputs</span><br><span class="line">backward pass：propagates the error backwards through the network starting at the output units</span><br></pre></td></tr></table></figure>
+
+<p>6：How to implement Neural Network via Pytorch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import torch.utils.data</span><br><span class="line">import torchvision</span><br><span class="line">from torchvision import transforms, datasets</span><br><span class="line">import torch.nn as nn</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line">import torch.optim as optim</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">train = datasets.MNIST(&apos;&apos;, train=True, download=True, transform=transforms.Compose([transforms.ToTensor()]))</span><br><span class="line">test = datasets.MNIST(&apos;&apos;, train=False, download=True, transform=transforms.Compose([transforms.ToTensor()]))</span><br><span class="line"></span><br><span class="line"># 网络比较大的时候，batch_size可以设置大一点</span><br><span class="line">trainset = torch.utils.data.DataLoader(train, batch_size=10, shuffle=True)</span><br><span class="line">testset = torch.utils.data.DataLoader(test, batch_size=10, shuffle=True)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Net(nn.Module):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super().__init__()</span><br><span class="line">        self.fc1 = nn.Linear(28 * 28, 64)</span><br><span class="line">        self.fc2 = nn.Linear(64, 64)</span><br><span class="line">        self.fc3 = nn.Linear(64, 64)</span><br><span class="line">        self.fc4 = nn.Linear(64, 10)</span><br><span class="line"></span><br><span class="line">    def forward(self, x):</span><br><span class="line">        x = F.relu(self.fc1(x))</span><br><span class="line">        x = F.relu(self.fc2(x))</span><br><span class="line">        x = F.relu(self.fc3(x))</span><br><span class="line">        x = self.fc4(x)</span><br><span class="line">        return F.log_softmax(x, dim=1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">net = Net()</span><br><span class="line">print(net)</span><br><span class="line"></span><br><span class="line">loss_function = nn.CrossEntropyLoss()</span><br><span class="line">optimizer = optim.Adam(net.parameters(), lr=0.001)</span><br><span class="line"></span><br><span class="line">for epoch in range(3):</span><br><span class="line">    for data in trainset:</span><br><span class="line">        X, y = data</span><br><span class="line">        net.zero_grad()</span><br><span class="line">        output = net(X.view(-1, 784))</span><br><span class="line">        loss = F.nll_loss(output, y)</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">    print(loss)</span><br><span class="line"></span><br><span class="line">correct = 0</span><br><span class="line">total = 0</span><br><span class="line">with torch.no_grad():</span><br><span class="line">    for data in testset:</span><br><span class="line">        X, y = data</span><br><span class="line">        output = net(X.view(-1, 784))</span><br><span class="line">        for idx, i in enumerate(output):</span><br><span class="line">            if torch.argmax(i) == y[idx]:</span><br><span class="line">                correct += 1</span><br><span class="line">            total += 1</span><br><span class="line">print(&apos;Accuracy：&apos;, round(correct / total))</span><br><span class="line"></span><br><span class="line">plt.imshow(X[3].view(28, 28))</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">print(torch.argmax(net[0].view(-1, 784))[0])</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/11/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A6%82%E8%AE%BA/" rel="next" title="神经网络概论">
+                <i class="fa fa-chevron-left"></i> 神经网络概论
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/19/Mini_Weka_MachineLearning/" rel="prev" title="Mini_Weka_MachineLearning">
+                Mini_Weka_MachineLearning <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

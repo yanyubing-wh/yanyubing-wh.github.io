@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Machine Learning Mastery With Python Mini-Course1：Download and Install Python and SciPy Ecosystem 123456789101112131415# 环境准备import sysimport scipyimport numpyimport matplotlibimport pandasimport skle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mini_Python_MachineLearning">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;03&#x2F;20&#x2F;Mini_Python_MachineLearning&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="Machine Learning Mastery With Python Mini-Course1：Download and Install Python and SciPy Ecosystem 123456789101112131415# 环境准备import sysimport scipyimport numpyimport matplotlibimport pandasimport skle">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-21T03:09:40.335Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/03/20/Mini_Python_MachineLearning/"/>
+
+
+
+
+
+  <title>Mini_Python_MachineLearning | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/03/20/Mini_Python_MachineLearning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mini_Python_MachineLearning</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-20T06:36:53+08:00">
+                2020-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Machine-Learning-Mastery-With-Python-Mini-Course"><a href="#Machine-Learning-Mastery-With-Python-Mini-Course" class="headerlink" title="Machine Learning Mastery With Python Mini-Course"></a><strong>Machine Learning Mastery With</strong> <strong>Python Mini-Course</strong></h3><p>1：<strong>Download and Install Python</strong> <strong>and SciPy Ecosystem</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 环境准备</span><br><span class="line"></span><br><span class="line">import sys</span><br><span class="line">import scipy</span><br><span class="line">import numpy</span><br><span class="line">import matplotlib</span><br><span class="line">import pandas</span><br><span class="line">import sklearn</span><br><span class="line"></span><br><span class="line">print(&apos;Python:&#123;&#125;&apos;.format(sys.version))</span><br><span class="line">print(&apos;scipy:&#123;&#125;&apos;.format(scipy.__version__))</span><br><span class="line">print(&apos;numpy:&#123;&#125;&apos;.format(numpy.__version__))</span><br><span class="line">print(&apos;matplotlib:&#123;&#125;:&apos;.format(matplotlib.__version__))</span><br><span class="line">print(&apos;pandas:&#123;&#125;&apos;.format(pandas.__version__))</span><br><span class="line">print(&apos;sklearn:&#123;&#125;&apos;.format(sklearn.__version__))</span><br></pre></td></tr></table></figure>
+
+<p>2： <strong>Get Around In Python,</strong> <strong>NumPy, Matplotlib and Pandas</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. Practice assignment, working with lists and flow control in Python.</span><br><span class="line">2. Practice working with NumPy arrays.</span><br><span class="line">3. Practice creating simple plots in Matplotlib.</span><br><span class="line">4. Practice working with Pandas Series and DataFrame.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import numpy</span><br><span class="line">import pandas</span><br><span class="line"></span><br><span class="line">myArray = numpy.array([[1, 2, 3], [4, 5, 6]])</span><br><span class="line">rowNames = [&apos;a&apos;, &apos;b&apos;]</span><br><span class="line">colNames = [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;]</span><br><span class="line">myDataFrame = pandas.DataFrame(myArray, index=rowNames, columns=colNames)</span><br><span class="line">print(myDataFrame)</span><br></pre></td></tr></table></figure>
+
+<p>3：<strong>Load Data From CSV</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据网站http://archive.ics.uci.edu/ml/index.php</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">❼ Practice loading CSV files into Python using the CSV.reader()6</span><br><span class="line">function in the standard</span><br><span class="line">library.</span><br><span class="line">❼ Practice loading CSV files using NumPy and the numpy.loadtxt()7</span><br><span class="line">function.</span><br><span class="line">❼ Practice loading CSV files using Pandas and the pandas.read csv()8</span><br><span class="line">function.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 加载数据</span><br><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">from pandas import read_csv</span><br><span class="line">from io import StringIO</span><br><span class="line"></span><br><span class="line"># 1:numpy加载数据</span><br><span class="line">c = StringIO(&apos;0 1 \n2 3&apos;)</span><br><span class="line">d = np.loadtxt(c)</span><br><span class="line">print(d)</span><br><span class="line"></span><br><span class="line"># 2:CSV加载数据https://docs.python.org/2/library/csv.html</span><br><span class="line"></span><br><span class="line"># 3: pandas Load a CSV dataset from a URL.</span><br><span class="line">url = &apos;https://goo.gl/bDdBiA&apos;</span><br><span class="line">names = [&apos;preg&apos;, &apos;plas&apos;, &apos;pres&apos;, &apos;skin&apos;, &apos;test&apos;, &apos;mass&apos;, &apos;pedi&apos;, &apos;age&apos;, &apos;class&apos;]</span><br><span class="line">data = read_csv(url, names=names)</span><br><span class="line">print(data.shape)</span><br></pre></td></tr></table></figure>
+
+<p>4：<strong>Understand Data with</strong> <strong>Descriptive Statistics</strong> （了解数据简单结构，内容）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Once you have loaded your data into Python you need to be able to understand it. The better you can understand your data, the better and more accurate the models that you can build.</span><br><span class="line">The first step to understanding your data is to use descriptive statistics. Today your lesson is to learn how to use descriptive statistics to understand your data. I recommend using the helper functions provided on the Pandas DataFrame.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">❼ Understand your data using the head() function to look at the first few rows.</span><br><span class="line">❼ Review the dimensions of your data with the shape property.</span><br><span class="line">❼ Look at the data types for each attribute with the dtypes property.</span><br><span class="line">❼ Review the distribution of your data with the describe() function.</span><br><span class="line">❼ Calculate pairwise correlation between your variables using the corr() function</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 查看数据</span><br><span class="line">from pandas import read_csv</span><br><span class="line"></span><br><span class="line">#  pandas Load a CSV dataset from a URL.</span><br><span class="line">url = &apos;https://goo.gl/bDdBiA&apos;</span><br><span class="line">names = [&apos;preg&apos;, &apos;plas&apos;, &apos;pres&apos;, &apos;skin&apos;, &apos;test&apos;, &apos;mass&apos;, &apos;pedi&apos;, &apos;age&apos;, &apos;class&apos;]</span><br><span class="line">data = read_csv(url, names=names)</span><br><span class="line">shape = data.shape</span><br><span class="line">head = data.head(20)</span><br><span class="line">dtype = data.dtypes</span><br><span class="line">description = data.describe()</span><br><span class="line">print(shape)</span><br><span class="line">print(head)</span><br><span class="line">print(dtype)</span><br><span class="line">print(&apos;----------&apos;)</span><br><span class="line">print(description)</span><br></pre></td></tr></table></figure>
+
+<p>5：<strong>Understand Data with</strong>  <strong>Visualization</strong>（数据可视化）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">from pandas import read_csv</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">from pandas.plotting import scatter_matrix</span><br><span class="line"></span><br><span class="line"># 数据可视化</span><br><span class="line">#  pandas Load a CSV dataset from a URL.</span><br><span class="line">url = &apos;https://goo.gl/bDdBiA&apos;</span><br><span class="line">names = [&apos;preg&apos;, &apos;plas&apos;, &apos;pres&apos;, &apos;skin&apos;, &apos;test&apos;, &apos;mass&apos;, &apos;pedi&apos;, &apos;age&apos;, &apos;class&apos;]</span><br><span class="line">data = read_csv(url, names=names)</span><br><span class="line"></span><br><span class="line"># 直方图</span><br><span class="line">data.hist()</span><br><span class="line"># pairwise scatter plots of all attributes.</span><br><span class="line">scatter_matrix(data)</span><br><span class="line"># pairwise scatter plots</span><br><span class="line"># data.plot.box()</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>6：<strong>Prepare For Modeling by</strong>  <strong>Pre-Processing Data</strong> （预处理数据）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The scikit-learn library provides two standard idioms for transforming data. Each are useful in different circumstances: Fit and Multiple Transform and Combined Fit-And-Transform.</span><br><span class="line">There are many techniques that you can use to prepare your data for modeling, for example try out some of the following</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 下面的代码段加载了皮马印第安人发病的糖尿病数据集，标准化数据所需的参数，然后创建输入的标准化副本数据</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">from sklearn.preprocessing import StandardScaler</span><br><span class="line">from pandas import read_csv</span><br><span class="line">import numpy</span><br><span class="line"></span><br><span class="line">url = &apos;https://goo.gl/bDdBiA&apos;</span><br><span class="line">names = [&apos;preg&apos;, &apos;plas&apos;, &apos;pres&apos;, &apos;skin&apos;, &apos;test&apos;, &apos;mass&apos;, &apos;pedi&apos;, &apos;age&apos;, &apos;class&apos;]</span><br><span class="line">dataFrame = read_csv(url, names=names)</span><br><span class="line">arrray = dataFrame.values</span><br><span class="line"># 切割array得到输入集和输出集</span><br><span class="line">X = arrray[:, 0:8]</span><br><span class="line">Y = arrray[:, 8]</span><br><span class="line"># 转换数据，归一化处理</span><br><span class="line">scala = StandardScaler().fit(X)</span><br><span class="line">rescaledX = scala.transform(X)</span><br><span class="line"># summarize transformed data</span><br><span class="line"># precision:小数点的位数</span><br><span class="line">numpy.set_printoptions(precision=4)</span><br><span class="line">print(X)</span><br><span class="line">print(&apos;---------&apos;)</span><br><span class="line">print(rescaledX)</span><br></pre></td></tr></table></figure>
+
+<p>7：<strong>Algorithm Evaluation With</strong>  <strong>Resampling Methods</strong>（重采样方法进行算法评估）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">❼ Split a dataset into training and test sets.</span><br><span class="line">❼ Estimate the accuracy of an algorithm using k-fold cross-validation.</span><br><span class="line">❼ Estimate the accuracy of an algorithm using leave one out cross-validation.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># Evaluate using Cross-Validation</span><br><span class="line">from pandas import read_csv</span><br><span class="line">from sklearn.model_selection import KFold</span><br><span class="line">from sklearn.model_selection import cross_val_score</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line"></span><br><span class="line">url = &apos;https://goo.gl/bDdBiA&apos;</span><br><span class="line">names = [&apos;preg&apos;, &apos;plas&apos;, &apos;pres&apos;, &apos;skin&apos;, &apos;test&apos;, &apos;mass&apos;, &apos;pedi&apos;, &apos;age&apos;, &apos;class &apos;]</span><br><span class="line">dataframe = read_csv(url, names=names)</span><br><span class="line">array = dataframe.values</span><br><span class="line">X = array[:, 0: 8]</span><br><span class="line">Y = array[:, 8]</span><br><span class="line">kfold = KFold(n_splits=10, random_state=7)</span><br><span class="line">model = LogisticRegression()</span><br><span class="line">results = cross_val_score(model, X, Y, cv=kfold)</span><br><span class="line">print(&quot;Accuracy: %.3f%% (%.3f%%)&quot; % (results.mean() * 100.0, results.std() * 100.0))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出准确率:Accuracy: 76.951% (4.841%)</span><br></pre></td></tr></table></figure>
+
+<p>8：<strong>Algorithm Evaluation</strong> <strong>Metrics</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">There are many different metrics that you can use to evaluate the skill of a machine learning algorithm on a dataset.</span><br><span class="line">You can specify the metric used for your test harness in scikit-learn via the cross val score() function and defaults can be used for regression and classification problems. Your goal with todays lesson is to practice using the different algorithm performance metrics available in the scikit-learn package.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">❼ Practice using the Accuracy and LogLoss metrics on a classification problem.</span><br><span class="line">❼ Practice generating a confusion matrix and a classification report.</span><br><span class="line">❼ Practice using RMSE and RSquared metrics on a regression problem.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># Cross-Validation Classification LogLoss</span><br><span class="line"># 评估指标</span><br><span class="line">from pandas import read_csv</span><br><span class="line">from sklearn.model_selection import KFold</span><br><span class="line">from sklearn.model_selection import cross_val_score</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line"></span><br><span class="line">url = &apos;https://goo.gl/bDdBiA&apos;</span><br><span class="line">names = [&apos;preg&apos;, &apos;plas&apos;, &apos;pres&apos;, &apos;skin&apos;, &apos;test&apos;, &apos;mass&apos;, &apos;pedi&apos;, &apos;age&apos;, &apos;class&apos;]</span><br><span class="line">dataframe = read_csv(url, names=names)</span><br><span class="line">array = dataframe.values</span><br><span class="line">X = array[:, 0:8]</span><br><span class="line">Y = array[:, 8]</span><br><span class="line">kfold = KFold(n_splits=10, random_state=7)</span><br><span class="line">model = LogisticRegression(solver=&apos;liblinear&apos;)</span><br><span class="line">scoring = &apos;neg_log_loss&apos;</span><br><span class="line">results = cross_val_score(model, X, Y, cv=kfold, scoring=scoring)</span><br><span class="line">print(&quot;Logloss: %.3f (%.3f)&quot; % (results.mean(), results.std()))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出:Logloss: -0.493 (0.047)</span><br></pre></td></tr></table></figure>
+
+<p>9：<strong>Spot-Check Algorithms</strong>（选择合适的算法）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You cannot possibly know which algorithm will perform best on your data beforehand. You have to discover it using a process of trial and error. I call this spot-checking algorithms. The scikitlearn library provides an interface to many machine learning algorithms and tools to compare the estimated accuracy of those algorithms. In this lesson you must practice spot-checking different machine learning algorithms.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">❼ Spot-check linear algorithms on a dataset (e.g. linear regression, logistic regression and linear discriminate analysis).(选择线性算法)</span><br><span class="line">❼ Spot-check some nonlinear algorithms on a dataset (e.g. KNN, SVM and CART).(选择非线性算法)</span><br><span class="line">❼ Spot-check some sophisticated ensemble algorithms on a dataset (e.g. random forest and stochastic gradient boosting)(选择组合算法)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># KNN Regression</span><br><span class="line"># 多种算法尝试，这里举例</span><br><span class="line">from pandas import read_csv</span><br><span class="line">from sklearn.model_selection import KFold</span><br><span class="line">from sklearn.model_selection import cross_val_score</span><br><span class="line">from sklearn.neighbors import KNeighborsRegressor</span><br><span class="line"></span><br><span class="line">url = &apos;https://goo.gl/FmJUSM&apos;</span><br><span class="line">names = [&apos;CRIM&apos;, &apos;ZN&apos;, &apos;INDUS&apos;, &apos;CHAS&apos;, &apos;NOX&apos;, &apos;RM&apos;, &apos;AGE&apos;, &apos;DIS&apos;, &apos;RAD&apos;, &apos;TAX&apos;, &apos;PTRATIO&apos;, &apos;B&apos;, &apos;LSTAT&apos;, &apos;MEDV&apos;]</span><br><span class="line">dataframe = read_csv(url, delim_whitespace=True, names=names)</span><br><span class="line">array = dataframe.values</span><br><span class="line">X = array[:, 0:13]</span><br><span class="line">Y = array[:, 13]</span><br><span class="line">kfold = KFold(n_splits=10, random_state=7)</span><br><span class="line">model = KNeighborsRegressor()</span><br><span class="line">scoring = &apos;neg_mean_squared_error&apos;</span><br><span class="line">results = cross_val_score(model, X, Y, cv=kfold, scoring=scoring)</span><br><span class="line">print(results.mean())</span><br></pre></td></tr></table></figure>
+
+<p>10： <strong>Model Comparison and</strong> <strong>Selection</strong> （模型的比较和选择）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Now that you know how to spot-check machine learning algorithms on your dataset, you need to know how to compare the estimated performance of different algorithms and select the best model. In todays lesson you will practice comparing the accuracy of machine learning algorithms in Python with scikit-learn.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">❼ Compare linear algorithms to each other on a dataset.</span><br><span class="line">❼ Compare nonlinear algorithms to each other on a dataset.</span><br><span class="line">❼ Create plots of the results comparing algorithms</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># Compare Algorithms</span><br><span class="line">from pandas import read_csv</span><br><span class="line">from sklearn.model_selection import KFold</span><br><span class="line">from sklearn.model_selection import cross_val_score</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line">from sklearn.discriminant_analysis import LinearDiscriminantAnalysis</span><br><span class="line"></span><br><span class="line"># load dataset</span><br><span class="line">url = &apos;https://goo.gl/bDdBiA&apos;</span><br><span class="line">names = [&apos;preg&apos;, &apos;plas&apos;, &apos;pres&apos;, &apos;skin&apos;, &apos;test&apos;, &apos;mass&apos;, &apos;pedi&apos;, &apos;age&apos;, &apos;class&apos;]</span><br><span class="line">dataframe = read_csv(url, names=names)</span><br><span class="line">array = dataframe.values</span><br><span class="line">X = array[:, 0:8]</span><br><span class="line">Y = array[:, 8]</span><br><span class="line"># prepare models</span><br><span class="line">models = []</span><br><span class="line">models.append((&apos;LR&apos;, LogisticRegression(solver=&apos;liblinear&apos;)))</span><br><span class="line">models.append((&apos;LDA&apos;, LinearDiscriminantAnalysis()))</span><br><span class="line"># evaluate each model in turn</span><br><span class="line">results = []</span><br><span class="line">names = []</span><br><span class="line">scoring = &apos;accuracy&apos;</span><br><span class="line">for name, model in models:</span><br><span class="line">    kfold = KFold(n_splits=10, random_state=7)</span><br><span class="line">    cv_results = cross_val_score(model, X, Y, cv=kfold, scoring=scoring)</span><br><span class="line">    results.append(cv_results)</span><br><span class="line">    names.append(name)</span><br><span class="line">    print(&apos;% s: % f( % f)&apos; % (name, cv_results.mean(), cv_results.std()))</span><br></pre></td></tr></table></figure>
+
+<p>11：<strong>Improve Accuracy with</strong> <strong>Algorithm Tuning</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Once you have found one or two algorithms that perform well on your dataset, you may want to improve the performance of those models. One way to increase the performance of an algorithm is to tune it’s parameters to your specific dataset. The scikit-learn library provides two ways to</span><br><span class="line">search for combinations of parameters for a machine learning algorithm:</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">❼ Tune the parameters of an algorithm using a grid search that you specify.</span><br><span class="line">❼ Tune the parameters of an algorithm using a random search</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># Grid Search for Algorithm Tuning</span><br><span class="line"></span><br><span class="line">from pandas import read_csv</span><br><span class="line">import numpy</span><br><span class="line">from sklearn.linear_model import Ridge</span><br><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line"></span><br><span class="line">url = &apos;https://goo.gl/bDdBiA&apos;</span><br><span class="line">names = [&apos;preg&apos;, &apos;plas&apos;, &apos;pres&apos;, &apos;skin&apos;, &apos;test&apos;, &apos;mass&apos;, &apos;pedi&apos;, &apos;age&apos;, &apos;class&apos;]</span><br><span class="line">dataframe = read_csv(url, names=names)</span><br><span class="line">array = dataframe.values</span><br><span class="line">X = array[:, 0:8]</span><br><span class="line">Y = array[:, 8]</span><br><span class="line">alphas = numpy.array([1, 0.1, 0.01, 0.001, 0.0001, 0])</span><br><span class="line">param_grid = dict(alpha=alphas)</span><br><span class="line">model = Ridge()</span><br><span class="line">grid = GridSearchCV(estimator=model, param_grid=param_grid, cv=3)</span><br><span class="line">grid.fit(X, Y)</span><br><span class="line">print(grid.best_score_)</span><br><span class="line">print(grid.best_estimator_.alpha)</span><br></pre></td></tr></table></figure>
+
+<p>12： <strong>Improve Accuracy with</strong> <strong>Ensemble Predictions</strong>（组合算法提高准确度）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Another way that you can improve the performance of your models is to combine the predictions from multiple models. Some models provide this capability built-in such as random forest for bagging and stochastic gradient boosting for boosting. Another type of ensembling called voting can be used to combine the predictions from multiple different models together. In todays lesson you will practice using ensemble methods.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">❼Practice bagging ensembles with the Random Forest and Extra Trees algorithms.</span><br><span class="line">❼ Practice boosting ensembles with the Gradient Boosting Machine and AdaBoost algorithms.</span><br><span class="line">❼ Practice voting ensembles using by combining the predictions from multiple models</span><br><span class="line">together.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># Random Forest Classification</span><br><span class="line"></span><br><span class="line">from pandas import read_csv</span><br><span class="line">from sklearn.model_selection import KFold</span><br><span class="line">from sklearn.model_selection import cross_val_score</span><br><span class="line">from sklearn.ensemble import RandomForestClassifier</span><br><span class="line"></span><br><span class="line">url = &apos;https://goo.gl/bDdBiA&apos;</span><br><span class="line">names = [&apos;preg&apos;, &apos;plas&apos;, &apos;pres&apos;, &apos;skin&apos;, &apos;test&apos;, &apos;mass&apos;, &apos;pedi&apos;, &apos;age&apos;, &apos;class&apos;]</span><br><span class="line">dataframe = read_csv(url, names=names)</span><br><span class="line">array = dataframe.values</span><br><span class="line">X = array[:, 0:8]</span><br><span class="line">Y = array[:, 8]</span><br><span class="line">num_trees = 100</span><br><span class="line">max_features = 3</span><br><span class="line">kfold = KFold(n_splits=10, random_state=7)</span><br><span class="line">model = RandomForestClassifier(n_estimators=num_trees, max_features=max_features)</span><br><span class="line">results = cross_val_score(model, X, Y, cv=kfold)</span><br><span class="line">print(results.mean())</span><br></pre></td></tr></table></figure>
+
+<p>13： <strong>Finalize And Save Your</strong>  <strong>Model</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">❼ Practice making predictions with your model on new data (data unseen during training</span><br><span class="line">and testing).</span><br><span class="line">❼ Practice saving trained models to file and loading them up again</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># Save Model Using Pickle</span><br><span class="line">from pandas import read_csv</span><br><span class="line">from sklearn.model_selection import train_test_split</span><br><span class="line">from sklearn.linear_model import LogisticRegression</span><br><span class="line">import pickle</span><br><span class="line"></span><br><span class="line">url = &apos;https://goo.gl/bDdBiA&apos;</span><br><span class="line">names = [&apos;preg&apos;, &apos;plas&apos;, &apos;pres&apos;, &apos;skin&apos;, &apos;test&apos;, &apos;mass&apos;, &apos;pedi&apos;, &apos;age&apos;, &apos;class&apos;]</span><br><span class="line">dataframe = read_csv(url, names=names)</span><br><span class="line">array = dataframe.values</span><br><span class="line">X = array[:, 0:8]</span><br><span class="line">Y = array[:, 8]</span><br><span class="line">test_size = 0.33</span><br><span class="line">seed = 7</span><br><span class="line">X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=test_size,</span><br><span class="line">                                                    random_state=seed)</span><br><span class="line"># Fit the model on 33%</span><br><span class="line">model = LogisticRegression(solver=&apos;liblinear&apos;)</span><br><span class="line">model.fit(X_train, Y_train)</span><br><span class="line"># save the model to disk</span><br><span class="line">filename = &apos;finalized_model.sav&apos;</span><br><span class="line">pickle.dump(model, open(filename, &apos;wb&apos;))</span><br><span class="line"></span><br><span class="line"># some time later...</span><br><span class="line"></span><br><span class="line"># load the model from disk</span><br><span class="line">loaded_model = pickle.load(open(filename, &apos;rb&apos;))</span><br><span class="line">result = loaded_model.score(X_test, Y_test)</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/19/Mini_Weka_MachineLearning/" rel="next" title="Mini_Weka_MachineLearning">
+                <i class="fa fa-chevron-left"></i> Mini_Weka_MachineLearning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/22/MachineLearning_Test/" rel="prev" title="MachineLearning_Test">
+                MachineLearning_Test <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning-Mastery-With-Python-Mini-Course"><span class="nav-number">1.</span> <span class="nav-text">Machine Learning Mastery With Python Mini-Course</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

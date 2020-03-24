@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1：Weka 1Weka的全名是怀卡托智能分析环境（Waikato Environment for Knowledge Analysis），是一款免费的，非商业化（与之对应的是SPSS公司商业数据挖掘产品--Clementine ）的，基于JAVA环境下开源的机器学习（machine learning）以及数据挖掘（data mining）软件。它和它的源代码可在其官方网站下载。有趣的是，该软件的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mini_Weka_MachineLearning">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;03&#x2F;19&#x2F;Mini_Weka_MachineLearning&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="1：Weka 1Weka的全名是怀卡托智能分析环境（Waikato Environment for Knowledge Analysis），是一款免费的，非商业化（与之对应的是SPSS公司商业数据挖掘产品--Clementine ）的，基于JAVA环境下开源的机器学习（machine learning）以及数据挖掘（data mining）软件。它和它的源代码可在其官方网站下载。有趣的是，该软件的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-19T13:02:00.440Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/03/19/Mini_Weka_MachineLearning/"/>
+
+
+
+
+
+  <title>Mini_Weka_MachineLearning | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/03/19/Mini_Weka_MachineLearning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mini_Weka_MachineLearning</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-19T17:40:46+08:00">
+                2020-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1：Weka</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Weka的全名是怀卡托智能分析环境（Waikato Environment for Knowledge Analysis），是一款免费的，非商业化（与之对应的是SPSS公司商业数据挖掘产品--Clementine ）的，基于JAVA环境下开源的机器学习（machine learning）以及数据挖掘（data mining）软件。它和它的源代码可在其官方网站下载。有趣的是，该软件的缩写WEKA也是新西兰独有的一种鸟名（新西兰秧鸡），而Weka的主要开发者同时恰好来自新西兰的怀卡托大学（The University of Waikato）。</span><br></pre></td></tr></table></figure>
+
+<p>2：download Weka，下载weka</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://sourceforge.net/projects/weka/</span><br></pre></td></tr></table></figure>
+
+<p>3：Load Standard Machine Learning Datasets，加载数据集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. Start Weka (click on the bird icon), this will start the Weka GUI Chooser.</span><br><span class="line">2. Click the Explorer button, this will open the Weka Explorer interface.</span><br><span class="line">3. Click the Open file... button and navigate to the data/ directory in your Weka installation</span><br><span class="line">and load the diabetes.arff dataset.</span><br></pre></td></tr></table></figure>
+
+<p>4：Descriptive Stats and Visualization，查看数据的特征</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4. Click on different attributes in the Attributes list and review the details in the Selected</span><br><span class="line">attribute pane.</span><br><span class="line">5. Click the Visualize All button to review all attribute distributions.</span><br><span class="line">6. Click the Visualize tab and review the scatter plot matrix for all attributes</span><br></pre></td></tr></table></figure>
+
+<p>5：Rescale Your Data：数据预处理，过滤，保存预处理完的数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. Open the Weka GUI Chooser and then the Weka Explorer.</span><br><span class="line">2. Load the data/diabetes.arff dataset.</span><br><span class="line">3. Click the Choose button in the Filter pane and select unsupervised.attribute.Normalize.</span><br><span class="line">4. Click the Apply button.</span><br></pre></td></tr></table></figure>
+
+<p>6： Perform Feature Selection on Your Data，执行特征选择（不是所有的特征都会影响结果，通过方法选择出对结果有影响的特征）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. Open the Weka GUI Chooser and then the Weka Explorer.</span><br><span class="line">2. Load the data/diabetes.arff dataset.</span><br><span class="line">3. Click the Select attributes tab.</span><br><span class="line">4. Click the Choose button in the Attribute Evaluator pane and select the CorrelationAttributeEval.</span><br><span class="line">(a) You will be presented with a dialog asking you to change to the Ranker search</span><br><span class="line">method, needed when using this feature selection method. Click the Yes button.</span><br><span class="line">5. Click the Start button to run the feature selection method.</span><br></pre></td></tr></table></figure>
+
+<p>7： Machine Learning Algorithms in Weka(机器学习算法)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. Open the Weka GUI Chooser and then the Weka Explorer.</span><br><span class="line">2. Load the data/diabetes.arff dataset.</span><br><span class="line">3. Click the Classify tab.</span><br><span class="line">4. Click the Choose button and note the different groupings for algorithms.</span><br><span class="line">5. Click the name of the selected algorithm to configure it.</span><br><span class="line">6. Click the More button on the configuration window to learn more about the implementation.</span><br><span class="line">7. Click the Capabilities button on the configuration window to learn more about how it can</span><br><span class="line">be used.</span><br><span class="line">8. Note the Open and Save buttons on the window where different configurations can be</span><br><span class="line">saved and loaded.</span><br><span class="line">9. Hover on a configuration parameter and note the tooltip help.</span><br><span class="line">10. Click the Start button to run an algorithm.</span><br></pre></td></tr></table></figure>
+
+<p>8：Estimate Model Performance(估算模型性能，不同的模型对应不同的指标)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Now that you know how to choose and configure different algorithms, you need to know how</span><br><span class="line">to evaluate the performance of an algorithm. In this lesson you are going to learn about the</span><br><span class="line">different ways to evaluate the performance of an algorithm in Weka.</span><br><span class="line">1. Open the Weka GUI Chooser and then the Weka Explorer.</span><br><span class="line">2. Load the data/diabetes.arff dataset.</span><br><span class="line">3. Click the Classify tab.</span><br><span class="line">The Test options pane lists the various different techniques that you can use to evaluate the</span><br><span class="line">performance of an algorithm.</span><br><span class="line">❼ The gold standard is 10-fold Cross-Validation. This is selected by default. For a small</span><br><span class="line">dataset, the number of folds can be adjusted from 10 to 5 or even 3.</span><br><span class="line">❼ If your dataset is very large and you want to evaluate algorithms quickly, you can use the</span><br><span class="line">Percentage split option. By default, this option will train on 66% of your dataset and use</span><br><span class="line">the remaining 34% to evaluate the performance of your model.</span><br><span class="line">❼ Alternately, if you have a separate file containing a validation dataset, you can evaluate</span><br><span class="line">your model on that by selecting the Supplied test set option. Your model will be trained</span><br><span class="line">on the entire training dataset and evaluated on the separate dataset.</span><br><span class="line">❼ Finally, you can evaluate the performance of your model on the whole training dataset.</span><br><span class="line">This is useful if you are more interested in a descriptive than a predictive model.</span><br><span class="line">Click the Start button to run a given algorithm with your chosen test option. Experiment</span><br><span class="line">with different Test options. Further refine the test options in the configuration provided by</span><br><span class="line">clicking the More options... button.</span><br></pre></td></tr></table></figure>
+
+<p>9：Baseline Performance On Your Data(性能的基准线,zeroR算法用来评估基准线，只能选择比这个算法优的算法)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. Open the Weka GUI Chooser and then the Weka Explorer.</span><br><span class="line">2. Load the data/diabetes.arff dataset.</span><br><span class="line">3. Click the Classify tab. The ZeroR algorithm is chosen by default.</span><br><span class="line">4. Click the Start button.</span><br></pre></td></tr></table></figure>
+
+<p>10：分类算法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Weka provides a large number of classification algorithms. In this lesson you will discover 5 top</span><br><span class="line">classification algorithms that you can use on your classification problems.</span><br><span class="line">1. Open the Weka GUI Chooser and then the Weka Explorer.</span><br><span class="line">2. Load the data/diabetes.arff dataset.</span><br><span class="line">3. Click the Classify tab.</span><br><span class="line">4. Click the Choose button.</span><br><span class="line">5 Top algorithms that you can use for classification include:</span><br><span class="line">❼ Logistic Regression (functions.Logistic).</span><br><span class="line">❼ Naive Bayes (bayes.NaiveBayes).</span><br><span class="line">❼ k-Nearest Neighbors (lazy.IBk).</span><br><span class="line">❼ Classification and Regression Trees (trees.REPTree).</span><br><span class="line">❼ Support Vector Machines (functions.SMO).</span><br><span class="line">Experiment with each of these top algorithms. Try them out on different classification</span><br><span class="line">datasets, such as those with two classes and those with more.</span><br></pre></td></tr></table></figure>
+
+<p>11：回归算法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. Open the Weka GUI Chooser and then the Weka Explorer.</span><br><span class="line">2. Load the data/housing.arff dataset.</span><br><span class="line">3. Click the Classify tab.</span><br><span class="line">4. Click the Choose button.</span><br><span class="line">5 Top algorithms that you can use for regression include:</span><br><span class="line">❼ Linear Regression (functions.LinearRegression).</span><br><span class="line">❼ Support Vector Regression (functions.SMOReg).</span><br><span class="line">❼ k-Nearest Neighbors (lazy.IBk).</span><br><span class="line">❼ Classification and Regression Trees (trees.REPTree).</span><br><span class="line">❼ Artificial Neural Network (functions.MultilayerPerceptron).</span><br><span class="line"></span><br><span class="line">回归数据集下载地址http://www.cs.waikato.ac.nz/ml/weka/datasets.html</span><br></pre></td></tr></table></figure>
+
+<p>12：Ensemble Algorithms（集成算法）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">在统计学和机器学习中，集成学习方法使用多种学习算法来获得比单独使用任何单独的学习算法更好的预测性能。不像统计力学中的系综通常是无限的，机器学习集合仅由一组具体的有限的可替代模型组成，但通常允许在这些可替代方案中存在更灵活的结构。</span><br><span class="line">1. Open the Weka GUI Chooser and then the Weka Explorer.</span><br><span class="line">2. Load the data/diabetes.arff dataset.</span><br><span class="line">3. Click the Classify tab.</span><br><span class="line">4. Click the Choose button.</span><br><span class="line">5 Top ensemble algorithms that you can use include:</span><br><span class="line">❼ Bagging (meta.Bagging).</span><br><span class="line">❼ Random Forest (trees.RandomForest).</span><br><span class="line">❼ AdaBoost (meta.AdaBoost).</span><br><span class="line">❼ Voting (meta.Voting).</span><br><span class="line">❼ Stacking (meta.Stacking).</span><br></pre></td></tr></table></figure>
+
+<p>13： Tune Algorithm Parameters(调整算法参数)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. Open the Weka Chooser GUI.</span><br><span class="line">2. Click the Experimenter button to open the Weka Experiment Environment</span><br><span class="line">3. Click the New button.</span><br><span class="line">4. Click the Add new... button in the Datasets pane and select data/diabetes.arff.</span><br><span class="line">5. Click the Add new... button in the Algorithms pane and add 3 copes of the IBk algorithm.</span><br><span class="line">6. Click each IBk algorithm in the list and click the Edit selected... button and change KNN</span><br><span class="line">to 1, 3, 5 for each of the 3 different algorithms.</span><br><span class="line">7. Click the Run tab and click the Start button.</span><br><span class="line">8. Click the Analyse tab and click the Experiment button and then the Perform test button.</span><br></pre></td></tr></table></figure>
+
+<p>14：Save Your Model（保存模型）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. Open the Weka GUI Chooser and then the Weka Explorer.</span><br><span class="line">2. Load the data/diabetes.arff dataset.</span><br><span class="line">3. Click the Classify tab.</span><br><span class="line">4. Change the Test options to Use training set and click the Start button.</span><br><span class="line">5. Right click on the results in the Result list and click Save model and enter a filename like</span><br><span class="line">diabetes-final</span><br></pre></td></tr></table></figure>
+
+<p>15：使用模型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. Right-click on the Result list click Load model and select your model file (diabetes-</span><br><span class="line">final.model).</span><br><span class="line">2. Change the Test options to Supplied test set and choose data/diabetes.arff (this could</span><br><span class="line">be a new file for which you do not have predictions)</span><br><span class="line">3. Click More options in the Test options and change Output predictions to Plain Text</span><br><span class="line">4. Right click on the loaded model and choose Re-evaluate model on current test set</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/17/Neural%20Network/" rel="next" title="Neural Network">
+                <i class="fa fa-chevron-left"></i> Neural Network
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/20/Mini_Python_MachineLearning/" rel="prev" title="Mini_Python_MachineLearning">
+                Mini_Python_MachineLearning <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
