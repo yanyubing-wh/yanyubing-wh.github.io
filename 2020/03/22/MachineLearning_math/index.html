@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="鄢玉兵的博客">
 <meta property="og:description" content="机器学习数学基础1：概率论1:Probability and Machine Learning 123456❼ Noise in observations, e.g. measurement errors and random noise.❼ Incomplete coverage of the domain, e.g. you can never observe all data.❼ Imper">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-23T04:28:09.515Z">
+<meta property="og:updated_time" content="2020-03-24T18:29:34.818Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -367,7 +367,62 @@
 <h3 id="3：线性代数"><a href="#3：线性代数" class="headerlink" title="3：线性代数"></a>3：线性代数</h3><p>1：Linear Algebra for Machine Learning</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">You Need to Learn Linear Algebra Notation</span><br><span class="line">You Need to Learn Linear Algebra Arithmetic</span><br><span class="line">You Need to Learn Linear Algebra for Statistics</span><br><span class="line">You Need to Learn Matrix Factorization</span><br><span class="line">You Need to Learn Linear Least Squares</span><br><span class="line"></span><br><span class="line">您需要学习线性代数符号</span><br><span class="line">您需要学习线性代数算法</span><br><span class="line">您需要学习用于统计的线性代数</span><br><span class="line">您需要学习矩阵分解</span><br><span class="line">您需要学习线性最小二乘</span><br></pre></td></tr></table></figure>
 
-<p>2：</p>
+<p>2： <strong>Linear Algebra</strong></p>
+<p> <strong>Linear Algebra</strong>(线性代数)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">线性代数是数学的一个分支，但事实是线性代数是数据的数学。 矩阵和向量是数据的语言。 线性代数是关于线性组合的。 也就是说，对称为向量的数字列和称为矩阵的数字2D数组进行算术运算，以创建新的数字列和数组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>Numerical Linear Algebra</strong> （数值线性代数）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">线性代数在计算机中的应用通常称为数值线性代数。 它不仅仅是在代码库中实现线性代数运算； 它还包括认真处理应用数学的问题，例如使用数字计算机有限的浮点精度进行处理。</span><br></pre></td></tr></table></figure>
+
+<p><strong>Applications of Linear Algebra</strong>（应用线性代数）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">❼ Matrices in Engineering, such as a line of springs.</span><br><span class="line">❼ Graphs and Networks, such as analyzing networks.</span><br><span class="line">❼ Markov Matrices, Population, and Economics, such as population growth.</span><br><span class="line">❼ Linear Programming, the simplex optimization method.</span><br><span class="line">❼ Fourier Series, Linear Algebra for functions, used widely in signal processing.</span><br><span class="line">❼ Linear Algebra for statistics and probability, such as least squares for regression.</span><br><span class="line">❼ Computer Graphics, such as the various translation, scaling and rotation of images.</span><br></pre></td></tr></table></figure>
+
+<p>3:<strong>Vectors</strong>(向量) </p>
+<p><strong>Defifining a Vector</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">We can represent a vector in Python as a NumPy array. A NumPy array can be created from a list of numbers. For example, below we defifine a vector with the length of 3 and the integer values 1, 2 and 3.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># create a vector</span><br><span class="line">from numpy import array</span><br><span class="line">v = array([1, 2, 3])</span><br><span class="line">print(v)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Vector Multiplication</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># multiply vectors</span><br><span class="line">from numpy import array</span><br><span class="line">a = array([1, 2, 3])</span><br><span class="line">print(a)</span><br><span class="line">b = array([1, 2, 3])</span><br><span class="line">print(b)</span><br><span class="line">c = a * b</span><br><span class="line">print(c)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Defifining a Matrix</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># create matrix</span><br><span class="line">from numpy import array</span><br><span class="line">A = array([[1, 2, 3], [4, 5, 6]])</span><br><span class="line">print(A)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Matrix Addition</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># add matrices</span><br><span class="line">from numpy import array</span><br><span class="line">A = array([[1, 2, 3], [4, 5, 6]])</span><br><span class="line">print(A)</span><br><span class="line">B = array([[1, 2, 3], [4, 5, 6]])</span><br><span class="line">print(B)</span><br><span class="line">C = A + B</span><br><span class="line">print(C)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Matrix Dot Product</strong> (矩阵点集,乘法)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">C(m, k) = A(m, n) × B(n, k)</span><br><span class="line"></span><br><span class="line"># matrix dot product</span><br><span class="line">from numpy import array</span><br><span class="line">A = array([[1, 2], [3, 4], [5, 6]])</span><br><span class="line">print(A)</span><br><span class="line">B = array([[1, 2], [3, 4]])</span><br><span class="line">print(B)</span><br><span class="line">C = A.dot(B)</span><br><span class="line">print(C)</span><br></pre></td></tr></table></figure>
+
+<p> 4:Matrix Types and Operations</p>
+<p><strong>Transpose</strong>(转置)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># transpose matrix</span><br><span class="line">from numpy import array</span><br><span class="line">A = array([[1, 2], [3, 4], [5, 6]])</span><br><span class="line">print(A)</span><br><span class="line">C = A.T</span><br><span class="line">print(C)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Inversion</strong>(逆)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># invert matrix</span><br><span class="line">from numpy import array</span><br><span class="line">from numpy.linalg import inv</span><br><span class="line"># define matrix</span><br><span class="line">A = array([[1.0, 2.0], [3.0, 4.0]])</span><br><span class="line">print(A)</span><br><span class="line"># invert matrix</span><br><span class="line">B = inv(A)</span><br><span class="line">print(B)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Square Matrix</strong> (方阵)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A square matrix is a matrix where the number of rows (n) equals the number of columns (m).</span><br></pre></td></tr></table></figure>
+
+<p><strong>Symmetric Matrix</strong>(对称矩阵)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A symmetric matrix is a type of square matrix where the top-right triangle is the same as the bottom-left triangle. To be symmetric, the axis of symmetry is always the main diagonal of the matrix, from the top left to the bottom right. A symmetric matrix is always square and equal to its own transpose.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Triangular Matrix</strong>(三角矩阵)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A triangular matrix is a type of square matrix that has all values in the upper-right or lower-left of the matrix with the remaining elements filled with zero values. A triangular matrix with values only above the main diagonal is called an upper triangular matrix. Whereas, a triangular matrix with values only below the main diagonal is called a lower triangular matrix.</span><br></pre></td></tr></table></figure>
+
+<p><strong>Diagonal Matrix</strong>(对角矩阵)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A diagonal matrix is one where values outside of the main diagonal have a zero value, where the main diagonal is taken from the top left of the matrix to the bottom right. A diagonal matrix is often denoted with the variable D and may be represented as a full matrix or as a vector of values on the main diagonal.</span><br></pre></td></tr></table></figure>
+
+<p>5:<strong>Matrix Factorization</strong> (矩阵分解)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">矩阵分解是将矩阵还原成其组成部分的一种方式。 这是一种可以简化更复杂的矩阵运算的方法，该运算可以在分解矩阵上执行，而不能在原始矩阵本身上执行。 矩阵分解的一个常见类比是数的分解，例如将25分解为5×5。因此,像分解实数值一样，有许多方法可以分解矩阵，因此存在多种不同的矩阵分解技术。</span><br></pre></td></tr></table></figure>
+
+<p><strong>LU Matrix Decomposition</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">The LU decomposition is for square matrices and decomposes a matrix into L and U components.</span><br><span class="line"></span><br><span class="line">A = L · U (12)</span><br><span class="line"></span><br><span class="line">Where A is the square matrix that we wish to decompose, L is the lower triangle matrix and U is the upper triangle matrix. A variation of this decomposition that is numerically more stable to solve in practice is called the LUP decomposition, or the LU decomposition with partial pivoting.</span><br><span class="line"></span><br><span class="line">A = P · L · U (13)</span><br><span class="line"></span><br><span class="line">The rows of the parent matrix are re-ordered to simplify the decomposition process and the additional P matrix specifies a way to permute the result or return the result to the original order. There are also other variations of the LU. The LU decomposition is often used to simplify the solving of systems of linear equations, such as finding the coefficients in a linear regression.</span><br><span class="line">The LU decomposition can be implemented in Python with the lu() function. More specifically,this function calculates an LPU decomposition.</span><br></pre></td></tr></table></figure>
+
+<p>Singular-Value Decomposition(奇异值分解)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">The Singular-Value Decomposition, or SVD for short, is a matrix decomposition method for reducing a matrix to its constituent parts in order to make certain subsequent matrix calculations simpler.</span><br><span class="line"></span><br><span class="line">A = U · Σ · V T (14)</span><br><span class="line"></span><br><span class="line">Where A is the real m × n matrix that we wish to decompose, U is an m × m matrix, Σ</span><br><span class="line">(sigma) is an m × n diagonal matrix, and V T is the transpose of an n × n matrix where T is a superscript.</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -415,6 +470,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/25/MachineLearningAlgorithms/" rel="prev" title="MachineLearningAlgorithms">
+                MachineLearningAlgorithms <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -491,7 +550,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

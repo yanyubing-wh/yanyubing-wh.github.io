@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Deep Learning for  Computer Vision1：Deep Learning and  Computer Vision 1234567891011Computer Vision:Computer Vision, or CV for short, is broadly defined as helping computers to see or extract meaning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MachineLearning_ComputerVision">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;03&#x2F;27&#x2F;MachineLearning_ComputerVision&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="Deep Learning for  Computer Vision1：Deep Learning and  Computer Vision 1234567891011Computer Vision:Computer Vision, or CV for short, is broadly defined as helping computers to see or extract meaning">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-27T18:46:57.950Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/03/27/MachineLearning_ComputerVision/"/>
+
+
+
+
+
+  <title>MachineLearning_ComputerVision | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/03/27/MachineLearning_ComputerVision/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MachineLearning_ComputerVision</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-27T23:56:04+08:00">
+                2020-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Deep-Learning-for-Computer-Vision"><a href="#Deep-Learning-for-Computer-Vision" class="headerlink" title="Deep Learning for  Computer Vision"></a><strong>Deep Learning for</strong>  <strong>Computer Vision</strong></h3><p>1：<strong>Deep Learning and</strong>  <strong>Computer Vision</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Computer Vision:</span><br><span class="line">Computer Vision, or CV for short, is broadly defined as helping computers to see or extract meaning from digital images such as photographs and videos. Researchers have been working on the problem of helping computers see for more than 50 years, and some great successes have been achieved, such as the face detection available in modern cameras and smartphones. The problem of understanding images is not solved, and may never be. This is primarily because the world is complex and messy. There are few rules. And yet we can easily and effortlessly recognize objects, people, and context.</span><br><span class="line"></span><br><span class="line">Deep Learning:</span><br><span class="line">Deep Learning is a subfield of machine learning concerned with algorithms inspired by the structure and function of the brain called artificial neural networks. A property of deep learning is that the performance of this type of model improves by training it with more examples and by increasing its depth or representational capacity. In addition to scalability, another often-cited benefit of deep learning models is their ability to perform automatic feature extraction from raw data, also called feature learning.</span><br><span class="line"></span><br><span class="line">Deep Promise of Deep Learning for Computer vision:</span><br><span class="line">Deep learning methods are popular for computer vision, primarily because they are delivering on their promise. Some of the first large demonstrations of the power of deep learning were in computer vision, specifically image classification. More recently in object detection and face recognition. The three key promises of deep learning for computer vision are as follows:</span><br><span class="line">1:The Promise of Feature Learning(特征学习)</span><br><span class="line">2:The Promise of Continued Improvement(持续改进)</span><br><span class="line">3:The Promise of End-to-End Models(端到端原则，不需要第三方，自己可以从头到尾解决)</span><br></pre></td></tr></table></figure>
+
+<p>2: <strong>Preparing Image Data</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># example of pixel normalization</span><br><span class="line">from numpy import asarray</span><br><span class="line">from PIL import Image</span><br><span class="line"></span><br><span class="line"># load image</span><br><span class="line">image = Image.open(&apos;bondi_beach.jpg&apos;)</span><br><span class="line">pixels = asarray(image)</span><br><span class="line"># confirm pixel range is 0-255</span><br><span class="line">print(&apos;Data Type: %s&apos; % pixels.dtype)</span><br><span class="line">print(&apos;Min: %.3f, Max: %.3f&apos; % (pixels.min(), pixels.max()))</span><br><span class="line"># convert from integers to floats</span><br><span class="line"># 归一化</span><br><span class="line">pixels = pixels.astype(&apos;float32&apos;)  # normalize to the range 0-1</span><br><span class="line">pixels /= 255.0</span><br><span class="line"># confirm the normalization</span><br><span class="line">print(&apos;Min: %.3f, Max: %.3f&apos; % (pixels.min(), pixels.max()))</span><br></pre></td></tr></table></figure>
+
+<p>3:Convolutional Neural Networks(卷积神经网络CNN)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In this lesson, you will discover how to construct a convolutional neural network using a convolutional layer, pooling layer, and fully connected output layer.</span><br><span class="line">在本课程中，您将发现如何使用卷积层，池化层和完全连接的输出层来构建卷积神经网络。</span><br><span class="line">我的理解是：</span><br><span class="line">1：卷积层的作用的提取特征。</span><br><span class="line">2：池化层的作用是降低卷积层对边缘的敏感性。因为卷积层发现边缘过于精确。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Convolutional Layers:</span><br><span class="line">A convolution is the simple application of a filter to an input that results in an activation.Repeated application of the same filter to an input results in a map of activations called a feature map, indicating the locations and strength of a detected feature in an input, such as an image. A convolutional layer can be created by specifying both the number of filters to learn and the fixed size of each filter, often called the kernel shape.</span><br><span class="line">卷积是将过滤器简单地应用到输入上以导致激活的过程。将同一过滤器重复应用到输入上会导致激活图称为特征图，该图表示特征在输入中的位置和强度 ，例如图片。 可以通过指定要学习的过滤器数量和每个过滤器的固定大小（通常称为核形状）来创建卷积层。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Pooling Layers:</span><br><span class="line">Pooling layers provide an approach to downsampling feature maps by summarizing the presence of features in patches of the feature map. Maximum pooling, or max pooling, is a pooling operation that calculates the maximum, or largest, value in each patch of each feature map.</span><br><span class="line">池化层通过汇总特征图的补丁中特征的存在，提供了一种对特征图进行下采样的方法。 最大池化或最大池化是一种池化操作，用于计算每个功能图的每个面片中的最大值或最大值</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Classifier Layer:</span><br><span class="line">Once the features have been extracted, they can be interpreted and used to make a prediction,such as classifying the type of object in a photograph. This can be achieved by first flattening the two-dimensional feature maps, and then adding a fully connected output layer. For a binary classification problem, the output layer would have one node that would predict a value between 0 and 1 for the two classes.</span><br><span class="line">提取特征后，就可以将其解释并用于进行预测，例如对照片中的对象类型进行分类。 这可以通过首先展平二维特征图，然后添加完全连接的输出层来实现。 对于二进制分类问题，输出层将具有一个节点，该节点将为两个类别预测0到1之间的值</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># cnn with single convolutional, pooling and output layer</span><br><span class="line"># The example below creates a convolutional neural network that expects grayscale images with</span><br><span class="line"># the square size of 256 × 256 pixels, with one convolutional layer with 32 filters, each with the</span><br><span class="line"># size of 3 × 3 pixels, a max pooling layer, and a binary classification output layer.</span><br><span class="line"></span><br><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Conv2D</span><br><span class="line">from keras.layers import MaxPooling2D</span><br><span class="line">from keras.layers import Flatten</span><br><span class="line">from keras.layers import Dense</span><br><span class="line"></span><br><span class="line"># create model</span><br><span class="line">model = Sequential()</span><br><span class="line"># add convolutional layer</span><br><span class="line">model.add(Conv2D(32, (3, 3), input_shape=(256, 256, 1)))</span><br><span class="line">model.add(MaxPooling2D())</span><br><span class="line">model.add(Flatten())</span><br><span class="line">model.add(Dense(1, activation=&apos;sigmoid&apos;))</span><br><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+
+<p>4:<strong>Image Classifification</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"># In this lesson, you will discover how to use a pre-trained model to classify photographs of objects.</span><br><span class="line"># Deep convolutional neural network models may take days, or even weeks, to train on very</span><br><span class="line"># large datasets. A way to short-cut this process is to re-use the model weights from pre-trained</span><br><span class="line"># models that were developed for standard computer vision benchmark datasets, such as the</span><br><span class="line"># ImageNet image recognition tasks. The example below uses the VGG-16 pre-trained model to</span><br><span class="line"># classify photographs of objects into one of 1,000 known classes. Download this photograph of a</span><br><span class="line"># dog taken by Justin Morgan4 and released under a permissive license. Save it in your current</span><br><span class="line"># working directory with the filename dog.jpg</span><br><span class="line"># 上面表达的意思d是训练一份分类,网络需要的时间过长，我们使用预训练模型</span><br><span class="line"></span><br><span class="line"># example of using a pre-trained model as a classifier</span><br><span class="line"># example of using a pre-trained model as a classifier</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">from keras.preprocessing.image import load_img</span><br><span class="line">from keras.preprocessing.image import img_to_array</span><br><span class="line">from keras.applications.vgg16 import preprocess_input</span><br><span class="line">from keras.applications.vgg16 import decode_predictions</span><br><span class="line">from keras.applications.vgg16 import VGG16</span><br><span class="line"></span><br><span class="line"># load an image from file</span><br><span class="line">image = load_img(&apos;dog.jpg&apos;, target_size=(224, 224))</span><br><span class="line"># convert the image pixels to a numpy array</span><br><span class="line">image = img_to_array(image)</span><br><span class="line"># reshape data for the model</span><br><span class="line">image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))</span><br><span class="line"># prepare the image for the VGG model</span><br><span class="line">image = preprocess_input(image)</span><br><span class="line"># load the model</span><br><span class="line"># The example below uses the VGG-16 pre-trained model to</span><br><span class="line"># classify photographs of objects into one of 1,000 known classes</span><br><span class="line">model = VGG16()</span><br><span class="line"># predict the probability across all output classes</span><br><span class="line">yhat = model.predict(image)</span><br><span class="line"># convert the probabilities to class labels</span><br><span class="line">label = decode_predictions(yhat)</span><br><span class="line"># retrieve the most likely result, e.g. highest probability</span><br><span class="line">label = label[0][0]</span><br><span class="line"># print the classification</span><br><span class="line">print(&apos;%s (%.2f%%)&apos; % (label[1], label[2] * 100))</span><br></pre></td></tr></table></figure>
+
+<p>5: <strong>Train Image Classifification</strong> <strong>Model</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"># In this lesson, you will discover how to train and evaluate a convolutional neural network for</span><br><span class="line"># image classification. The Fashion-MNIST clothing classification problem is a new standard</span><br><span class="line"># dataset used in computer vision and deep learning. It is a dataset comprised of 60,000 small</span><br><span class="line"># square 28 × 28 pixel grayscale images of items of 10 types of clothing, such as shoes, t-shirts,</span><br><span class="line"># dresses, and more. The example below loads the dataset, scales the pixel values, then fits a</span><br><span class="line"># convolutional neural network on the training dataset and evaluates the performance of the</span><br><span class="line"># network on the test dataset. The example will run in just a few minutes on a modern CPU; no</span><br><span class="line"># GPU is required.</span><br><span class="line"></span><br><span class="line"># 在本课程中，您将发现如何训练和评估卷积神经网络进行图像分类。</span><br><span class="line"># Fashion-MNIST服装分类问题是用于计算机视觉和深度学习的新标准数据集。</span><br><span class="line"># 它是一个数据集，由60,000张28×28像素的小方块灰度图像组成，</span><br><span class="line"># 其中包含10种衣服的商品，例如鞋子，T恤,礼服等等。</span><br><span class="line"># 下面的示例加载数据集，缩放像素值，</span><br><span class="line"># 然后在训练数据集上拟合卷积神经网络，并在测试数据集上评估网络的性能。</span><br><span class="line"># 该示例仅需几分钟即可在现代CPU上运行。 不需要GPU。</span><br><span class="line"># fit a cnn on the fashion mnist dataset</span><br><span class="line">from keras.datasets import fashion_mnist</span><br><span class="line">from keras.utils import to_categorical</span><br><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Conv2D</span><br><span class="line">from keras.layers import MaxPooling2D</span><br><span class="line">from keras.layers import Dense</span><br><span class="line">from keras.layers import Flatten</span><br><span class="line"></span><br><span class="line"># load dataset</span><br><span class="line">(trainX, trainY), (testX, testY) = fashion_mnist.load_data()</span><br><span class="line"># reshape dataset to have a single channel</span><br><span class="line">trainX = trainX.reshape((trainX.shape[0], 28, 28, 1))</span><br><span class="line">testX = testX.reshape((testX.shape[0], 28, 28, 1))</span><br><span class="line"># convert from integers to floats</span><br><span class="line">trainX, testX = trainX.astype(&apos;float32&apos;), testX.astype(&apos;float32&apos;)  # normalize to range 0-1</span><br><span class="line">trainX, testX = trainX / 255.0, testX / 255.0</span><br><span class="line"># one hot encode target values</span><br><span class="line">trainY, testY = to_categorical(trainY), to_categorical(testY)</span><br><span class="line"># define model</span><br><span class="line">model = Sequential()</span><br><span class="line">model.add(Conv2D(32, (3, 3), activation=&apos;relu&apos;, kernel_initializer=&apos;he_uniform&apos;,</span><br><span class="line">                 input_shape=(28, 28, 1)))</span><br><span class="line">model.add(MaxPooling2D())</span><br><span class="line">model.add(Flatten())</span><br><span class="line">model.add(Dense(100, activation=&apos;relu&apos;, kernel_initializer=&apos;he_uniform&apos;))</span><br><span class="line">model.add(Dense(10, activation=&apos;softmax&apos;))</span><br><span class="line">model.compile(optimizer=&apos;adam&apos;, loss=&apos;categorical_crossentropy&apos;, metrics=[&apos;accuracy&apos;])</span><br><span class="line"># fit model</span><br><span class="line">model.fit(trainX, trainY, epochs=10, batch_size=32, verbose=2)</span><br><span class="line"># evaluate model</span><br><span class="line">loss, acc = model.evaluate(testX, testY, verbose=0)</span><br><span class="line">print(loss, acc)</span><br><span class="line">model.save(&apos;myModel.model&apos;)</span><br></pre></td></tr></table></figure>
+
+<p>6:<strong>Image Augmentation</strong> (图片扩充)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">In this lesson, you will discover how to use image augmentation. Image data augmentation is a technique that can be used to artificially expand the size of a training dataset by creating modified versions of images in the dataset. Training deep learning neural network models on more data can result in more skillful models, and the augmentation techniques can create variations of the images that can improve the ability of the fit models to generalize what they have learned to new images. The Keras deep learning neural network library provides the capability to fit models using image data augmentation via the ImageDataGenerator class.</span><br><span class="line">图像数据扩充是一种可通过在数据集中创建图像的修改版本来人工扩展训练数据集大小的技术。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># example using image augmentation</span><br><span class="line">from numpy import expand_dims</span><br><span class="line">from keras.preprocessing.image import load_img</span><br><span class="line">from keras.preprocessing.image import img_to_array</span><br><span class="line">from keras.preprocessing.image import ImageDataGenerator</span><br><span class="line">from matplotlib import pyplot</span><br><span class="line"></span><br><span class="line"># load the image</span><br><span class="line">img = load_img(&apos;bird.jpg&apos;)  # convert to numpy array</span><br><span class="line">data = img_to_array(img)</span><br><span class="line"># expand dimension to one sample</span><br><span class="line">samples = expand_dims(data, 0)</span><br><span class="line"># create image data augmentation generator</span><br><span class="line">datagen = ImageDataGenerator(horizontal_flip=True, vertical_flip=True, rotation_range=90)</span><br><span class="line"># prepare iterator</span><br><span class="line">it = datagen.flow(samples, batch_size=1)</span><br><span class="line"># generate samples and plot</span><br><span class="line">for i in range(9):</span><br><span class="line">    # define subplot</span><br><span class="line">    pyplot.subplot(330 + 1 + i)</span><br><span class="line">    # generate batch of images</span><br><span class="line">    batch = it.next()</span><br><span class="line">    # convert to unsigned integers for viewing</span><br><span class="line">    image = batch[0].astype(&apos;uint8&apos;)</span><br><span class="line">    # plot raw pixel data</span><br><span class="line">    pyplot.imshow(image)</span><br><span class="line"># show the figure</span><br><span class="line">pyplot.show()</span><br></pre></td></tr></table></figure>
+
+<p>7:<strong>Face Detection</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">In this lesson, you will discover how to use a convolutional neural network for face detection. Face detection is a trivial problem for humans to solve and has been solved reasonably well by classical feature-based techniques, such as the cascade classifier. More recently, deep learning methods have achieved state-of-the-art results on standard face detection datasets. One example is the Multi-task Cascade Convolutional Neural Network,or MTCNN for short. The ipazc/MTCNN project8 provides an open source implementation of the MTCNN that can be installed easily as follows:</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># face detection with mtcnn on a photograph</span><br><span class="line">from matplotlib import pyplot</span><br><span class="line">from matplotlib.patches import Rectangle</span><br><span class="line">from mtcnn.mtcnn import MTCNN</span><br><span class="line"></span><br><span class="line"># load image from file</span><br><span class="line">pixels = pyplot.imread(&apos;yan.jpg&apos;)  # create the detector, using default weights</span><br><span class="line">detector = MTCNN()</span><br><span class="line"># detect faces in the image</span><br><span class="line">faces = detector.detect_faces(pixels)</span><br><span class="line"># plot the image</span><br><span class="line">pyplot.imshow(pixels)</span><br><span class="line"># get the context for drawing boxes</span><br><span class="line">ax = pyplot.gca()</span><br><span class="line"># get coordinates from the first face</span><br><span class="line">x, y, width, height = faces[0][&apos;box&apos;]  # create the shape</span><br><span class="line">rect = Rectangle((x, y), width, height, fill=False, color=&apos;red&apos;)  # draw the box</span><br><span class="line">ax.add_patch(rect)</span><br><span class="line"># show the plot</span><br><span class="line">pyplot.show()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/26/MachineLearningAlgorithms_Python/" rel="next" title="MachineLearningAlgorithms_Python">
+                <i class="fa fa-chevron-left"></i> MachineLearningAlgorithms_Python
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep-Learning-for-Computer-Vision"><span class="nav-number">1.</span> <span class="nav-text">Deep Learning for  Computer Vision</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

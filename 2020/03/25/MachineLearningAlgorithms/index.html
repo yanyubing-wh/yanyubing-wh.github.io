@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Machine Learning Algorithms1：A Tour of Machine Learning Algorithms(机器学习算法简介)1.1:Algorithms Grouped by Learning Style 1231. Supervised Learning2. Unsupervised Learning3. Semi-Supervised Learning  1.2:A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MachineLearningAlgorithms">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;03&#x2F;25&#x2F;MachineLearningAlgorithms&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="Machine Learning Algorithms1：A Tour of Machine Learning Algorithms(机器学习算法简介)1.1:Algorithms Grouped by Learning Style 1231. Supervised Learning2. Unsupervised Learning3. Semi-Supervised Learning  1.2:A">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-25T16:28:38.675Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/03/25/MachineLearningAlgorithms/"/>
+
+
+
+
+
+  <title>MachineLearningAlgorithms | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/03/25/MachineLearningAlgorithms/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MachineLearningAlgorithms</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-25T02:37:28+08:00">
+                2020-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Machine-Learning-Algorithms"><a href="#Machine-Learning-Algorithms" class="headerlink" title="Machine Learning Algorithms"></a><strong>Machine Learning Algorithms</strong></h3><h4 id="1：A-Tour-of-Machine-Learning-Algorithms-机器学习算法简介"><a href="#1：A-Tour-of-Machine-Learning-Algorithms-机器学习算法简介" class="headerlink" title="1：A Tour of Machine Learning Algorithms(机器学习算法简介)"></a>1：A Tour of Machine Learning Algorithms(机器学习算法简介)</h4><p>1.1:Algorithms Grouped by Learning Style</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. Supervised Learning</span><br><span class="line">2. Unsupervised Learning</span><br><span class="line">3. Semi-Supervised Learning</span><br></pre></td></tr></table></figure>
+
+<p>1.2:Algorithms Grouped By Similarity</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Regression Algorithms:回归算法</span><br><span class="line"></span><br><span class="line">Ordinary Least Squares Regression (OLSR)</span><br><span class="line">Linear Regression</span><br><span class="line">Logistic Regression</span><br><span class="line">Stepwise Regression</span><br><span class="line">Multivariate Adaptive Regression Splines (MARS)</span><br><span class="line">Locally Estimated Scatterplot Smoothing (LOESS)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Instance-based Algorithms:</span><br><span class="line"></span><br><span class="line">k-Nearest Neighbor (kNN)</span><br><span class="line">Learning Vector Quantization (LVQ)</span><br><span class="line">Self-Organizing Map (SOM)</span><br><span class="line">Locally Weighted Learning (LWL)</span><br><span class="line">Support Vector Machines (SVM)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Regularization Algorithms:(正则化)</span><br><span class="line"></span><br><span class="line">Ridge Regression</span><br><span class="line">Least Absolute Shrinkage and Selection Operator (LASSO)</span><br><span class="line">Elastic Net</span><br><span class="line">Least-Angle Regression (LARS)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Decision Tree Algorithms:(决策树算法)</span><br><span class="line"></span><br><span class="line">Classification and Regression Tree (CART)</span><br><span class="line">Iterative Dichotomiser 3 (ID3)</span><br><span class="line">C4.5 and C5.0 (different versions of a powerful approach)</span><br><span class="line">Chi-squared Automatic Interaction Detection (CHAID)</span><br><span class="line">Decision Stump</span><br><span class="line">M5</span><br><span class="line">Conditional Decision Trees</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Bayesian Algorithms:(贝叶斯算法)</span><br><span class="line"></span><br><span class="line">Naive Bayes</span><br><span class="line">Gaussian Naive Bayes</span><br><span class="line">Multinomial Naive Bayes</span><br><span class="line">Averaged One-Dependence Estimators (AODE)</span><br><span class="line">Bayesian Belief Network (BBN)</span><br><span class="line">Bayesian Network (BN)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Clustering Algorithms:</span><br><span class="line"></span><br><span class="line">k-Means</span><br><span class="line">k-Medians</span><br><span class="line">Expectation Maximisation (EM)</span><br><span class="line">Hierarchical Clustering</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Association Rule Learning Algorithms:</span><br><span class="line"></span><br><span class="line">Apriori algorithm</span><br><span class="line">Eclat algorithm</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Artificial Neural Network Algorithms:(自然神经网络算法)</span><br><span class="line"></span><br><span class="line">Perceptron</span><br><span class="line">Multilayer Perceptrons (MLP)</span><br><span class="line">Back-Propagation</span><br><span class="line">Stochastic Gradient Descent</span><br><span class="line">Hopfield Network</span><br><span class="line">Radial Basis Function Network (RBFN)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Deep Learning Algorithms:(深度学习算法)</span><br><span class="line"></span><br><span class="line">Convolutional Neural Network (CNN)</span><br><span class="line">Recurrent Neural Networks (RNNs)</span><br><span class="line">Long Short-Term Memory Networks (LSTMs)</span><br><span class="line">Stacked Auto-Encoders</span><br><span class="line">Deep Boltzmann Machine (DBM)</span><br><span class="line">Deep Belief Networks (DBN)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Dimensionality Reduction Algorithms:(降维算法)</span><br><span class="line"></span><br><span class="line">Principal Component Analysis (PCA)</span><br><span class="line">Principal Component Regression (PCR)</span><br><span class="line">Partial Least Squares Regression (PLSR)</span><br><span class="line">Sammon Mapping</span><br><span class="line">Multidimensional Scaling (MDS)</span><br><span class="line">Projection Pursuit</span><br><span class="line">Linear Discriminant Analysis (LDA)</span><br><span class="line">Mixture Discriminant Analysis (MDA)</span><br><span class="line">Quadratic Discriminant Analysis (QDA)</span><br><span class="line">Flexible Discriminant Analysis (FDA)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Ensemble Algorithms:(算法集，合并的算法)</span><br><span class="line"></span><br><span class="line">Boosting</span><br><span class="line">Bootstrapped Aggregation (Bagging)</span><br><span class="line">AdaBoost</span><br><span class="line">Weighted Average (Blending)</span><br><span class="line">Stacked Generalization (Stacking)</span><br><span class="line">Gradient Boosting Machines (GBM)</span><br><span class="line">Gradient Boosted Regression Trees (GBRT)</span><br><span class="line">Random Forest</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Other Machine Learning Algorithms:其他机器学习算法</span><br><span class="line"></span><br><span class="line">Feature selection algorithms</span><br><span class="line">Algorithm accuracy evaluation</span><br><span class="line">Performance measures</span><br><span class="line">Optimization algorithms</span><br><span class="line"></span><br><span class="line">Computational intelligence (evolutionary algorithms, etc.)</span><br><span class="line">Computer Vision (CV)</span><br><span class="line">Natural Language Processing (NLP)</span><br><span class="line">Recommender Systems</span><br><span class="line">Reinforcement Learning</span><br><span class="line">Graphical Models</span><br><span class="line">And more…</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-How-Machine-Learning-Algorithms-Work-they-learn-a-mapping-of-input-to-output"><a href="#2-How-Machine-Learning-Algorithms-Work-they-learn-a-mapping-of-input-to-output" class="headerlink" title="2:How Machine Learning Algorithms Work (they learn a mapping of input to output)"></a>2:How Machine Learning Algorithms Work (they learn a mapping of input to output)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我的理解就是，机器学习算法的目的就是:得到最优的函数关系（最小误差，或者最快效率等等）</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Learning a Function</span><br><span class="line">Machine learning algorithms are described as learning a target function (f) that best maps input variables (X) to an output variable (Y).</span><br><span class="line"></span><br><span class="line">Y = f(X)</span><br><span class="line"></span><br><span class="line">This is a general learning task where we would like to make predictions in the future (Y) given new examples of input variables (X).</span><br><span class="line"></span><br><span class="line">We don’t know what the function (f) looks like or it’s form. If we did, we would use it directly and we would not need to learn it from data using machine learning algorithms.</span><br><span class="line"></span><br><span class="line">It is harder than you think. There is also error (e) that is independent of the input data (X).</span><br><span class="line"></span><br><span class="line">Y = f(X) + e</span><br><span class="line"></span><br><span class="line">This error might be error such as not having enough attributes to sufficiently characterize the best mapping from X to Y. This error is called irreducible error because no matter how good we get at estimating the target function (f), we cannot reduce this error.</span><br><span class="line"></span><br><span class="line">This is to say, that the problem of learning a function from data is a difficult problem and this is the reason why the field of machine learning and machine learning algorithms exist.</span><br></pre></td></tr></table></figure>
+
+<p>3:Parametric and Nonparametric Machine Learning Algorithms(参数和非参数学习)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">我的理解是：</span><br><span class="line">参数学习更加适合小的网络，速度快，固定模型的参数;</span><br><span class="line">非参数学习精准度更高，但是可能出现过拟合（噪声使用）。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Parametric Machine Learning Algorithms</span><br><span class="line"></span><br><span class="line">Assumptions can greatly simplify the learning process, but can also limit what can be learned. Algorithms that simplify the function to a known form are called parametric machine learning algorithms.</span><br><span class="line"></span><br><span class="line">Logistic Regression</span><br><span class="line">Linear Discriminant Analysis</span><br><span class="line">Perceptron</span><br><span class="line">Naive Bayes</span><br><span class="line">Simple Neural Networks</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Nonparametric Machine Learning Algorithms</span><br><span class="line"></span><br><span class="line">k-Nearest Neighbors</span><br><span class="line">Decision Trees like CART and C4.5</span><br><span class="line">Support Vector Machines</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/22/MachineLearning_math/" rel="next" title="MachineLearning_math">
+                <i class="fa fa-chevron-left"></i> MachineLearning_math
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/26/MachineLearningAlgorithms_Python/" rel="prev" title="MachineLearningAlgorithms_Python">
+                MachineLearningAlgorithms_Python <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning-Algorithms"><span class="nav-number">1.</span> <span class="nav-text">Machine Learning Algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1：A-Tour-of-Machine-Learning-Algorithms-机器学习算法简介"><span class="nav-number">1.1.</span> <span class="nav-text">1：A Tour of Machine Learning Algorithms(机器学习算法简介)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-How-Machine-Learning-Algorithms-Work-they-learn-a-mapping-of-input-to-output"><span class="nav-number">1.2.</span> <span class="nav-text">2:How Machine Learning Algorithms Work (they learn a mapping of input to output)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
