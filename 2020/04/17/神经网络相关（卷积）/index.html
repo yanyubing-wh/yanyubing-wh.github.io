@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="卷积神经网络1：卷积神经网络的发展 1LeNet(1998年)→AlexNet(2012年)→ZFNet(2013年)→VGG（2014年-2月）→GoogleNet(2014年-1月)→ResNet(2015年)→SENet(2017年)→DenseNet（2018年）→efficientnet（2019年）  2：相关网络介绍 2.1:LeNet 12345678910111213141516">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神经网络相关（卷积）">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;04&#x2F;17&#x2F;%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%EF%BC%88%E5%8D%B7%E7%A7%AF%EF%BC%89&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="卷积神经网络1：卷积神经网络的发展 1LeNet(1998年)→AlexNet(2012年)→ZFNet(2013年)→VGG（2014年-2月）→GoogleNet(2014年-1月)→ResNet(2015年)→SENet(2017年)→DenseNet（2018年）→efficientnet（2019年）  2：相关网络介绍 2.1:LeNet 12345678910111213141516">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-17T16:06:09.756Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/04/17/神经网络相关（卷积）/"/>
+
+
+
+
+
+  <title>神经网络相关（卷积） | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/04/17/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%EF%BC%88%E5%8D%B7%E7%A7%AF%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">神经网络相关（卷积）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-17T16:06:22+08:00">
+                2020-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h3><p>1：卷积神经网络的发展</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LeNet(1998年)→AlexNet(2012年)→ZFNet(2013年)→VGG（2014年-2月）→GoogleNet(2014年-1月)→ResNet(2015年)→SENet(2017年)→DenseNet（2018年）→efficientnet（2019年）</span><br></pre></td></tr></table></figure>
+
+<p>2：相关网络介绍</p>
+<p>2.1:LeNet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1:网络结构</span><br><span class="line">LeNet-5包含七层，不包括输入，每一层都包含可训练参数（权重），当时使用的输入数据是32*32像素的图像。卷积层Cx，子采样层Sx，完全连接层Fx，其中x是层索引。输入图像大小是32*32</span><br><span class="line"></span><br><span class="line">第1层C1：具有6个5*5卷积核的卷积层，特征映射的大小为28*28（32+1-5），C1包含156个可训练参数和122304个连接。</span><br><span class="line"></span><br><span class="line">第2层S2：6个大小为14*14的特征图的子采样层（subsampling/pooling）。每个特征地图中的每个单元连接到C1中的对应特征地图中的2*2个邻域。S2中单位的四个输入相加，然后乘以可训练系数（权重），然后加到可训练偏差（bias）。结果通过S形函数传递。由于2*2个感受域不重叠，因此S2中的特征图只有C1中的特征图的一半行数和列数。S2层有12个可训练参数和5880个连接。</span><br><span class="line"></span><br><span class="line">第3层C3：具有16个5-5的卷积核的卷积层。前六个C3特征图的输入是S2中的三个特征图的每个连续子集，接下来的六个特征图的输入则来自四个连续子集的输入，接下来的三个特征图的输入来自不连续的四个子集。最后，最后一个特征图的输入来自S2所有特征图。C3层有1516个可训练参数和156000个连接。</span><br><span class="line"></span><br><span class="line">第4层S4：与S2类似，大小为2*2，输出为16个5*5的特征图。S4层有32个可训练参数和2000个连接。</span><br><span class="line"></span><br><span class="line">第5层C5：是具有120个大小为5*5的卷积核的卷积层。每个单元连接到S4的所有16个特征图上的5*5邻域。这里，因为S4的特征图大小也是5*5，所以C5的输出大小是1*1。因此S4和C5之间是完全连接的。C5被标记为卷积层，而不是完全连接的层，是因为如果LeNet-5输入变得更大而其结构保持不变，则其输出大小会大于1*1，即不是完全连接的层了。C5层有48120个可训练连接。</span><br><span class="line"></span><br><span class="line">第6层F6：完全连接到C5，输出84张特征图。它有10164个可训练参数。这里84与输出层的设计有关。</span><br><span class="line"></span><br><span class="line">2:网络结构流程总结</span><br><span class="line">输入32*32→（C1:6个5*5卷积核）→6个28*28的特征图→（S2子采样层）→6个14*14的特征图→（c3:16个5*5的卷积核）→16个10*10的特征图→（s4子采样层）→16个5*5的特征图→（C5:120个5*5的卷积核）→16*120个1*1的特征图→（F6：完全连接层）→输出84张特征图</span><br><span class="line"></span><br><span class="line">3:优缺点</span><br><span class="line">全连接层计算代价过大，而使用全部由卷积层组成的神经网络</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">名词注释：</span><br><span class="line"></span><br><span class="line">1:卷积层</span><br><span class="line">作用：特征提取，由多个卷积核构成;一般卷积核是奇数n*n</span><br><span class="line">如3*3的卷积核</span><br><span class="line">[1 0 -1</span><br><span class="line"> 1 0 -1</span><br><span class="line"> 1 0 -1]可以提取到竖向特征</span><br><span class="line"></span><br><span class="line">2：子采样层（也叫pooling层，池化层）</span><br><span class="line">作用：特征选择</span><br><span class="line">例如：经过卷积层之后得到的特征图为</span><br><span class="line">[1,9</span><br><span class="line"> 2,3]</span><br><span class="line">经过池化层之后只保留9，丢弃掉不满足条件的特征，减少参数，防止过拟合等...</span><br><span class="line">最大池化层和平均池化层：对特征图区域的保留方式不同，一种保留最大值，一种区域求平均然后保存</span><br><span class="line"></span><br><span class="line">3：完全连接层</span><br><span class="line">作用：起到分类器的作用</span><br><span class="line">1*1的特征图出来之后，每个特征经过对应的权值w和偏置b就可以得到不同种类的可能性(sigmod)</span><br><span class="line"></span><br><span class="line">4：特征图</span><br><span class="line">描述二维特征，经过卷积核（或者叫做特征滤波器）得到</span><br><span class="line"></span><br><span class="line">5：感受野</span><br><span class="line">特征对应的输入图像区域的大小</span><br></pre></td></tr></table></figure>
+
+<p>2.2:AlexNet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">1：网络结构</span><br><span class="line">AlexNet网络结构共有8层，前面5层是卷积层，后面3层是全连接层，最后一个全连接层的输出传递给一个1000路的softmax层，对应1000个类标签的分布。输入图片大小为224*224*3(RGB)</span><br><span class="line"></span><br><span class="line">第一层:卷积层,训练时会把输入经过预处理变为227×227×3,使用96个11×11×3的卷积核进行卷积计算,两个GPU分别承担48个运算，每次卷积的步长为4个像素， 生成的特征图为(227-11)/4+1=55，即55×55。</span><br><span class="line">ReLU:线性单元处理,得到2组48*55*55</span><br><span class="line">池化：池化尺寸为3*3，步长为2，池化后的像素规模为27*27*96</span><br><span class="line">归一化：运算的尺寸为5*5，归一化之后的像素规模不变</span><br><span class="line"></span><br><span class="line">第二层：卷积层，对输入27*27*48的2组，进行像素填充2(上下左右)，填充之后变为(27+2+2)*(27+2+2)。256个大小为5*5的卷积核，步长为1，卷积后的大小为27*27*128*2组。</span><br><span class="line">ReLU:这些像素层经过ReLU单元的处理，生成激活像素层，尺寸仍为两组27×27×128的像素层。</span><br><span class="line">池化：池化运算的尺寸为3×3，步长为2，池化后图像的尺寸为(57-3)/2+1=13，即池化后像素的规模为2组13×13×128的像素层</span><br><span class="line">归一化:归一化运算的尺度为5×5，归一化后的像素层的规模为2组13×13×128的像素层，分别由2个GPU进行运算。</span><br><span class="line"></span><br><span class="line">第三层：卷积层，第三层输入数据为第二层输出的2组13×13×128的像素层，为便于后续处理，每幅像素层的上下左右边缘都填充1个像素，填充后变为 (13+1+1)×(13+1+1)×128，分布在两个GPU中进行运算。这一层中每个GPU都有192个卷积核，每个卷积核的尺寸是3×3×256。因此，每个GPU中的卷积核都能对2组13×13×128的像素层的所有数据进行卷积运算。两个GPU有通过交叉的虚线连接，也就是说每个GPU要处理来自前一层的所有GPU的输入。</span><br><span class="line">ReLU：卷积后的像素层经过ReLU单元的处理，生成激活像素层，尺寸仍为2组13×13×192的像素层，分配给两组GPU处理。</span><br><span class="line"></span><br><span class="line">第四层：卷积层，第四层输入数据为第三层输出的2组13×13×192的像素层，类似于第三层，为便于后续处理，每幅像素层的上下左右边缘都填充1个像素，填充后的尺寸变为 (13+1+1)×(13+1+1)×192，分布在两个GPU中进行运算。</span><br><span class="line">这一层中每个GPU都有192个卷积核，每个卷积核的尺寸是3×3×192（与第三层不同，第四层的GPU之间没有虚线连接，也即GPU之间没有通信）。卷积的移动步长是1个像素，经卷积运算后的尺寸为 (13+1+1-3)/1+1=13，每个GPU中有13×13×192个卷积核，2个GPU卷积后生成13×13×384的像素层。</span><br><span class="line">ReLU：卷积后的像素层经过ReLU单元处理，生成激活像素层，尺寸仍为2组13×13×192像素层，分配给两个GPU处理。</span><br><span class="line"></span><br><span class="line">第五层：卷积层，第五层输入数据为第四层输出的2组13×13×192的像素层，为便于后续处理，每幅像素层的上下左右边缘都填充1个像素，填充后的尺寸变为 (13+1+1)×(13+1+1) ，2组像素层数据被送至2个不同的GPU中进行运算。</span><br><span class="line">这一层中每个GPU都有128个卷积核，每个卷积核的尺寸是3×3×192，卷积的步长是1个像素，经卷积后的尺寸为 (13+1+1-3)/1+1=13，每个GPU中有13×13×128个卷积核，2个GPU卷积后生成13×13×256的像素层。</span><br><span class="line">ReLU：卷积后的像素层经过ReLU单元处理，生成激活像素层，尺寸仍为2组13×13×128像素层，由两个GPU分别处理。</span><br><span class="line">池化：2组13×13×128像素层分别在2个不同GPU中进行池化运算处理，池化运算的尺寸为3×3，步长为2，池化后图像的尺寸为 (13-3)/2+1=6，即池化后像素的规模为两组6×6×128的像素层数据，共有6×6×256的像素层数据。</span><br><span class="line"></span><br><span class="line">第六层：卷积（全连接层）,第六层输入数据是第五层的输出，尺寸为6×6×256。本层共有4096个卷积核，每个卷积核的尺寸为6×6×256，由于卷积核的尺寸刚好与待处理特征图（输入）的尺寸相同，即卷积核中的每个系数只与特征图（输入）尺寸的一个像素值相乘，一一对应，因此，该层被称为全连接层。由于卷积核与特征图的尺寸相同，卷积运算后只有一个值，因此，卷积后的像素层尺寸为4096×1×1，即有4096个神经元。</span><br><span class="line">ReLU:这4096个运算结果通过ReLU激活函数生成4096个值。</span><br><span class="line">Dropout:然后再通过Dropout运算，输出4096个结果值。</span><br><span class="line"></span><br><span class="line">第七层：全连接层，第六层输出的4096个数据与第七层的4096个神经元进行全连接，然后经ReLU进行处理后生成4096个数据，再经过Dropout处理后输出4096个数据。</span><br><span class="line"></span><br><span class="line">第八层：全连接层，第七层输出的4096个数据与第八层的1000个神经元进行全连接，经过训练后输出1000个float型的值，这就是预测结果。</span><br><span class="line"></span><br><span class="line">2：优缺点</span><br><span class="line">ReLU,多个GPU：提高了训练速度</span><br><span class="line">重叠池化：提高精度</span><br><span class="line">局部归一化：提高精度</span><br><span class="line">数据扩充，dropout：减少过拟合</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">名词注释：</span><br><span class="line"></span><br><span class="line">1:ReLU（激活函数）</span><br><span class="line">线性修正单元</span><br><span class="line">使用线性的堆叠结果还是线性的，使用sigmod函数会出现梯度消失的问题（即在z很大或者很小的时候梯度接近0）</span><br><span class="line"></span><br><span class="line">2:局部归一化(最常用的min-max归一化)</span><br><span class="line">x_new=(x-x_min)/(x_max-x_min)，增强主导特征（1），提取干扰特征（0）</span><br><span class="line"></span><br><span class="line">3：重叠池化</span><br><span class="line">一般池化的步长和池化大小一致，重叠池化的大小要大于步长；例如3*3池化，步长为2;可以增加精度，如</span><br><span class="line">[9 7 8</span><br><span class="line"> 1 2 3</span><br><span class="line"> 4 5 2]</span><br><span class="line">如果是一般最大池化，则8会被舍去，但是可能8是一个有用特征，使用重叠池化后，在第二个池化结构中会被保留</span><br><span class="line"></span><br><span class="line">4：dropout</span><br><span class="line">我们在前向传播的时候，让某个神经元的激活值以一定的概率p停止工作，这样可以使模型泛化性更强，因为它不会太依赖某些局部的特征。</span><br><span class="line"></span><br><span class="line">5：梯度消失和梯度爆炸</span><br><span class="line">前言：使用反向传播可以快速的提高学习效率，使用反向传播的过程需要依靠梯度来更新权值参数，那么就会出现梯度消失（梯度接近0）和梯度爆炸（梯度接近正无穷的问题）</span><br><span class="line">梯度消失会影响学习速度</span><br><span class="line">梯度爆炸则无法训练</span><br></pre></td></tr></table></figure>
+
+<p>2.3:ZFNet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1：基于AlexNet进行微调，改变了AlexNet的第一层：即将滤波器的大小11*11变为了7*7，并且将步长4变为了2</span><br><span class="line">2：使用Relu激活函数和交叉熵损失函数</span><br><span class="line">3：使用反卷积，可视化feature map</span><br><span class="line">4：与AlexNet相比，前面的层使用了更小的卷积核和更小的步长，保留了更多的特征</span><br><span class="line">5：通过遮挡，找出了决定图像类别的关键部位。通过实验，说明了深度增加时，网络可以学习到更具有区分的特征。</span><br><span class="line">6：网络训练时，底层参数收敛快，越到高层，则需要越长的时间训练，才能收敛</span><br></pre></td></tr></table></figure>
+
+<p>2.4:VGG</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">VGG16相比AlexNet的一个改进是采用连续的几个3x3的卷积核代替AlexNet中的较大卷积核（11x11，7x7，5x5）。对于给定的感受野（与输出有关的输入图片的局部大小），采用堆积的小卷积核是优于采用大的卷积核，因为多层非线性层可以增加网络深度来保证学习更复杂的模式，而且代价还比较小（参数更少）。</span><br><span class="line"></span><br><span class="line">简单来说，在VGG中，使用了3个3x3卷积核来代替7x7卷积核，使用了2个3x3卷积核来代替5*5卷积核，这样做的主要目的是在保证具有相同感知野的条件下，提升了网络的深度，在一定程度上提升了神经网络的效果。</span><br><span class="line"></span><br><span class="line">比如，3个步长为1的3x3卷积核的一层层叠加作用可看成一个大小为7的感受野（其实就表示3个3x3连续卷积相当于一个7x7卷积），其参数总量为 3x(9xC^2) ，如果直接使用7x7卷积核，其参数总量为 49xC^2 ，这里 C 指的是输入和输出的通道数。很明显，27xC^2小于49xC^2，即减少了参数；而且3x3卷积核有利于更好地保持图像性质。</span><br><span class="line"></span><br><span class="line">2个3*3可以代替一个5*5；（5-3+1-3+1=1）</span><br><span class="line">3个3*3可以代替一个7*7：（7-3+1-3+1-3+1=1）</span><br><span class="line"></span><br><span class="line">VGGNet的结构非常简洁，整个网络都使用了同样大小的卷积核尺寸（3x3）和最大池化尺寸（2x2）。</span><br><span class="line">几个小滤波器（3x3）卷积层的组合比一个大滤波器（5x5或7x7）卷积层好：</span><br><span class="line">验证了通过不断加深网络结构可以提升性能。</span><br></pre></td></tr></table></figure>
+
+<p>2.5:GoogleNet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">一般来说，提升网络性能最直接的办法就是增加网络深度和宽度，深度指网络层次数量、宽度指神经元数量。但这种方式存在以下问题：</span><br><span class="line">（1）参数太多，如果训练数据集有限，很容易产生过拟合；</span><br><span class="line">（2）网络越大、参数越多，计算复杂度越大，难以应用；</span><br><span class="line">（3）网络越深，容易出现梯度弥散问题（梯度越往后穿越容易消失），难以优化模型。</span><br><span class="line">因此，GoogLeNet团队提出了Inception网络结构，就是构造一种“基础神经元”结构，来搭建一个稀疏性、高计算性能的网络结构。</span><br><span class="line"></span><br><span class="line">Inception1：</span><br><span class="line">这个Inception原始版本，所有的卷积核都在上一层的所有输出上来做，而那个5x5的卷积核所需的计算量就太大了，造成了特征图的厚度很大，为了避免这种情况，在3x3前、5x5前、max pooling后分别加上了1x1的卷积核，以起到了降低特征图厚度的作用，这也就形成了Inception v1的网络结构.</span><br><span class="line"></span><br><span class="line">1x1的卷积核有什么用呢？</span><br><span class="line">1x1卷积的主要目的是为了减少维度，还用于修正线性激活（ReLU）。比如，上一层的输出为100x100x128，经过具有256个通道的5x5卷积层之后(stride=1，pad=2)，输出数据为100x100x256，其中，卷积层的参数为128x5x5x256= 819200。而假如上一层输出先经过具有32个通道的1x1卷积层，再经过具有256个输出的5x5卷积层，那么输出数据仍为为100x100x256，但卷积参数量已经减少为128x1x1x32 + 32x5x5x256= 204800，大约减少了4倍。</span><br><span class="line"></span><br><span class="line">Inception2:</span><br><span class="line">卷积分解（Factorizing Convolutions）:和vgg一样</span><br><span class="line">n*n的卷积层分解为1*n之后接一个n*1的</span><br><span class="line">降低特征图大小</span><br><span class="line"></span><br><span class="line">Inception3:</span><br><span class="line">将7x7分解成两个一维的卷积（1x7,7x1），3x3也是一样（1x3,3x1），这样的好处，既可以加速计算，又可以将1个卷积拆成2个卷积，使得网络深度进一步增加，增加了网络的非线性（每增加一层都要进行ReLU）。</span><br><span class="line">另外，网络输入从224x224变为了299x299。</span><br><span class="line"></span><br><span class="line">Inception V4:</span><br><span class="line">Inception V4研究了Inception模块与残差连接的结合。ResNet结构大大地加深了网络深度，还极大地提升了训练速度，同时性能也有提升</span><br></pre></td></tr></table></figure>
+
+<p>2.6:resnet(残差网络)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">残差跳跃式结构：</span><br><span class="line">随着网络层级的不断增加，模型精度不断得到提升，而当网络层级增加到一定的数目以后，训练精度和测试精度迅速下降，这说明当网络变得很深以后，深度网络就变得更加难以训练了。</span><br><span class="line">神经网络在反向传播过程中要不断地传播梯度，而当网络层数加深时，梯度在传播过程中会逐渐消失（假如采用Sigmoid函数，对于幅度为1的信号，每向后传递一层，梯度就衰减为原来的0.25，层数越多，衰减越厉害），导致无法对前面网络层的权重进行有效的调整。</span><br><span class="line"></span><br><span class="line">如果已经学习到较饱和的准确率（或者当发现下层的误差变大时），那么接下来的学习目标就转变为恒等映射的学习，也就是使输入x近似于输出H(x)，以保持在后面的层次中不会造成精度下降。</span><br><span class="line">通过“shortcut connections（捷径连接）”的方式，直接把输入x传到输出作为初始结果，输出结果为H(x)=F(x)+x，当F(x)=0时，那么H(x)=x，也就是上面所提到的恒等映射。于是，ResNet相当于将学习目标改变了，不再是学习一个完整的输出，而是目标值H(X)和x的差值，也就是所谓的残差F(x) := H(x)-x，因此，后面的训练目标就是要将残差结果逼近于0，使到随着网络加深，准确率不下降。</span><br></pre></td></tr></table></figure>
+
+<p>2.7:SENet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Sequeeze-and-Excitation(SE) block并不是一个完整的网络结构，而是一个子结构，可以嵌到其他分类或检测模型中，作者采用SENet block和ResNeXt结合在ILSVRC 2017的分类项目中拿到第一。</span><br><span class="line">SENet的核心思想在于通过网络根据loss去学习特征权重，使得有效的feature map权重大，无效或效果小的feature map权重小的方式训练模型达到更好的结果。</span><br><span class="line">作者的动机是希望显式地建模特征通道之间的相互依赖关系。另外，作者并未引入新的空间维度来进行特征通道间的融合，而是采用了一种全新的「特征重标定」策略。具体来说，就是通过学习的方式来自动获取到每个特征通道的重要程度，然后依照这个重要程度去提升有用的特征并抑制对当前任务用处不大的特征。</span><br><span class="line"></span><br><span class="line">给定一个输入 x，其特征通道数为 c_1，通过一系列卷积等一般变换后得到一个特征通道数为 c_2 的特征，传统的 CNN 不一样的是，接下来通过三个操作来重标定前面得到的特征。</span><br><span class="line"></span><br><span class="line">首先是 Squeeze 操作，顺着空间维度来进行特征压缩，将每个二维的特征通道变成一个实数，这个实数某种程度上具有全局的感受野，并且输出的维度和输入的特征通道数相匹配。它表征着在特征通道上响应的全局分布，而且使得靠近输入的层也可以获得全局的感受野，这一点在很多任务中都是非常有用的。</span><br><span class="line"></span><br><span class="line">其次是 Excitation 操作，它是一个类似于循环神经网络中门的机制。通过参数 w 来为每个特征通道生成权重，其中参数 w 被学习用来显式地建模特征通道间的相关性。</span><br><span class="line"></span><br><span class="line">最后是一个 Reweight 的操作，将 Excitation 的输出的权重看做是进过特征选择后的每个特征通道的重要性，然后通过乘法逐通道加权到先前的特征上，完成在通道维度上的对原始特征的重标定。</span><br></pre></td></tr></table></figure>
+
+<p>2.8DenseNet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">DenseNet的几个优点：</span><br><span class="line">1、减轻了vanishing-gradient（梯度消失）</span><br><span class="line">2、加强了feature的传递</span><br><span class="line">3、更有效地利用了feature</span><br><span class="line">4、一定程度上较少了参数数量</span><br><span class="line"></span><br><span class="line">在深度学习网络中，随着网络深度的加深，梯度消失问题会愈加明显，目前很多论文都针对这个问题提出了解决方案，比如ResNet，Highway Networks，Stochastic depth，FractalNets等，尽管这些算法的网络结构有差别，但是核心都在于：create short paths from early layers to later layers。那么作者是怎么做呢？延续这个思路，那就是在保证网络中层与层之间最大程度的信息传输的前提下，直接将所有层连接起来！</span><br><span class="line"></span><br><span class="line">在传统的卷积神经网络中，如果你有L层，那么就会有L个连接，但是在DenseNet中，会有L(L+1)/2个连接。简单讲，就是每一层的输入来自前面所有层的输出。</span><br><span class="line"></span><br><span class="line">DenseNet的一个优点是网络更窄，参数更少，很大一部分原因得益于这种dense block的设计，后面有提到在dense block中每个卷积层的输出feature map的数量都很小（小于100），而不是像其他网络一样动不动就几百上千的宽度。同时这种连接方式使得特征和梯度的传递更加有效，网络也就更加容易训练。原文的一句话非常喜欢：Each layer has direct access to the gradients from the loss function and the original input signal, leading to an implicit deep supervision.直接解释了为什么这个网络的效果会很好。前面提到过梯度消失问题在网络深度越深的时候越容易出现，原因就是输入信息和梯度信息在很多层之间传递导致的，而现在这种dense connection相当于每一层都直接连接input和loss，因此就可以减轻梯度消失现象，这样更深网络不是问题。另外作者还观察到这种dense connection有正则化的效果，因此对于过拟合有一定的抑制作用。</span><br><span class="line"></span><br><span class="line">该文章提出的DenseNet核心思想在于建立了不同层之间的连接关系，充分利用了feature，进一步减轻了梯度消失问题，加深网络不是问题，而且训练效果非常好。另外，利用bottleneck layer，Translation layer以及较小的growth rate使得网络变窄，参数减少，有效抑制了过拟合，同时计算量也减少了。DenseNet优点很多，而且在和ResNet的对比中优势还是非常明显的。</span><br></pre></td></tr></table></figure>
+
+<p>EfficientNet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pass(调参复杂)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2：数据增强"><a href="#2：数据增强" class="headerlink" title="2：数据增强"></a>2：数据增强</h3><p>镜像反射和随机剪裁</p>
+<h3 id="3：加快学习的方式"><a href="#3：加快学习的方式" class="headerlink" title="3：加快学习的方式"></a>3：加快学习的方式</h3>
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/07/2020.04.08/" rel="next" title="2020.04.08">
+                <i class="fa fa-chevron-left"></i> 2020.04.08
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/20/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%B7%B2%E6%8E%8C%E6%8F%A1%EF%BC%89/" rel="prev" title="神经网络学习记录（已掌握）">
+                神经网络学习记录（已掌握） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积神经网络"><span class="nav-number">1.</span> <span class="nav-text">卷积神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2：数据增强"><span class="nav-number">2.</span> <span class="nav-text">2：数据增强</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3：加快学习的方式"><span class="nav-number">3.</span> <span class="nav-text">3：加快学习的方式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
