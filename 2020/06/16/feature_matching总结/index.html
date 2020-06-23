@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="feature_matching总结1：一般特征提取的方法有 1234567harris corner detectorSIFTSURFFASTBRIEFORBBRISK  2：一般特征匹配的方法有 12Brute-Force MatcherFLANN(Fast Library for Approximate Nearest Neighbors) Matcher  3：什么是特征点(Feature">
+<meta property="og:type" content="article">
+<meta property="og:title" content="feature_matching总结">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;06&#x2F;16&#x2F;feature_matching%E6%80%BB%E7%BB%93&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="feature_matching总结1：一般特征提取的方法有 1234567harris corner detectorSIFTSURFFASTBRIEFORBBRISK  2：一般特征匹配的方法有 12Brute-Force MatcherFLANN(Fast Library for Approximate Nearest Neighbors) Matcher  3：什么是特征点(Feature">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-06-17T06:45:44.272Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/06/16/feature_matching总结/"/>
+
+
+
+
+
+  <title>feature_matching总结 | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/06/16/feature_matching%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">feature_matching总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-16T00:42:36+08:00">
+                2020-06-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>feature_matching总结</code></pre><p>1：一般特征提取的方法有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">harris corner detector</span><br><span class="line">SIFT</span><br><span class="line">SURF</span><br><span class="line">FAST</span><br><span class="line">BRIEF</span><br><span class="line">ORB</span><br><span class="line">BRISK</span><br></pre></td></tr></table></figure>
+
+<p>2：一般特征匹配的方法有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Brute-Force Matcher</span><br><span class="line">FLANN(Fast Library for Approximate Nearest Neighbors) Matcher</span><br></pre></td></tr></table></figure>
+
+<p>3：什么是特征点(Feature detection)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Edges：强梯度变换</span><br><span class="line">Corners / interest points：两个边缘的交点</span><br><span class="line">Blobs / regions of interest points：LoG和DoH 斑点检测器</span><br><span class="line">Ridges：从灰度图像计算的脊线描述符可以看作是中间轴的概括（一般不会使用，算法复杂，航空和医学）</span><br></pre></td></tr></table></figure>
+
+<p>4：什么是特征描述符(Feature description)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">描述特征点周围的向量</span><br></pre></td></tr></table></figure>
+
+<p>5：什么是特征匹配(Feature matching)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;ratio test&quot; or &quot;nearest neighbor distance ratio test&quot;</span><br><span class="line">匹配两个图片特征点之间的差异性</span><br></pre></td></tr></table></figure>
+
+<p>6：harris corner detector</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">拐角是一个点，其局部邻域位于两个主要且不同的边缘方向。换句话说，一个角可以解释为两个边缘的交点，其中边缘是图像亮度的突然变化。</span><br></pre></td></tr></table></figure>
+
+<p>7：SIFT</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">尺度不变特征变换，特点：</span><br><span class="line">局部性：特征是局部性的，因此对遮挡和混乱都很健壮（没有事先分割）</span><br><span class="line">独特性：单个特征可以与大型对象数据库匹配</span><br><span class="line">数量：即使是很小的物体也可以生成许多特征</span><br><span class="line">效率：接近实时性能</span><br><span class="line">可扩展性：可以轻松扩展到各种不同的功能类型，每种功能都增加了鲁棒性</span><br><span class="line"></span><br><span class="line">比例空间峰选择：查找特征的潜在位置，使得尺度不变</span><br><span class="line">比例空间分为八度，八度的数量和比例取决于原始图像的大小。因此，我们生成原始图像的几个八度。每个八度的图像大小是前一个图像的一半。</span><br><span class="line"></span><br><span class="line">模糊化：在一个八度音程中，使用高斯模糊运算符逐渐模糊图像</span><br><span class="line"></span><br><span class="line">DOG：（高斯核的差）</span><br><span class="line">我们使用那些模糊的图像来生成另一组图像，即高斯差分（DoG）；这些DoG图像非常适合找出图像中有趣的关键点。</span><br><span class="line"></span><br><span class="line">寻找关键点：</span><br><span class="line">将图像中的一个像素与其8个邻居，下一个比例的9个像素和先前比例的9个像素进行比较。这样，总共进行了26次检查。如果是局部极值，则可能是关键点。从根本上说，关键点是最好的代表。</span><br><span class="line"></span><br><span class="line">关键点本地化：准确定位功能关键点。</span><br><span class="line">他们使用了尺度空间的泰勒级数展开来获得更精确的极值位置，并且如果该极值处的强度小于阈值（根据论文为0.03），则将其拒绝。DoG对边缘的响应较高，因此也需要删除边缘。</span><br><span class="line">主要是去除边缘特性</span><br><span class="line"></span><br><span class="line">方向分配：为关键点分配方向，目的是使得旋转不变</span><br><span class="line">取360°分为36份，每份分为10°；如果该点（在“方向收集区域”中）的渐变方向为18.759度。则那么它将进入10–19度的bin（直方图）中。</span><br><span class="line">提取直方图中的最高峰，并且将其超过80％的任何峰也视为计算方向。它创建的位置和比例相同但方向不同的关键点。它有助于匹配的稳定性。</span><br><span class="line"></span><br><span class="line">关键点描述符：将关键点描述为高维向量。</span><br><span class="line">到此为止，每个店都有位置，比例和方向。接下来是为每个关键点周围的局部图像区域计算一个描述符，该描述符对于诸如视点和照明的变化之类的变化具有高度的独特性和不变性。为此，将在关键点周围使用一个16x16的窗口。它分为16个4x4大小的子块。</span><br><span class="line">对于每个子块，创建8 bin方向直方图。</span><br><span class="line">①旋转相关性特征向量使用梯度方向。显然，如果旋转图像，一切都会改变。所有的梯度方向也会改变。为了实现旋转独立性，从每个方向减去关键点的旋转。因此，每个梯度方向都相对于关键点的方向。</span><br><span class="line">②照明依赖性如果我们将较大的阈值设为阈值，则可以实现照明依赖性。因此，任何大于0.2的数（128个数）都将更改为0.2。再次将该结果特征向量归一化。现在，您有了一个与照明无关的特征向量！</span><br><span class="line"></span><br><span class="line">关键点匹配：</span><br><span class="line">通过识别两个图像之间的关键点来匹配它们之间的关键点。但是在某些情况下，第二个最接近的匹配可能非常接近第一个。它可能是由于噪音或其他原因而发生的。在那种情况下，采用最接近距离与第二最接近距离之比。如果大于0.8，将被拒绝。根据论文，它可以消除大约90％的错误匹配，而只丢弃5％的正确匹配。</span><br></pre></td></tr></table></figure>
+
+<p>8：SURF</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">快</span><br></pre></td></tr></table></figure>
+
+<p>9：FAST</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">快，拐角检测器：</span><br><span class="line">由于检测到的角必须在包括角的两个边缘的中心周围具有较暗或较亮的像素值环，因此清晰的图像效果不佳。</span><br></pre></td></tr></table></figure>
+
+<p>10：BRIEF</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Binary Robust Independent Elementary Features：二进制独立鲁棒特征描述符</span><br></pre></td></tr></table></figure>
+
+<p>11： ORB</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Oriented FAST and Rotated BRIEF</span><br><span class="line">在特征检测任务上，ORB的性能与SIFT一样好（并且比SURF更好），而速度却快了两个数量级。ORB基于著名的FAST关键点检测器和Brief描述符。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/13/paper-summary/" rel="next" title="paper-summary">
+                <i class="fa fa-chevron-left"></i> paper-summary
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
