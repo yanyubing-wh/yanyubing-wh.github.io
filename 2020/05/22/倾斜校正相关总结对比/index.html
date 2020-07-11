@@ -81,14 +81,14 @@
 
 
 
-<meta name="description" content="倾斜校正相关总结对比1以下一种方式即可：核心逻辑都是找到倾斜角度，然后校正  方案1：最小外接矩形→倾斜角度→得到变换矩阵→纺射变换得到校正图 12345地址：https:&#x2F;&#x2F;www.pyimagesearch.com&#x2F;2017&#x2F;02&#x2F;20&#x2F;text-skew-correction-opencv-python&#x2F;效果：书本的校正效果95分困难点：通过局部图片得到倾斜角度，这个局部图片的确定，如果杂点">
+<meta name="description" content="倾斜校正相关总结对比1以下一种方式即可：核心逻辑都是找到倾斜角度，然后校正；根据最小外接矩形得到的图形，可能会得到误差较大（四边形的选取很重要，思路有①横向膨胀②ocr定位文字区域获取）；找到多个角度之后取直方图最优区间的平均值，  方案1：最小外接矩形→倾斜角度→得到变换矩阵→纺射变换得到校正图 12345地址：https:&#x2F;&#x2F;www.pyimagesearch.com&#x2F;2017&#x2F;02&#x2F;20&#x2F;t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="倾斜校正相关总结对比">
 <meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;05&#x2F;22&#x2F;%E5%80%BE%E6%96%9C%E6%A0%A1%E6%AD%A3%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94&#x2F;index.html">
 <meta property="og:site_name" content="鄢玉兵的博客">
-<meta property="og:description" content="倾斜校正相关总结对比1以下一种方式即可：核心逻辑都是找到倾斜角度，然后校正  方案1：最小外接矩形→倾斜角度→得到变换矩阵→纺射变换得到校正图 12345地址：https:&#x2F;&#x2F;www.pyimagesearch.com&#x2F;2017&#x2F;02&#x2F;20&#x2F;text-skew-correction-opencv-python&#x2F;效果：书本的校正效果95分困难点：通过局部图片得到倾斜角度，这个局部图片的确定，如果杂点">
+<meta property="og:description" content="倾斜校正相关总结对比1以下一种方式即可：核心逻辑都是找到倾斜角度，然后校正；根据最小外接矩形得到的图形，可能会得到误差较大（四边形的选取很重要，思路有①横向膨胀②ocr定位文字区域获取）；找到多个角度之后取直方图最优区间的平均值，  方案1：最小外接矩形→倾斜角度→得到变换矩阵→纺射变换得到校正图 12345地址：https:&#x2F;&#x2F;www.pyimagesearch.com&#x2F;2017&#x2F;02&#x2F;20&#x2F;t">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-23T01:36:31.810Z">
+<meta property="og:updated_time" content="2020-06-28T11:44:48.173Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -289,7 +289,7 @@
       
 
       
-        <h3 id="倾斜校正相关总结对比"><a href="#倾斜校正相关总结对比" class="headerlink" title="倾斜校正相关总结对比"></a>倾斜校正相关总结对比</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以下一种方式即可：核心逻辑都是找到倾斜角度，然后校正</span><br></pre></td></tr></table></figure>
+        <h3 id="倾斜校正相关总结对比"><a href="#倾斜校正相关总结对比" class="headerlink" title="倾斜校正相关总结对比"></a>倾斜校正相关总结对比</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以下一种方式即可：核心逻辑都是找到倾斜角度，然后校正；根据最小外接矩形得到的图形，可能会得到误差较大（四边形的选取很重要，思路有①横向膨胀②ocr定位文字区域获取）；找到多个角度之后取直方图最优区间的平均值，</span><br></pre></td></tr></table></figure>
 
 <p>方案1：最小外接矩形→倾斜角度→得到变换矩阵→纺射变换得到校正图</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">地址：https://www.pyimagesearch.com/2017/02/20/text-skew-correction-opencv-python/</span><br><span class="line"></span><br><span class="line">效果：书本的校正效果95分</span><br><span class="line">困难点：通过局部图片得到倾斜角度，这个局部图片的确定，如果杂点过多，很难得到角度</span><br><span class="line">困难点的解决方案：找到高度的h1,h2；h1整行为白色（往下一个像素就会有黑色）,h2整行也为白色（往上一行就会有黑色），然后截取；</span><br></pre></td></tr></table></figure>
@@ -423,7 +423,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
