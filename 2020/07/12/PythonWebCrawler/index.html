@@ -81,14 +81,14 @@
 
 
 
-<meta name="description" content="paper1：Pyramid Mask Text Detector (2019) 123456789101112131415161718192021222324252627281:pixel-level regression  代替传统Mask R-CNN的 	 binary text mask①二进制掩码定义原始图像的关注区域（ROI）。mask像素值 1表示图像像素属于ROI。mask像素值0">
+<meta name="description" content="Python Web Crawler1：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="paper-summary">
-<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;06&#x2F;13&#x2F;paper-summary&#x2F;index.html">
+<meta property="og:title" content="PythonWebCrawler">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;07&#x2F;12&#x2F;PythonWebCrawler&#x2F;index.html">
 <meta property="og:site_name" content="鄢玉兵的博客">
-<meta property="og:description" content="paper1：Pyramid Mask Text Detector (2019) 123456789101112131415161718192021222324252627281:pixel-level regression  代替传统Mask R-CNN的 	 binary text mask①二进制掩码定义原始图像的关注区域（ROI）。mask像素值 1表示图像像素属于ROI。mask像素值0">
+<meta property="og:description" content="Python Web Crawler1：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-19T02:08:36.678Z">
+<meta property="og:updated_time" content="2020-07-12T03:29:07.005Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://yanyubing.xyz/2020/06/13/paper-summary/"/>
+  <link rel="canonical" href="https://yanyubing.xyz/2020/07/12/PythonWebCrawler/"/>
 
 
 
 
 
-  <title>paper-summary | 鄢玉兵的博客</title>
+  <title>PythonWebCrawler | 鄢玉兵的博客</title>
   
 
 
@@ -222,7 +222,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/06/13/paper-summary/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/07/12/PythonWebCrawler/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -239,7 +239,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">paper-summary</h1>
+          <h1 class="post-title" itemprop="name headline">PythonWebCrawler</h1>
         
 
         <div class="post-meta">
@@ -251,8 +251,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-13T10:26:00+08:00">
-                2020-06-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-12T11:28:32+08:00">
+                2020-07-12
               </time>
             
 
@@ -289,9 +289,7 @@
       
 
       
-        <h3 id="paper"><a href="#paper" class="headerlink" title="paper"></a>paper</h3><p>1：<strong>Pyramid Mask Text Detector</strong> (2019)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1:pixel-level regression  代替传统Mask R-CNN的 	 binary text mask</span><br><span class="line">①二进制掩码定义原始图像的关注区域（ROI）。mask像素值 1表示图像像素属于ROI。mask像素值0表示图像像素是背景的一部分。</span><br><span class="line">②2D空间转换为3D空间的思想</span><br><span class="line"></span><br><span class="line">2: 传统方式没有解决的问题</span><br><span class="line">①监督简化：场景基本上基于不同的背景，但是没有特别的形状</span><br><span class="line">②错误的分割方式：会导致不属于RIO区域的背景会被识别进RIO区域</span><br><span class="line">③错误传播：二进制mask的区域基于Mask R-CNN的预测框，当预测框不准确时，mask也会错误</span><br><span class="line"></span><br><span class="line">3： “soft” semantic segmentation</span><br><span class="line">①根据距离文本框的距离编码0-1；</span><br><span class="line"></span><br><span class="line">4： plane clustering algorithm</span><br><span class="line">平面聚类算法：</span><br><span class="line">①找到四边形的中心0</span><br><span class="line">②向量计算0P=a*OM+b*OM;得到a,b</span><br><span class="line">③根据a,b的值范围，判断P属于哪个区域</span><br><span class="line"></span><br><span class="line">5：使用到的数据增强方式:</span><br><span class="line">①. Random horizon flip with a probability of 0.5.</span><br><span class="line">②. Random resize the height and width of images to 640-</span><br><span class="line">2560 individually, without keeping the original aspect</span><br><span class="line">ratio.</span><br><span class="line">③Random select one 640 × 640 crop region from the</span><br><span class="line">resized image.</span><br><span class="line"></span><br><span class="line">6：使用二进制差值上采样替代反卷积</span><br><span class="line">①因为反卷积之后会产生过多的棋盘纹，不利于后续回归</span><br></pre></td></tr></table></figure>
-
+        <h1 id="Python-Web-Crawler"><a href="#Python-Web-Crawler" class="headerlink" title="Python Web Crawler"></a>Python Web Crawler</h1><p>1：</p>
 
       
     </div>
@@ -330,8 +328,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/31/PyTorch/" rel="next" title="PyTorch">
-                <i class="fa fa-chevron-left"></i> PyTorch
+              <a href="/2020/07/10/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" rel="next" title="python数据结构和算法">
+                <i class="fa fa-chevron-left"></i> python数据结构和算法
               </a>
             
           </div>
@@ -340,8 +338,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/06/16/feature_matching%E6%80%BB%E7%BB%93/" rel="prev" title="feature_matching总结">
-                feature_matching总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/08/12/svn%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/" rel="prev" title="svn服务器的搭建">
+                svn服务器的搭建 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -463,7 +461,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#paper"><span class="nav-number">1.</span> <span class="nav-text">paper</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-Web-Crawler"><span class="nav-number">1.</span> <span class="nav-text">Python Web Crawler</span></a></li></ol></div>
             
 
           </div>

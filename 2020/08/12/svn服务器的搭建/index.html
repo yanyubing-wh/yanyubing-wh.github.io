@@ -81,14 +81,14 @@
 
 
 
-<meta name="description" content="paper1：Pyramid Mask Text Detector (2019) 123456789101112131415161718192021222324252627281:pixel-level regression  代替传统Mask R-CNN的 	 binary text mask①二进制掩码定义原始图像的关注区域（ROI）。mask像素值 1表示图像像素属于ROI。mask像素值0">
+<meta name="description" content="操作步骤:1.sudo apt-get update 2..&#x2F;home&#x2F;yanyubing&#x2F;ubuntu-svn-script&#x2F;setupSVN.sh svn仓库地址:&#x2F;var&#x2F;lib&#x2F;svn 链接地址:http:&#x2F;&#x2F;192.168.16.56&#x2F;svn&#x2F;repository&#x2F; 账号：admin 密码：123456 ####创建仓库sudo svnadmin create &#x2F;var&#x2F;lib&#x2F;svn&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="paper-summary">
-<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;06&#x2F;13&#x2F;paper-summary&#x2F;index.html">
+<meta property="og:title" content="svn服务器的搭建">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;08&#x2F;12&#x2F;svn%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA&#x2F;index.html">
 <meta property="og:site_name" content="鄢玉兵的博客">
-<meta property="og:description" content="paper1：Pyramid Mask Text Detector (2019) 123456789101112131415161718192021222324252627281:pixel-level regression  代替传统Mask R-CNN的 	 binary text mask①二进制掩码定义原始图像的关注区域（ROI）。mask像素值 1表示图像像素属于ROI。mask像素值0">
+<meta property="og:description" content="操作步骤:1.sudo apt-get update 2..&#x2F;home&#x2F;yanyubing&#x2F;ubuntu-svn-script&#x2F;setupSVN.sh svn仓库地址:&#x2F;var&#x2F;lib&#x2F;svn 链接地址:http:&#x2F;&#x2F;192.168.16.56&#x2F;svn&#x2F;repository&#x2F; 账号：admin 密码：123456 ####创建仓库sudo svnadmin create &#x2F;var&#x2F;lib&#x2F;svn&#x2F;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-19T02:08:36.678Z">
+<meta property="og:updated_time" content="2020-08-12T03:32:42.361Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://yanyubing.xyz/2020/06/13/paper-summary/"/>
+  <link rel="canonical" href="https://yanyubing.xyz/2020/08/12/svn服务器的搭建/"/>
 
 
 
 
 
-  <title>paper-summary | 鄢玉兵的博客</title>
+  <title>svn服务器的搭建 | 鄢玉兵的博客</title>
   
 
 
@@ -222,7 +222,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/06/13/paper-summary/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/08/12/svn%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -239,7 +239,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">paper-summary</h1>
+          <h1 class="post-title" itemprop="name headline">svn服务器的搭建</h1>
         
 
         <div class="post-meta">
@@ -251,8 +251,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-13T10:26:00+08:00">
-                2020-06-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T11:31:41+08:00">
+                2020-08-12
               </time>
             
 
@@ -289,9 +289,14 @@
       
 
       
-        <h3 id="paper"><a href="#paper" class="headerlink" title="paper"></a>paper</h3><p>1：<strong>Pyramid Mask Text Detector</strong> (2019)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1:pixel-level regression  代替传统Mask R-CNN的 	 binary text mask</span><br><span class="line">①二进制掩码定义原始图像的关注区域（ROI）。mask像素值 1表示图像像素属于ROI。mask像素值0表示图像像素是背景的一部分。</span><br><span class="line">②2D空间转换为3D空间的思想</span><br><span class="line"></span><br><span class="line">2: 传统方式没有解决的问题</span><br><span class="line">①监督简化：场景基本上基于不同的背景，但是没有特别的形状</span><br><span class="line">②错误的分割方式：会导致不属于RIO区域的背景会被识别进RIO区域</span><br><span class="line">③错误传播：二进制mask的区域基于Mask R-CNN的预测框，当预测框不准确时，mask也会错误</span><br><span class="line"></span><br><span class="line">3： “soft” semantic segmentation</span><br><span class="line">①根据距离文本框的距离编码0-1；</span><br><span class="line"></span><br><span class="line">4： plane clustering algorithm</span><br><span class="line">平面聚类算法：</span><br><span class="line">①找到四边形的中心0</span><br><span class="line">②向量计算0P=a*OM+b*OM;得到a,b</span><br><span class="line">③根据a,b的值范围，判断P属于哪个区域</span><br><span class="line"></span><br><span class="line">5：使用到的数据增强方式:</span><br><span class="line">①. Random horizon flip with a probability of 0.5.</span><br><span class="line">②. Random resize the height and width of images to 640-</span><br><span class="line">2560 individually, without keeping the original aspect</span><br><span class="line">ratio.</span><br><span class="line">③Random select one 640 × 640 crop region from the</span><br><span class="line">resized image.</span><br><span class="line"></span><br><span class="line">6：使用二进制差值上采样替代反卷积</span><br><span class="line">①因为反卷积之后会产生过多的棋盘纹，不利于后续回归</span><br></pre></td></tr></table></figure>
-
+        <h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤:"></a>操作步骤:</h4><p>1.<br>sudo apt-get update</p>
+<p>2.<br>./home/yanyubing/ubuntu-svn-script/setupSVN.sh</p>
+<p>svn仓库地址:<br>/var/lib/svn</p>
+<p>链接地址:<br><a href="http://192.168.16.56/svn/repository/" target="_blank" rel="noopener">http://192.168.16.56/svn/repository/</a></p>
+<p>账号：<br>admin</p>
+<p>密码：<br>123456</p>
+<p>####创建仓库<br>sudo svnadmin create /var/lib/svn/repository2</p>
+<p>####创建仓库之后修改仓库的所有者和所有者的组为www-data<br>sudo chown -R  www-data.www-data /var/lib/svn/repository2</p>
 
       
     </div>
@@ -330,8 +335,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/31/PyTorch/" rel="next" title="PyTorch">
-                <i class="fa fa-chevron-left"></i> PyTorch
+              <a href="/2020/07/12/PythonWebCrawler/" rel="next" title="PythonWebCrawler">
+                <i class="fa fa-chevron-left"></i> PythonWebCrawler
               </a>
             
           </div>
@@ -339,10 +344,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/06/16/feature_matching%E6%80%BB%E7%BB%93/" rel="prev" title="feature_matching总结">
-                feature_matching总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -463,7 +464,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#paper"><span class="nav-number">1.</span> <span class="nav-text">paper</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作步骤"><span class="nav-number">1.</span> <span class="nav-text">操作步骤:</span></a></li></ol></div>
             
 
           </div>
