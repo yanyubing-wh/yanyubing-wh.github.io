@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yanyubing.xyz/"/>
-  <updated>2020-10-19T09:28:50.072Z</updated>
+  <updated>2020-10-19T09:36:19.686Z</updated>
   <id>https://yanyubing.xyz/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="https://yanyubing.xyz/2020/10/19/torch%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/"/>
     <id>https://yanyubing.xyz/2020/10/19/torch%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</id>
     <published>2020-10-19T09:28:17.185Z</published>
-    <updated>2020-10-19T09:28:50.072Z</updated>
+    <updated>2020-10-19T09:36:19.686Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="torch环境准备"><a href="#torch环境准备" class="headerlink" title="torch环境准备"></a>torch环境准备</h1><p>1.重装系统</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="torch环境准备"><a href="#torch环境准备" class="headerlink" title="torch环境准备"></a>torch环境准备</h1><p>①装系统</p><p><a href="https://blog.csdn.net/baidu_36602427/article/details/86548203" target="_blank" rel="noopener">https://blog.csdn.net/baidu_36602427/article/details/86548203</a></p><p>②输入法</p><p><a href="https://www.jianshu.com/p/cafe12618293" target="_blank" rel="noopener">https://www.jianshu.com/p/cafe12618293</a></p><p>③安装pycharm</p><p><a href="https://blog.csdn.net/HelloZEX/article/details/80747274" target="_blank" rel="noopener">https://blog.csdn.net/HelloZEX/article/details/80747274</a></p><p>④安装anconda，创建yolov5虚拟环境</p><p><a href="https://blog.csdn.net/BigData_Mining/article/details/102954343" target="_blank" rel="noopener">https://blog.csdn.net/BigData_Mining/article/details/102954343</a></p><p>⑤下载yolov5源码</p><p><a href="https://github.com/ultralytics/yolov5" target="_blank" rel="noopener">https://github.com/ultralytics/yolov5</a></p><p>⑥yolov5虚拟环境依赖包的配置<br>⑦配置cuda，cudnn，安装pytorch</p><p><a href="https://blog.csdn.net/u013084111/article/details/104167056" target="_blank" rel="noopener">https://blog.csdn.net/u013084111/article/details/104167056</a></p><p>⑧下载权重文件<br>⑨demo测试</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;torch环境准备&quot;&gt;&lt;a href=&quot;#torch环境准备&quot; class=&quot;headerlink&quot; title=&quot;torch环境准备&quot;&gt;&lt;/a&gt;torch环境准备&lt;/h1&gt;&lt;p&gt;1.重装系统&lt;/p&gt;
-
+        &lt;h1 id=&quot;torch环境准备&quot;&gt;&lt;a href=&quot;#torch环境准备&quot; class=&quot;headerlink&quot; title=&quot;torch环境准备&quot;&gt;&lt;/a&gt;torch环境准备&lt;/h1&gt;&lt;p&gt;①装系统&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net
       
     
     </summary>
