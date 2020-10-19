@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="​                                                                   瓦片裂痕检测 传统算法方向的选择最近做图像处理与识别相关的事情，先从OpenCV&#x2F;Matlab入手，看传统算法在瑕疵检测方向能做到什么程度。 因之前并没有相关的经验，乍开始生怕闭门造车，遂多方搜寻，相关的会议与论述很多，不乏深度学习或者深度学习与传统算法相结合的，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="瑕疵检测">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;10&#x2F;19&#x2F;%E7%91%95%E7%96%B5%E6%A3%80%E6%B5%8B&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="​                                                                   瓦片裂痕检测 传统算法方向的选择最近做图像处理与识别相关的事情，先从OpenCV&#x2F;Matlab入手，看传统算法在瑕疵检测方向能做到什么程度。 因之前并没有相关的经验，乍开始生怕闭门造车，遂多方搜寻，相关的会议与论述很多，不乏深度学习或者深度学习与传统算法相结合的，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-10-19T05:57:13.674Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/10/19/瑕疵检测/"/>
+
+
+
+
+
+  <title>瑕疵检测 | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/10/19/%E7%91%95%E7%96%B5%E6%A3%80%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">瑕疵检测</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-19T13:54:04+08:00">
+                2020-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>​                                                                   瓦片裂痕检测</p>
+<h2 id="传统算法方向的选择"><a href="#传统算法方向的选择" class="headerlink" title="传统算法方向的选择"></a>传统算法方向的选择</h2><p>最近做图像处理与识别相关的事情，先从OpenCV/Matlab入手，看传统算法在瑕疵检测方向能做到什么程度。</p>
+<p>因之前并没有相关的经验，乍开始生怕闭门造车，遂多方搜寻，相关的会议与论述很多，不乏深度学习或者深度学习与传统算法相结合的，以有限的资源来看，深度学习并没有特别大的优势：表现在</p>
+<ol>
+<li><p>深度学习对训练图库的要求很高，很难得到很好的训练结果</p>
+</li>
+<li><p>深度学习的灵活度较低，若适用场景有些许改变，均需要重新训练，这在商用时会是很大的问题</p>
+</li>
+<li><p>深度学习的部署成本较高，同时对部署场景有较高要求（光线/摄像效果等）*<br>当然，深度学习大势所趋，也不必因噎废食，万一是一时的浅见呢。后续也会投身到这个方向去。</p>
+</li>
+</ol>
+<h2 id="瑕疵检测关注的两个问题"><a href="#瑕疵检测关注的两个问题" class="headerlink" title="瑕疵检测关注的两个问题"></a>瑕疵检测关注的两个问题</h2><h3 id="瑕疵的标注"><a href="#瑕疵的标注" class="headerlink" title="瑕疵的标注"></a>瑕疵的标注</h3><p>对瑕疵的标注是为了更直观的展示，主要是给人看的</p>
+<h3 id="瑕疵的量化"><a href="#瑕疵的量化" class="headerlink" title="瑕疵的量化"></a>瑕疵的量化</h3><p>真正机器关心的是怎么量化，是用数量表示还是百分比是个值得考虑的问题</p>
+<h2 id="历程"><a href="#历程" class="headerlink" title="历程"></a>历程</h2><h3 id="1-图像去噪-gt-灰度化-gt-二值化"><a href="#1-图像去噪-gt-灰度化-gt-二值化" class="headerlink" title="1.图像去噪-&gt;灰度化-&gt;二值化"></a>1.图像去噪-&gt;灰度化-&gt;二值化</h3><p>二值化之后就可以看到绝大部分的瑕疵点已经凸显出来了，但是有三个问题：</p>
+<ol>
+<li>黑点瑕疵与白点瑕疵是二值化的两个极端，故无法同时出现。</li>
+<li>量化如何去除Logo与其他印刷的干扰<br>问题1后续用边缘检测替代<br>问题2采用像素点计数的方法，计算百分比，然后与无瑕疵的百分比作比较，准确度不高，也显得 low的。</li>
+</ol>
+<h3 id="2-图像去噪-gt-灰度化-gt-canny-gt-形态学（闭运算）-gt-连通域"><a href="#2-图像去噪-gt-灰度化-gt-canny-gt-形态学（闭运算）-gt-连通域" class="headerlink" title="2.图像去噪-&gt;灰度化-&gt;canny-&gt;形态学（闭运算）-&gt;连通域"></a>2.图像去噪-&gt;灰度化-&gt;canny-&gt;形态学（闭运算）-&gt;连通域</h3><p>边缘检测后进行闭运算，瑕疵会形成大大小小的连通域，可以统计连通域的个数，然后与无瑕疵logo与其他印刷形成的连通域个数作比较，这种情况几乎不会漏掉。这是感觉可行的选择之一。</p>
+<h3 id="3-OpenCV-matchTemplate"><a href="#3-OpenCV-matchTemplate" class="headerlink" title="3.OpenCV matchTemplate"></a>3.OpenCV matchTemplate</h3><p>实验室条件下，可以营造比较理想的条件，所以考虑了OpenCV的模板匹配，同时也测试了模板匹配在不理想情况下的表现。<br>结果证明因为手机瑕疵检测的需求目标较低，模板匹配是比较能够胜任的一个办法。只要模板与识别目标的拍摄角度差别不是太大，都可以很好的识别瑕疵。图片的轻微缩放大多也可以应付。</p>
+<h2 id="其他处理"><a href="#其他处理" class="headerlink" title="其他处理"></a>其他处理</h2><p>前面都是软件方面处理的流程，在如何获得更加理想的图片方面也做了一些尝试：</p>
+<ol>
+<li>采用各种不同颜色的光源，如蓝光/红光，区别不大</li>
+<li>对图片进行白平衡调整，有改善</li>
+<li>摄像头加偏振镜防止图像反光，有改善但不明显</li>
+<li>图片浮雕处理，肉眼看上去瑕疵显著了，但对机器而言并没有区别，故没有采纳</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/28/%E6%95%B0%E6%8D%AE%E9%9B%86/" rel="next" title="数据集">
+                <i class="fa fa-chevron-left"></i> 数据集
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/19/course.fast.ai/" rel="prev" title="course.fast.ai">
+                course.fast.ai <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#传统算法方向的选择"><span class="nav-number">1.</span> <span class="nav-text">传统算法方向的选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#瑕疵检测关注的两个问题"><span class="nav-number">2.</span> <span class="nav-text">瑕疵检测关注的两个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#瑕疵的标注"><span class="nav-number">2.1.</span> <span class="nav-text">瑕疵的标注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#瑕疵的量化"><span class="nav-number">2.2.</span> <span class="nav-text">瑕疵的量化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历程"><span class="nav-number">3.</span> <span class="nav-text">历程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-图像去噪-gt-灰度化-gt-二值化"><span class="nav-number">3.1.</span> <span class="nav-text">1.图像去噪-&gt;灰度化-&gt;二值化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-图像去噪-gt-灰度化-gt-canny-gt-形态学（闭运算）-gt-连通域"><span class="nav-number">3.2.</span> <span class="nav-text">2.图像去噪-&gt;灰度化-&gt;canny-&gt;形态学（闭运算）-&gt;连通域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-OpenCV-matchTemplate"><span class="nav-number">3.3.</span> <span class="nav-text">3.OpenCV matchTemplate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他处理"><span class="nav-number">4.</span> <span class="nav-text">其他处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
