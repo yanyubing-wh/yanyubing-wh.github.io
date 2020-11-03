@@ -81,12 +81,14 @@
 
 
 
+<meta name="description" content="图像金字塔+svm分类器1.图像金字塔 2.每一层进行滑动窗口 3.svm检测是否包含 4.nms非极大值抑制得到最优的box">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Optical Character Recognition (OCR)">
-<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;10&#x2F;24&#x2F;Optical%20Character%20Recognition%20(OCR)&#x2F;index.html">
+<meta property="og:title" content="Hog+SVM">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;11&#x2F;03&#x2F;Hog+SVM&#x2F;index.html">
 <meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="图像金字塔+svm分类器1.图像金字塔 2.每一层进行滑动窗口 3.svm检测是否包含 4.nms非极大值抑制得到最优的box">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-10-24T07:22:33.171Z">
+<meta property="og:updated_time" content="2020-11-03T07:08:27.497Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -117,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://yanyubing.xyz/2020/10/24/Optical Character Recognition (OCR)/"/>
+  <link rel="canonical" href="https://yanyubing.xyz/2020/11/03/Hog+SVM/"/>
 
 
 
 
 
-  <title>Optical Character Recognition (OCR) | 鄢玉兵的博客</title>
+  <title>Hog+SVM | 鄢玉兵的博客</title>
   
 
 
@@ -220,7 +222,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/10/24/Optical%20Character%20Recognition%20(OCR)/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/11/03/Hog+SVM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -237,7 +239,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Optical Character Recognition (OCR)</h1>
+          <h1 class="post-title" itemprop="name headline">Hog+SVM</h1>
         
 
         <div class="post-meta">
@@ -249,8 +251,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-24T15:22:33+08:00">
-                2020-10-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-03T15:07:20+08:00">
+                2020-11-03
               </time>
             
 
@@ -287,7 +289,11 @@
       
 
       
-        
+        <h1 id="图像金字塔-svm分类器"><a href="#图像金字塔-svm分类器" class="headerlink" title="图像金字塔+svm分类器"></a>图像金字塔+svm分类器</h1><p>1.图像金字塔</p>
+<p>2.每一层进行滑动窗口</p>
+<p>3.svm检测是否包含</p>
+<p>4.nms非极大值抑制得到最优的box</p>
+
       
     </div>
     
@@ -325,8 +331,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/10/24/face%20Applications/" rel="next" title="face Applications">
-                <i class="fa fa-chevron-left"></i> face Applications
+              <a href="/2020/11/03/%E6%A3%80%E6%B5%8B%E5%9B%BE%E7%89%87%E4%B8%AD%E7%9A%84%E6%9D%A1%E5%BD%A2%E7%A0%81/" rel="next" title="检测图片中的条形码">
+                <i class="fa fa-chevron-left"></i> 检测图片中的条形码
               </a>
             
           </div>
@@ -334,10 +340,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/10/24/Object%20Detection/" rel="prev" title="Object Detection">
-                Object Detection <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -389,8 +391,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -405,7 +416,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -439,6 +450,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图像金字塔-svm分类器"><span class="nav-number">1.</span> <span class="nav-text">图像金字塔+svm分类器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
