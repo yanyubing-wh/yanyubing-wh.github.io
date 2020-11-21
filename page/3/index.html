@@ -220,7 +220,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/08/12/svn%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/11/03/ocr%E5%89%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%9E%84%E5%BB%BA%E6%89%AB%E6%8F%8F%E4%BB%AA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -239,7 +239,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/12/svn%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/" itemprop="url">svn服务器的搭建</a></h1>
+                <a class="post-title-link" href="/2020/11/03/ocr%E5%89%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%9E%84%E5%BB%BA%E6%89%AB%E6%8F%8F%E4%BB%AA/" itemprop="url">ocr前置操作，构建扫描仪</a></h1>
         
 
         <div class="post-meta">
@@ -251,8 +251,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T11:31:41+08:00">
-                2020-08-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-03T14:11:25+08:00">
+                2020-11-03
               </time>
             
 
@@ -291,16 +291,17 @@
       
         
           
-          操作步骤:1.sudo apt-get update
-2../home/yanyubing/ubuntu-svn-script/setupSVN.sh
-svn仓库地址:/var/lib/svn
-链接地址:http://192.168.16.56/svn/repository/
-账号：admin
-密码
-          ...
+          构建扫描仪1.轮廓检测，最大轮廓的四个角
+2.应用透视变换，转换为俯视图的矩形
+额外可应用：可以通过扫描到角的形状来提醒用户如何移动手机摄像头
+未解决问题：
+1.有非均匀形变的时候（可以通过四个顶点之间的关系过滤掉，但是未解决铺平）
+2.转换之后搭配ocr识别的准确性如何
+
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/12/svn%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA/#more" rel="contents">
+            <a class="btn" href="/2020/11/03/ocr%E5%89%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%9E%84%E5%BB%BA%E6%89%AB%E6%8F%8F%E4%BB%AA/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -359,7 +360,7 @@ svn仓库地址:/var/lib/svn
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/07/12/PythonWebCrawler/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/10/29/%E4%B8%A4%E5%BC%A0%E5%9B%BE%E7%89%87%E6%AF%94%E8%BE%83%E7%9A%84%E6%96%B9%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -378,7 +379,7 @@ svn仓库地址:/var/lib/svn
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/12/PythonWebCrawler/" itemprop="url">PythonWebCrawler</a></h1>
+                <a class="post-title-link" href="/2020/10/29/%E4%B8%A4%E5%BC%A0%E5%9B%BE%E7%89%87%E6%AF%94%E8%BE%83%E7%9A%84%E6%96%B9%E5%BC%8F/" itemprop="url">两张图片比较的方式</a></h1>
         
 
         <div class="post-meta">
@@ -390,8 +391,8 @@ svn仓库地址:/var/lib/svn
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-12T11:28:32+08:00">
-                2020-07-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-29T16:53:37+08:00">
+                2020-10-29
               </time>
             
 
@@ -430,12 +431,17 @@ svn仓库地址:/var/lib/svn
       
         
           
-          Python Web Crawler1：
+          两张图片的比较11.均方误差（MSE）
 
-          
+12.结构相似性指数（SSIM）函数
+
+13.模板匹配：cv2.matchTemplate
+
+1234.多尺度模板匹配：我们将从图像原始大小的100％开始，然后逐步以20个相等大小的百分比块降低到原始大小的20％。虽然我们可以处理平移和缩放的变化，但是我们的
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/12/PythonWebCrawler/#more" rel="contents">
+            <a class="btn" href="/2020/10/29/%E4%B8%A4%E5%BC%A0%E5%9B%BE%E7%89%87%E6%AF%94%E8%BE%83%E7%9A%84%E6%96%B9%E5%BC%8F/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -494,7 +500,7 @@ svn仓库地址:/var/lib/svn
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/07/10/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/10/29/bug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -513,7 +519,7 @@ svn仓库地址:/var/lib/svn
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/10/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url">python数据结构和算法</a></h1>
+                <a class="post-title-link" href="/2020/10/29/bug/" itemprop="url">bug</a></h1>
         
 
         <div class="post-meta">
@@ -525,8 +531,8 @@ svn仓库地址:/var/lib/svn
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-10T20:29:46+08:00">
-                2020-07-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-29T10:12:34+08:00">
+                2020-10-29
               </time>
             
 
@@ -565,12 +571,13 @@ svn仓库地址:/var/lib/svn
       
         
           
-          一：栈
-123456789101112131415161718192021222324252627282930313233# stackclass Stack():    def __init__(self):        self.items = []    def push(self, ite
-          ...
+          1231.读取rtsp视频流时：could not find ref with poc问题所在：帧率，出现空帧情况，多半是读取性能达不到帧率要求解决方案：降低进入读取设备的帧率，调整视频来源的帧率
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/10/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/#more" rel="contents">
+            <a class="btn" href="/2020/10/29/bug/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -629,7 +636,7 @@ svn仓库地址:/var/lib/svn
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/07/05/leetcode/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/10/28/%E5%9C%A8%E5%9B%BE%E5%83%8F%E4%B8%AD%E6%89%BE%E5%88%B0%E6%9C%80%E4%BA%AE%E7%9A%84%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -648,7 +655,7 @@ svn仓库地址:/var/lib/svn
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/05/leetcode/" itemprop="url">leetcode</a></h1>
+                <a class="post-title-link" href="/2020/10/28/%E5%9C%A8%E5%9B%BE%E5%83%8F%E4%B8%AD%E6%89%BE%E5%88%B0%E6%9C%80%E4%BA%AE%E7%9A%84%E7%82%B9/" itemprop="url">在图像中找到最亮的点</a></h1>
         
 
         <div class="post-meta">
@@ -660,8 +667,8 @@ svn仓库地址:/var/lib/svn
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-05T20:20:52+08:00">
-                2020-07-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-28T14:42:10+08:00">
+                2020-10-28
               </time>
             
 
@@ -700,14 +707,12 @@ svn仓库地址:/var/lib/svn
       
         
           
-          leetcode刷题与总结
-12341.https://leetcode-cn.com/problems/add-two-numbers/总结:能够用一个循环解决的不要使用多个循环
-
-12342. https://leetcode-cn.com/problems/longest-substring-
+          Finding the Brightest Spot in an Image using Python and OpenCV普通：
+123456789101112131415161718# import the necessary packagesimport numpy as npimport a
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/05/leetcode/#more" rel="contents">
+            <a class="btn" href="/2020/10/28/%E5%9C%A8%E5%9B%BE%E5%83%8F%E4%B8%AD%E6%89%BE%E5%88%B0%E6%9C%80%E4%BA%AE%E7%9A%84%E7%82%B9/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -766,7 +771,7 @@ svn仓库地址:/var/lib/svn
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/06/16/feature_matching%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/10/28/%E5%9F%BA%E4%BA%8Epython%E5%88%B6%E4%BD%9C%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%9B%BE%E5%83%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -785,7 +790,7 @@ svn仓库地址:/var/lib/svn
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/06/16/feature_matching%E6%80%BB%E7%BB%93/" itemprop="url">feature_matching总结</a></h1>
+                <a class="post-title-link" href="/2020/10/28/%E5%9F%BA%E4%BA%8Epython%E5%88%B6%E4%BD%9C%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%9B%BE%E5%83%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" itemprop="url">基于python制作第一个图像搜索引擎</a></h1>
         
 
         <div class="post-meta">
@@ -797,8 +802,8 @@ svn仓库地址:/var/lib/svn
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-16T00:42:36+08:00">
-                2020-06-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-28T10:54:27+08:00">
+                2020-10-28
               </time>
             
 
@@ -837,15 +842,11 @@ svn仓库地址:/var/lib/svn
       
         
           
-          feature_matching总结1：一般特征提取的方法有
-1234567harris corner detectorSIFTSURFFASTBRIEFORBBRISK
-
-2：一般特征匹配的方法有
-12Brute-Force MatcherFLANN(Fast Library for Approx
+          使用Python构建第一个图像搜索引擎的操作指南12345678构建图像搜索引擎的4个步骤在最基本的层次上，构建图像搜索引擎需要四个步骤：1. 定义描述符：您将使用哪种类型的描述符？您在描述颜色吗？质地？形状？2. 为数据集建立索引：将描述符应用于数据集中的每个图像，提取一组特征。3. 定义相似度指
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/06/16/feature_matching%E6%80%BB%E7%BB%93/#more" rel="contents">
+            <a class="btn" href="/2020/10/28/%E5%9F%BA%E4%BA%8Epython%E5%88%B6%E4%BD%9C%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%9B%BE%E5%83%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -904,7 +905,7 @@ svn仓库地址:/var/lib/svn
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/06/13/paper-summary/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/10/28/%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E7%9A%84%E5%9B%BE%E5%83%8F%E6%A3%80%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -923,7 +924,7 @@ svn仓库地址:/var/lib/svn
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/06/13/paper-summary/" itemprop="url">paper-summary</a></h1>
+                <a class="post-title-link" href="/2020/10/28/%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E7%9A%84%E5%9B%BE%E5%83%8F%E6%A3%80%E7%B4%A2/" itemprop="url">基于内容的图像检索</a></h1>
         
 
         <div class="post-meta">
@@ -935,8 +936,8 @@ svn仓库地址:/var/lib/svn
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-13T10:26:00+08:00">
-                2020-06-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-28T10:43:09+08:00">
+                2020-10-28
               </time>
             
 
@@ -975,12 +976,11 @@ svn仓库地址:/var/lib/svn
       
         
           
-          paper1：Pyramid Mask Text Detector (2019)
-123456789101112131415161718192021222324252627281:pixel-level regression  代替传统Mask R-CNN的 	 binary text mask①二
+          基于内容的图像检索 基于内容的图像检索，也称为按图像内容查询（QBIC）和基于内容的视觉信息检索（CBVIR），是计算机视觉技术在图像检索问题（即搜索数字图像的问题）中的应用大型数据库中（有关CBIR领域的最新科学概述，请参见本调查[1]）。基于内容的图像检索与传统的基于概念的方法相反（请参阅基于概
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/06/13/paper-summary/#more" rel="contents">
+            <a class="btn" href="/2020/10/28/%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E7%9A%84%E5%9B%BE%E5%83%8F%E6%A3%80%E7%B4%A2/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1039,7 +1039,7 @@ svn仓库地址:/var/lib/svn
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/05/31/PyTorch/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/10/20/%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -1058,7 +1058,7 @@ svn仓库地址:/var/lib/svn
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/05/31/PyTorch/" itemprop="url">PyTorch</a></h1>
+                <a class="post-title-link" href="/2020/10/20/%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2/" itemprop="url">实例分割</a></h1>
         
 
         <div class="post-meta">
@@ -1070,8 +1070,8 @@ svn仓库地址:/var/lib/svn
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-31T21:01:12+08:00">
-                2020-05-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-20T17:16:23+08:00">
+                2020-10-20
               </time>
             
 
@@ -1110,13 +1110,16 @@ svn仓库地址:/var/lib/svn
       
         
           
-          PyTorch官方书籍deep-learning-with-pytorch
-1:深度学习框架对比
-12345678910111213Theano是最早的深度学习框架之一，已停止积极发展。TensorFlow：完全消耗Keras，将其升级为一流的API提供了立即执行的“渴望模式”宣布TF 2.0将默认
+          实例分割1.对比与目标检测，更加的精确，获取的每个像素值对应的对象，基于pytorch框架
+yolact
+源码：https://github.com/dbolya/yolact
+教程：https://www.youtube.com/watch?v=KEHVHHnNDv0
+mask rcnn
+源码：h
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/05/31/PyTorch/#more" rel="contents">
+            <a class="btn" href="/2020/10/20/%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1175,7 +1178,7 @@ svn仓库地址:/var/lib/svn
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/05/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95(%E5%B7%B2%E6%8E%8C%E6%8F%A1)/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/10/20/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -1194,7 +1197,7 @@ svn仓库地址:/var/lib/svn
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/05/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95(%E5%B7%B2%E6%8E%8C%E6%8F%A1)/" itemprop="url">机器学习记录(已掌握)</a></h1>
+                <a class="post-title-link" href="/2020/10/20/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96/" itemprop="url">数据读取</a></h1>
         
 
         <div class="post-meta">
@@ -1206,8 +1209,8 @@ svn仓库地址:/var/lib/svn
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-31T19:30:27+08:00">
-                2020-05-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-20T14:13:50+08:00">
+                2020-10-20
               </time>
             
 
@@ -1246,15 +1249,16 @@ svn仓库地址:/var/lib/svn
       
         
           
-          1：一元线性回归
-123适用于一个特征：x对应的标签y的数据集y=wx+b：找到最优的w和b使得代价函数最小
-
-2：损失函数
-1234最小二乘法代价函数j=预测值h减去真实值y的平方求和，除以2倍的样本个数m常见的损失函数种类：https://zhuanlan.zhihu.com/p/4720276
+          python进行数据的读取，储存一：数据的主要形式
+文本，视频，音频，MySQL数据库
+二：文本
+https://zhuanlan.zhihu.com/p/25087295
+三：视频
+https://blog.csdn.net/qq_25436597/article/details/79621833
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/05/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95(%E5%B7%B2%E6%8E%8C%E6%8F%A1)/#more" rel="contents">
+            <a class="btn" href="/2020/10/20/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1313,7 +1317,7 @@ svn仓库地址:/var/lib/svn
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/05/25/%E5%BE%97%E5%88%B0ROI%E5%8C%BA%E5%9F%9F%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/10/19/torch%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -1332,7 +1336,7 @@ svn仓库地址:/var/lib/svn
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/05/25/%E5%BE%97%E5%88%B0ROI%E5%8C%BA%E5%9F%9F%E6%80%BB%E7%BB%93/" itemprop="url">得到ROI区域总结</a></h1>
+                <a class="post-title-link" href="/2020/10/19/torch%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/" itemprop="url">torch环境准备</a></h1>
         
 
         <div class="post-meta">
@@ -1344,8 +1348,8 @@ svn仓库地址:/var/lib/svn
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-25T17:42:37+08:00">
-                2020-05-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-19T17:28:17+08:00">
+                2020-10-19
               </time>
             
 
@@ -1384,12 +1388,13 @@ svn仓库地址:/var/lib/svn
       
         
           
-          1：基于颜色值不同的ROI区域
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717
+          torch环境准备①装系统(windows10操作逻辑同理)
+https://blog.csdn.net/baidu_36602427/article/details/86548203
+https://blog.csdn.net/qq_38949027/article/details/1028549
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/05/25/%E5%BE%97%E5%88%B0ROI%E5%8C%BA%E5%9F%9F%E6%80%BB%E7%BB%93/#more" rel="contents">
+            <a class="btn" href="/2020/10/19/torch%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1448,7 +1453,7 @@ svn仓库地址:/var/lib/svn
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/05/22/%E5%80%BE%E6%96%9C%E6%A0%A1%E6%AD%A3%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94/">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/10/19/course.fast.ai/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鄢玉兵">
@@ -1467,7 +1472,7 @@ svn仓库地址:/var/lib/svn
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/05/22/%E5%80%BE%E6%96%9C%E6%A0%A1%E6%AD%A3%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94/" itemprop="url">倾斜校正相关总结对比</a></h1>
+                <a class="post-title-link" href="/2020/10/19/course.fast.ai/" itemprop="url">course.fast.ai</a></h1>
         
 
         <div class="post-meta">
@@ -1479,8 +1484,8 @@ svn仓库地址:/var/lib/svn
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-22T10:30:15+08:00">
-                2020-05-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-19T16:13:12+08:00">
+                2020-10-19
               </time>
             
 
@@ -1519,14 +1524,16 @@ svn仓库地址:/var/lib/svn
       
         
           
-          倾斜校正相关总结对比1以下一种方式即可：核心逻辑都是找到倾斜角度，然后校正；根据最小外接矩形得到的图形，可能会得到误差较大（四边形的选取很重要，思路有①横向膨胀②ocr定位文字区域获取）；找到多个角度之后取直方图最优区间的平均值，
-
-方案1：最小外接矩形→倾斜角度→得到变换矩阵→纺射变换得到校正图
-
+          course.fast.aihttps://course.fast.ai
+一：小tips1.Mac不支持英伟达GPU
+2.找模型的过程就是优化权值的过程：权值分配
+3.SGD(随机梯度下降)：用来更新权值
+4.神经网络的本质只是加法和乘法的运算，只是会运行很多很多次
+5.本质：(输入,权值)得到预测
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/05/22/%E5%80%BE%E6%96%9C%E6%A0%A1%E6%AD%A3%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94/#more" rel="contents">
+            <a class="btn" href="/2020/10/19/course.fast.ai/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1576,7 +1583,7 @@ svn仓库地址:/var/lib/svn
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class=&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class=&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1622,7 +1629,7 @@ svn仓库地址:/var/lib/svn
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">86</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

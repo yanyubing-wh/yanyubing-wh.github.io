@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yanyubing.xyz/"/>
-  <updated>2020-11-07T01:58:05.571Z</updated>
+  <updated>2020-11-21T07:19:52.563Z</updated>
   <id>https://yanyubing.xyz/</id>
   
   <author>
@@ -15,6 +15,248 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于制作视频抽帧数据集这件事</title>
+    <link href="https://yanyubing.xyz/2020/11/21/%E5%85%B3%E4%BA%8E%E5%88%B6%E4%BD%9C%E8%A7%86%E9%A2%91%E6%8A%BD%E5%B8%A7%E6%95%B0%E6%8D%AE%E9%9B%86%E8%BF%99%E4%BB%B6%E4%BA%8B/"/>
+    <id>https://yanyubing.xyz/2020/11/21/%E5%85%B3%E4%BA%8E%E5%88%B6%E4%BD%9C%E8%A7%86%E9%A2%91%E6%8A%BD%E5%B8%A7%E6%95%B0%E6%8D%AE%E9%9B%86%E8%BF%99%E4%BB%B6%E4%BA%8B/</id>
+    <published>2020-11-21T07:10:14.506Z</published>
+    <updated>2020-11-21T07:19:52.563Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="关于制作视频抽帧数据集这件事"><a href="#关于制作视频抽帧数据集这件事" class="headerlink" title="关于制作视频抽帧数据集这件事"></a>关于制作视频抽帧数据集这件事</h1><p>一：制作视频数据集的原则</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.减少相同样本重复性（避免过拟合）</span><br><span class="line">2.能快速过滤到自己要的图片数据</span><br></pre></td></tr></table></figure><p>二：技巧与问题</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.如果目标类别在已有的预训练模型中有，并且业务逻辑也是伴随着目标类别来做的，那么可以使用预训练模型检测作为提取的第一步（这里conf阈值可以调高，更好的定位目标图片）</span><br><span class="line"></span><br><span class="line">2.问题：抽取的第一步会出现连续多帧都会被采集到，如何过滤？</span><br><span class="line">方案①：将提取比例作为超参数，随机提取此比例的图片</span><br><span class="line">方案②：间隔n张提取一张（适用于类别稳定出现的情况）</span><br><span class="line"></span><br><span class="line">3.问题：本人遇到的情形是，目标类别一般会均匀出现（3s出现一次，一次被抽取的第一步抽取到一张），但是偶尔会有特例出现（一次被抽取的第一步提取到100张）？</span><br><span class="line">使用上述方案①和方案②都不合适，会过多的采用同样的图片，或者有很多样本没有采用；</span><br><span class="line">解决方案为：视频流中有时间戳，通过时间戳的间隔来过滤</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;关于制作视频抽帧数据集这件事&quot;&gt;&lt;a href=&quot;#关于制作视频抽帧数据集这件事&quot; class=&quot;headerlink&quot; title=&quot;关于制作视频抽帧数据集这件事&quot;&gt;&lt;/a&gt;关于制作视频抽帧数据集这件事&lt;/h1&gt;&lt;p&gt;一：制作视频数据集的原则&lt;/p&gt;
+&lt;figu
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>10-目标跟踪</title>
+    <link href="https://yanyubing.xyz/2020/11/17/10-%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/"/>
+    <id>https://yanyubing.xyz/2020/11/17/10-%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/</id>
+    <published>2020-11-17T08:08:39.273Z</published>
+    <updated>2020-11-17T08:08:39.273Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>09-场景文字识别</title>
+    <link href="https://yanyubing.xyz/2020/11/17/09-%E5%9C%BA%E6%99%AF%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/"/>
+    <id>https://yanyubing.xyz/2020/11/17/09-%E5%9C%BA%E6%99%AF%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB/</id>
+    <published>2020-11-17T08:08:24.208Z</published>
+    <updated>2020-11-17T08:08:24.208Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>08-人体关键点检测</title>
+    <link href="https://yanyubing.xyz/2020/11/17/08-%E4%BA%BA%E4%BD%93%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/"/>
+    <id>https://yanyubing.xyz/2020/11/17/08-%E4%BA%BA%E4%BD%93%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B/</id>
+    <published>2020-11-17T08:08:11.615Z</published>
+    <updated>2020-11-17T08:08:11.615Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>07-视频分类</title>
+    <link href="https://yanyubing.xyz/2020/11/17/07-%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB/"/>
+    <id>https://yanyubing.xyz/2020/11/17/07-%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB/</id>
+    <published>2020-11-17T08:07:59.237Z</published>
+    <updated>2020-11-17T08:07:59.237Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>06-实例分割</title>
+    <link href="https://yanyubing.xyz/2020/11/17/06-%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2/"/>
+    <id>https://yanyubing.xyz/2020/11/17/06-%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2/</id>
+    <published>2020-11-17T08:07:38.004Z</published>
+    <updated>2020-11-17T08:07:38.004Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>05-语义分割</title>
+    <link href="https://yanyubing.xyz/2020/11/17/05-%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/"/>
+    <id>https://yanyubing.xyz/2020/11/17/05-%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/</id>
+    <published>2020-11-17T08:07:25.808Z</published>
+    <updated>2020-11-17T08:07:25.808Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>04-目标检测</title>
+    <link href="https://yanyubing.xyz/2020/11/17/04-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
+    <id>https://yanyubing.xyz/2020/11/17/04-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/</id>
+    <published>2020-11-17T08:07:14.280Z</published>
+    <updated>2020-11-17T08:07:14.280Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>03-图像分类</title>
+    <link href="https://yanyubing.xyz/2020/11/17/03-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/"/>
+    <id>https://yanyubing.xyz/2020/11/17/03-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</id>
+    <published>2020-11-17T08:06:58.308Z</published>
+    <updated>2020-11-18T08:35:36.126Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="图像分类"><a href="#图像分类" class="headerlink" title="图像分类"></a>图像分类</h2><p>1：KNN</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"># 实现方法</span><br><span class="line"># 1）给定测试对象，计算它与训练集中每个对象的距离。</span><br><span class="line"># 将图片resize成固定大小，计算灰度图的每个像素的欧氏距离</span><br><span class="line"># 2）圈定距离最近的k个训练对象，作为测试对象的邻居。</span><br><span class="line"># 3）根据这k个近邻对象所属的类别，找到占比最高的那个类别作为测试对象的预测类别。</span><br><span class="line">import glob</span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 欧式距离</span><br><span class="line">def get_EuclideanDistance(x, y):</span><br><span class="line">    myx = np.array(x)</span><br><span class="line">    myy = np.array(y)</span><br><span class="line">    return np.sqrt(np.sum((myx - myy) * (myx - myy)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取数据集，返回 [class,image]</span><br><span class="line">def getDataSet(path):</span><br><span class="line">    if not path.endswith(&apos;.jpg&apos;):</span><br><span class="line">        # 获取路径下的图片</span><br><span class="line">        files = glob.glob(path + &apos;*.jpg&apos;)</span><br><span class="line">    else:</span><br><span class="line">        files = [path]</span><br><span class="line">    # 读取图片储存类别和对应的像素值</span><br><span class="line">    dataset = []</span><br><span class="line">    for file in files:</span><br><span class="line">        print(file)</span><br><span class="line">        image = cv2.imread(file, 0)</span><br><span class="line">        image = cv2.resize(image, (400, 400), interpolation=cv2.INTER_CUBIC)</span><br><span class="line">        class_ = file.split(&quot;\\&quot;)[-1].split(&apos;_&apos;)[0]</span><br><span class="line">        data = [class_, image]</span><br><span class="line">        dataset.append(data)</span><br><span class="line">    return dataset</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    # 训练集的数据集</span><br><span class="line">    cat_train_path = &apos;D:/File_yan/study/ImageClassification/dataSet/train/cat/&apos;</span><br><span class="line">    dog_train_path = &apos;D:/File_yan/study/ImageClassification/dataSet/train/dog/&apos;</span><br><span class="line">    cat_data_set = getDataSet(cat_train_path)</span><br><span class="line">    dog_data_set = getDataSet(dog_train_path)</span><br><span class="line"></span><br><span class="line">    testFiles = glob.glob(&apos;D:/File_yan/study/ImageClassification/dataSet/test/cat/&apos; + &apos;*.jpg&apos;)</span><br><span class="line">    for file in testFiles:</span><br><span class="line">        EuclideanDistances = []</span><br><span class="line">        testData = getDataSet(file)</span><br><span class="line">        for test in testData:</span><br><span class="line">            for cat_data in cat_data_set:</span><br><span class="line">                EuclideanDistance = [cat_data[0], cat_data[1], get_EuclideanDistance(test[1], cat_data[1])]</span><br><span class="line">                EuclideanDistances.append(EuclideanDistance)</span><br><span class="line"></span><br><span class="line">            for dog_data in dog_data_set:</span><br><span class="line">                EuclideanDistance = [dog_data[0], dog_data[1], get_EuclideanDistance(test[1], dog_data[1])]</span><br><span class="line">                EuclideanDistances.append(EuclideanDistance)</span><br><span class="line">        testimage = cv2.imread(file)</span><br><span class="line">        cv2.imshow(&apos;test&apos;, testimage)</span><br><span class="line">        cv2.waitKey(0)</span><br><span class="line">        cv2.destroyAllWindows()</span><br><span class="line">        EuclideanDistances.sort(key=lambda x: int(x[2]))</span><br><span class="line">        EuclideanDistances = np.array(EuclideanDistances)</span><br><span class="line">        for e in EuclideanDistances:</span><br><span class="line">            print(e[0])</span><br><span class="line">            cv2.imshow(&apos;target&apos;,e[1])</span><br><span class="line">            cv2.waitKey(0)</span><br><span class="line">            cv2.destroyAllWindows()</span><br><span class="line">            print(e[2])</span><br><span class="line"></span><br><span class="line">#问题</span><br><span class="line">#把每个像素作为特征输入，并不能很好的拟合实际图片的特征；并且数据量大的时候，匹配过程耗时长</span><br></pre></td></tr></table></figure><p>2：SVM</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#实现方法</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">from sklearn import datasets</span><br><span class="line">from sklearn import svm</span><br><span class="line"></span><br><span class="line">digits = datasets.load_digits()</span><br><span class="line">clf = svm.SVC(gamma=0.0001, C=100)</span><br><span class="line"></span><br><span class="line">x, y = digits.data[:-10], digits.target[:-10]</span><br><span class="line">clf.fit(x, y)</span><br><span class="line"></span><br><span class="line">print(&apos;prediction:&apos;, clf.predict([digits.data[-2]]))</span><br><span class="line">plt.imshow(digits.images[-2], interpolation=&apos;nearest&apos;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure><p>3：BPNN</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#反向传播网络</span><br><span class="line">问题在于：全连接层导致参数过多，过拟合</span><br></pre></td></tr></table></figure><p>4：CNN</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">卷积神经网络，主要在于卷积运算</span><br><span class="line">特点：参数得到了控制，即使我们使用简单神经网络模型（BPNN）的最大验证准确性约为97％，但CNN模型仅需一个卷积层就能够获得98％+的收益！</span><br><span class="line">1 LeNet：</span><br><span class="line">2 AlexNet：</span><br><span class="line">3 VGG-Net：</span><br><span class="line">4 GoogLeNet：</span><br><span class="line">5 Resnet：</span><br></pre></td></tr></table></figure><p>5：迁移学习</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;图像分类&quot;&gt;&lt;a href=&quot;#图像分类&quot; class=&quot;headerlink&quot; title=&quot;图像分类&quot;&gt;&lt;/a&gt;图像分类&lt;/h2&gt;&lt;p&gt;1：KNN&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>02-opencv</title>
+    <link href="https://yanyubing.xyz/2020/11/17/02-opencv/"/>
+    <id>https://yanyubing.xyz/2020/11/17/02-opencv/</id>
+    <published>2020-11-17T01:54:47.343Z</published>
+    <updated>2020-11-17T03:43:50.625Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="opencv"><a href="#opencv" class="headerlink" title="opencv"></a>opencv</h1><p>一：安装</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">清华源安装</span><br></pre></td></tr></table></figure><p>二：图像入门</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv.imread()，cv.imshow()，cv.imwrite()</span><br></pre></td></tr></table></figure><p>三：视频入门</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cv.VideoCapture()，cv.VideoWriter()</span><br><span class="line">涉及到视频的编码，根据储存视频大小的需求定</span><br></pre></td></tr></table></figure><p>四：opencv绘图功能</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv.line()，cv.circle()，cv.rectangle()，cv.ellipse()，cv.putText()等。</span><br></pre></td></tr></table></figure><p>五：鼠标作为画笔</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv.setMouseCallback()</span><br></pre></td></tr></table></figure><p>六：调色板</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv.getTrackbarPos，**cv.createTrackbar**等。</span><br></pre></td></tr></table></figure><p>七：图像基本操作</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">访问像素值并修改它们 - 访问图像属性 - 设置感兴趣区域(ROI) - 分割和合并图像</span><br></pre></td></tr></table></figure><p>八：图像上的算术运算</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">加法，减法，按位运算，融合</span><br></pre></td></tr></table></figure><p>九：改变颜色空间</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BGR↔灰色，BGR↔HSV等xxxxxxxxxx 改变颜色空间BGR↔灰色，BGR↔HSV等</span><br><span class="line">cv.cvtColor，cv.inRange</span><br></pre></td></tr></table></figure><p>十：图像的几何变换</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">平移、旋转、仿射变换等</span><br><span class="line">OpenCV提供了两个转换函数**cv.warpAffine**和**cv.warpPerspective**，您可以使用它们进行各种转换。**cv.warpAffine**采用2x3转换矩阵，而**cv.warpPerspective**采用3x3转换矩阵作为输入。</span><br></pre></td></tr></table></figure><p>十一：图像阈值</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">简单阈值，自适应阈值和Otsu阈值。</span><br></pre></td></tr></table></figure><p>十二：图像平滑</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用各种低通滤镜模糊图像 - 将定制的滤镜应用于图像</span><br></pre></td></tr></table></figure><p>十三：形态学转换</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">侵蚀，膨胀，开运算，闭运算等</span><br></pre></td></tr></table></figure><p>十四：图像梯度</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv.Sobel()，cv.Scharr()，cv.Laplacian()等</span><br></pre></td></tr></table></figure><p>十五：边缘检测</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Canny边缘检测的概念 - OpenCV函数: cv.Canny()</span><br></pre></td></tr></table></figure><p>十六：图像金字塔</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">学习图像金字塔 - 我们将看到以下功能：cv.pyrUp()，cv.pyrDown()</span><br></pre></td></tr></table></figure><p>十七：轮廓</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">①cv.findContours()，cv.drawContours()</span><br><span class="line">②轮廓特征：面积，周长，质心，边界框，轮廓凸包。。。</span><br><span class="line">③轮廓属性：长宽比，范围，坚实度。。。</span><br><span class="line">④更多属性：凸性缺陷，点多边形测试，形状匹配。。。</span><br><span class="line">⑤轮廓分层</span><br></pre></td></tr></table></figure><p>十八：直方图</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">①使用OpenCV和Matplotlib函数绘制直方图 - 你将看到以下函数：cv.calcHist()，np.histogram()等。</span><br><span class="line">②直方图均衡</span><br></pre></td></tr></table></figure><p>十九：模板匹配</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">①cv.matchTemplate()，cv.minMaxLoc()</span><br><span class="line">②多尺度模板匹配</span><br></pre></td></tr></table></figure><p>二十：霍夫曼</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">霍夫曼直线，霍夫曼圆</span><br></pre></td></tr></table></figure><p>二十一：特征检测与描述</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Shi-Tomasi拐角</span><br><span class="line">SIFT尺度不变特征</span><br><span class="line">SURF加速</span><br><span class="line">FAST角点检测</span><br><span class="line">BRIEF二进制鲁棒基本特征</span><br><span class="line">ORB定向快速和旋转简要</span><br><span class="line">特征匹配</span><br></pre></td></tr></table></figure><p>二十二：视频分析</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">背景分离</span><br><span class="line">运动检测</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;opencv&quot;&gt;&lt;a href=&quot;#opencv&quot; class=&quot;headerlink&quot; title=&quot;opencv&quot;&gt;&lt;/a&gt;opencv&lt;/h1&gt;&lt;p&gt;一：安装&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;t
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>01-python数据科学</title>
+    <link href="https://yanyubing.xyz/2020/11/16/01-python%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/"/>
+    <id>https://yanyubing.xyz/2020/11/16/01-python%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/</id>
+    <published>2020-11-16T06:53:40.764Z</published>
+    <updated>2020-11-17T01:45:58.890Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="python数据科学"><a href="#python数据科学" class="headerlink" title="python数据科学"></a>python数据科学</h1><p>一：python简介</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Anaconda虚拟环境</span><br></pre></td></tr></table></figure><p>二：操作符</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">数学运算符 + - * /</span><br><span class="line">比较运算符 &gt; &lt; == &gt;= &lt;=</span><br><span class="line">逻辑运算符 &amp; or not</span><br></pre></td></tr></table></figure><p>三：数据类型和变量</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">常量和变量，变量区分大小写</span><br><span class="line">int float str bool</span><br></pre></td></tr></table></figure><p>四：条件表达式</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (condition):</span><br><span class="line">statement1</span><br><span class="line">else:</span><br><span class="line">statement2</span><br></pre></td></tr></table></figure><p>5：循环结构</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for </span><br><span class="line">while </span><br><span class="line">for循环时可以在&apos;&apos;里面的</span><br></pre></td></tr></table></figure><p>6：方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def printX(x):</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure><p>7：数据结构</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Lists：添加多个对象，list.extend()</span><br><span class="line">Dictionaries</span><br></pre></td></tr></table></figure><p>8：标准库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">内建函数</span><br><span class="line">print(),max()...</span><br><span class="line">内建不变量</span><br><span class="line">False,True,None...</span><br><span class="line">数据类型</span><br><span class="line">int,float,bool,str</span><br><span class="line">文本格式</span><br><span class="line">Csv,excel...</span><br><span class="line">模块</span><br><span class="line">Arithmetic.py</span><br><span class="line">包</span><br><span class="line">Operator/Arithmetic.py</span><br></pre></td></tr></table></figure><p>9：pandas</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">https://pandas.pydata.org/docs/getting_started/index.html</span><br><span class="line">查看</span><br><span class="line">排序</span><br><span class="line">合并：相同字段合并，外连接，内连接，右连接，左连接</span><br><span class="line">遍历：行遍历apply(lambda x:x[0])，列遍历apply(lambda x:x[0]，axis=1)</span><br></pre></td></tr></table></figure><p>10：数据可视化</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Matplotlib和Seaborn</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;python数据科学&quot;&gt;&lt;a href=&quot;#python数据科学&quot; class=&quot;headerlink&quot; title=&quot;python数据科学&quot;&gt;&lt;/a&gt;python数据科学&lt;/h1&gt;&lt;p&gt;一：python简介&lt;/p&gt;
+&lt;figure class=&quot;highligh
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>解决工业主机远程桌面控制</title>
+    <link href="https://yanyubing.xyz/2020/11/16/%E8%A7%A3%E5%86%B3%E5%B7%A5%E4%B8%9A%E4%B8%BB%E6%9C%BA%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E6%8E%A7%E5%88%B6/"/>
+    <id>https://yanyubing.xyz/2020/11/16/%E8%A7%A3%E5%86%B3%E5%B7%A5%E4%B8%9A%E4%B8%BB%E6%9C%BA%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E6%8E%A7%E5%88%B6/</id>
+    <published>2020-11-16T06:27:56.873Z</published>
+    <updated>2020-11-16T06:29:05.539Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="解决工业主机桌面远程控制"><a href="#解决工业主机桌面远程控制" class="headerlink" title="解决工业主机桌面远程控制"></a>解决工业主机桌面远程控制</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">场景：</span><br><span class="line">工业主机无显示器，无法远程控制和调试</span><br><span class="line"></span><br><span class="line">解决方案：</span><br><span class="line">买虚拟现实器，向日葵开机自启</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;解决工业主机桌面远程控制&quot;&gt;&lt;a href=&quot;#解决工业主机桌面远程控制&quot; class=&quot;headerlink&quot; title=&quot;解决工业主机桌面远程控制&quot;&gt;&lt;/a&gt;解决工业主机桌面远程控制&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>神经网络名词解释</title>
+    <link href="https://yanyubing.xyz/2020/11/12/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/"/>
+    <id>https://yanyubing.xyz/2020/11/12/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/</id>
+    <published>2020-11-12T06:28:15.203Z</published>
+    <updated>2020-11-12T07:20:16.646Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="深度学习名词解释"><a href="#深度学习名词解释" class="headerlink" title="深度学习名词解释"></a>深度学习名词解释</h1><p>1.线性回归</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">线性回归是利用数理统计中回归分析，来确定两种或两种以上变量间相互依赖的定量关系的一种统计分析方法，运用十分广泛。其表达形式为y = w&apos;x+e，e为误差服从均值为0的正态分布。</span><br><span class="line">①如果目标是预测或者映射，线性回归可以用来对观测数据集的和X的值拟合出一个预测模型。当完成这样一个模型以后，对于一个新增的X值，在没有给定与它相配对的y的情况下，可以用这个拟合过的模型预测出一个y值。</span><br><span class="line">②给定一个变量y和一些变量X1,...,Xp，这些变量有可能与y相关，线性回归分析可以用来量化y与Xj之间相关性的强度，评估出与y不相关的Xj，并识别出哪些Xj的子集包含了关于y的冗余信息。</span><br><span class="line"></span><br><span class="line">一般采用均方差损失</span><br><span class="line">pytorch实现：</span><br><span class="line">nn.Linear()</span><br><span class="line">criterion = nn.MSELoss()</span><br></pre></td></tr></table></figure><p>2.逻辑回归</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">logistic回归是一种广义线性回归（generalized linear model），因此与多重线性回归分析有很多相同之处。它们的模型形式基本上相同，都具有 w‘x+b，其中w和b是待求参数，其区别在于他们的因变量不同，多重线性回归直接将w‘x+b作为因变量，即y =w‘x+b，而logistic回归则通过函数L将w‘x+b对应一个隐状态p，p =L(w‘x+b),然后根据p 与1-p的大小决定因变量的值。如果L是logistic函数，就是logistic回归，如果L是多项式函数就是多项式回归。 [1]</span><br><span class="line"></span><br><span class="line">一般采用交叉熵损失</span><br><span class="line">model = nn.Linear(input_size, num_classes)</span><br><span class="line">criterion = nn.CrossEntropyLoss()</span><br></pre></td></tr></table></figure><p>3.梯度下降</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">是一个一阶最优化算法, 要使用梯度下降法找到一个函数的局部极小值，必须向函数上当前点对应梯度（或者是近似梯度）的反方向的规定步长距离点进行迭代搜索。</span><br></pre></td></tr></table></figure><p>4.前馈神经网络</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">多层感知机</span><br><span class="line">①每个线性单元完成之后加入非线性激活函数，可以更好的拟合</span><br></pre></td></tr></table></figure><p>5.正则化</p><p>6.损失函数</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;深度学习名词解释&quot;&gt;&lt;a href=&quot;#深度学习名词解释&quot; class=&quot;headerlink&quot; title=&quot;深度学习名词解释&quot;&gt;&lt;/a&gt;深度学习名词解释&lt;/h1&gt;&lt;p&gt;1.线性回归&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;ta
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>记一次crontab不成功的例子</title>
@@ -158,299 +400,6 @@
       
         &lt;h1 id=&quot;使用flask来进行文件的传输&quot;&gt;&lt;a href=&quot;#使用flask来进行文件的传输&quot; class=&quot;headerlink&quot; title=&quot;使用flask来进行文件的传输&quot;&gt;&lt;/a&gt;使用flask来进行文件的传输&lt;/h1&gt;&lt;p&gt;1.服务器端&lt;/p&gt;
 &lt;figure
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ocr前置操作，构建扫描仪</title>
-    <link href="https://yanyubing.xyz/2020/11/03/ocr%E5%89%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%9E%84%E5%BB%BA%E6%89%AB%E6%8F%8F%E4%BB%AA/"/>
-    <id>https://yanyubing.xyz/2020/11/03/ocr%E5%89%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%9E%84%E5%BB%BA%E6%89%AB%E6%8F%8F%E4%BB%AA/</id>
-    <published>2020-11-03T06:11:25.536Z</published>
-    <updated>2020-11-03T06:15:33.897Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="构建扫描仪"><a href="#构建扫描仪" class="headerlink" title="构建扫描仪"></a>构建扫描仪</h1><p>1.轮廓检测，最大轮廓的四个角</p><p>2.应用透视变换，转换为俯视图的矩形</p><p>额外可应用：可以通过扫描到角的形状来提醒用户如何移动手机摄像头</p><p>未解决问题：</p><p>1.有非均匀形变的时候（可以通过四个顶点之间的关系过滤掉，但是未解决铺平）</p><p>2.转换之后搭配ocr识别的准确性如何</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;构建扫描仪&quot;&gt;&lt;a href=&quot;#构建扫描仪&quot; class=&quot;headerlink&quot; title=&quot;构建扫描仪&quot;&gt;&lt;/a&gt;构建扫描仪&lt;/h1&gt;&lt;p&gt;1.轮廓检测，最大轮廓的四个角&lt;/p&gt;
-&lt;p&gt;2.应用透视变换，转换为俯视图的矩形&lt;/p&gt;
-&lt;p&gt;额外可应用：可以通
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>两张图片比较的方式</title>
-    <link href="https://yanyubing.xyz/2020/10/29/%E4%B8%A4%E5%BC%A0%E5%9B%BE%E7%89%87%E6%AF%94%E8%BE%83%E7%9A%84%E6%96%B9%E5%BC%8F/"/>
-    <id>https://yanyubing.xyz/2020/10/29/%E4%B8%A4%E5%BC%A0%E5%9B%BE%E7%89%87%E6%AF%94%E8%BE%83%E7%9A%84%E6%96%B9%E5%BC%8F/</id>
-    <published>2020-10-29T08:53:37.401Z</published>
-    <updated>2020-11-03T05:44:28.060Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="两张图片的比较"><a href="#两张图片的比较" class="headerlink" title="两张图片的比较"></a>两张图片的比较</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.均方误差（MSE）</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2.结构相似性指数（SSIM）函数</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3.模板匹配：cv2.matchTemplate</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4.多尺度模板匹配：</span><br><span class="line">我们将从图像原始大小的100％开始，然后逐步以20个相等大小的百分比块降低到原始大小的20％。</span><br><span class="line">虽然我们可以处理平移和缩放的变化，但是我们的方法对于旋转或非仿射变换的变化将不可靠。</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5.SIFT和SURF特征点</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;两张图片的比较&quot;&gt;&lt;a href=&quot;#两张图片的比较&quot; class=&quot;headerlink&quot; title=&quot;两张图片的比较&quot;&gt;&lt;/a&gt;两张图片的比较&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>bug</title>
-    <link href="https://yanyubing.xyz/2020/10/29/bug/"/>
-    <id>https://yanyubing.xyz/2020/10/29/bug/</id>
-    <published>2020-10-29T02:12:34.110Z</published>
-    <updated>2020-10-29T02:15:30.832Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.读取rtsp视频流时：could not find ref with poc</span><br><span class="line">问题所在：帧率，出现空帧情况，多半是读取性能达不到帧率要求</span><br><span class="line">解决方案：降低进入读取设备的帧率，调整视频来源的帧率</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>在图像中找到最亮的点</title>
-    <link href="https://yanyubing.xyz/2020/10/28/%E5%9C%A8%E5%9B%BE%E5%83%8F%E4%B8%AD%E6%89%BE%E5%88%B0%E6%9C%80%E4%BA%AE%E7%9A%84%E7%82%B9/"/>
-    <id>https://yanyubing.xyz/2020/10/28/%E5%9C%A8%E5%9B%BE%E5%83%8F%E4%B8%AD%E6%89%BE%E5%88%B0%E6%9C%80%E4%BA%AE%E7%9A%84%E7%82%B9/</id>
-    <published>2020-10-28T06:42:10.437Z</published>
-    <updated>2020-10-28T06:45:28.178Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Finding-the-Brightest-Spot-in-an-Image-using-Python-and-OpenCV"><a href="#Finding-the-Brightest-Spot-in-an-Image-using-Python-and-OpenCV" class="headerlink" title="Finding the Brightest Spot in an Image using Python and OpenCV"></a>Finding the Brightest Spot in an Image using Python and OpenCV</h1><p>普通：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># import the necessary packages</span><br><span class="line">import numpy as np</span><br><span class="line">import argparse</span><br><span class="line">import cv2</span><br><span class="line"># construct the argument parse and parse the arguments</span><br><span class="line">ap = argparse.ArgumentParser()</span><br><span class="line">ap.add_argument(&quot;-i&quot;, &quot;--image&quot;, help = &quot;path to the image file&quot;)</span><br><span class="line">ap.add_argument(&quot;-r&quot;, &quot;--radius&quot;, type = int,</span><br><span class="line">help = &quot;radius of Gaussian blur; must be odd&quot;)</span><br><span class="line">args = vars(ap.parse_args())</span><br><span class="line"># load the image and convert it to grayscale</span><br><span class="line">image = cv2.imread(args[&quot;image&quot;])</span><br><span class="line">orig = image.copy()</span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line">(minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)</span><br><span class="line">cv2.circle(image, maxLoc, 5, (255, 0, 0), 2)</span><br><span class="line"># display the results of the naive attempt</span><br><span class="line">cv2.imshow(&quot;Naive&quot;, image)</span><br></pre></td></tr></table></figure><p>增加高斯模糊：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">import argparse</span><br><span class="line">import cv2</span><br><span class="line"># construct the argument parse and parse the arguments</span><br><span class="line">ap = argparse.ArgumentParser()</span><br><span class="line">ap.add_argument(&quot;-i&quot;, &quot;--image&quot;, help = &quot;path to the image file&quot;)</span><br><span class="line">ap.add_argument(&quot;-r&quot;, &quot;--radius&quot;, type = int,</span><br><span class="line">help = &quot;radius of Gaussian blur; must be odd&quot;)</span><br><span class="line">args = vars(ap.parse_args())</span><br><span class="line"># load the image and convert it to grayscale</span><br><span class="line">image = cv2.imread(args[&quot;image&quot;])</span><br><span class="line">orig = image.copy()</span><br><span class="line">gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line"># perform a naive attempt to find the (x, y) coordinates of</span><br><span class="line"># the area of the image with the largest intensity value</span><br><span class="line">(minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)</span><br><span class="line">cv2.circle(image, maxLoc, 5, (255, 0, 0), 2)</span><br><span class="line"># display the results of the naive attempt</span><br><span class="line">cv2.imshow(&quot;Naive&quot;, image)</span><br><span class="line"># apply a Gaussian blur to the image then find the brightest</span><br><span class="line"># region</span><br><span class="line">gray = cv2.GaussianBlur(gray, (args[&quot;radius&quot;], args[&quot;radius&quot;]), 0)</span><br><span class="line">(minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)</span><br><span class="line">image = orig.copy()</span><br><span class="line">cv2.circle(image, maxLoc, args[&quot;radius&quot;], (255, 0, 0), 2)</span><br><span class="line"># display the results of our newly improved method</span><br><span class="line">cv2.imshow(&quot;Robust&quot;, image)</span><br><span class="line">cv2.waitKey(0)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Finding-the-Brightest-Spot-in-an-Image-using-Python-and-OpenCV&quot;&gt;&lt;a href=&quot;#Finding-the-Brightest-Spot-in-an-Image-using-Python-and-Op
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>基于python制作第一个图像搜索引擎</title>
-    <link href="https://yanyubing.xyz/2020/10/28/%E5%9F%BA%E4%BA%8Epython%E5%88%B6%E4%BD%9C%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%9B%BE%E5%83%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"/>
-    <id>https://yanyubing.xyz/2020/10/28/%E5%9F%BA%E4%BA%8Epython%E5%88%B6%E4%BD%9C%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%9B%BE%E5%83%8F%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</id>
-    <published>2020-10-28T02:54:27.816Z</published>
-    <updated>2020-10-28T06:10:14.800Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="使用Python构建第一个图像搜索引擎的操作指南"><a href="#使用Python构建第一个图像搜索引擎的操作指南" class="headerlink" title="使用Python构建第一个图像搜索引擎的操作指南"></a>使用Python构建第一个图像搜索引擎的操作指南</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">构建图像搜索引擎的4个步骤</span><br><span class="line"></span><br><span class="line">在最基本的层次上，构建图像搜索引擎需要四个步骤：</span><br><span class="line"></span><br><span class="line">1. 定义描述符：您将使用哪种类型的描述符？您在描述颜色吗？质地？形状？</span><br><span class="line">2. 为数据集建立索引：将描述符应用于数据集中的每个图像，提取一组特征。</span><br><span class="line">3. 定义相似度指标：如何定义两个图像的“相似度”？您可能会使用某种距离度量。常见的选择包括欧几里得，城市街区（曼哈顿），余弦和卡方。</span><br><span class="line">4. 搜索：要执行搜索，请将描述符应用于查询图像，然后要求距离度量对索引中的图像与查询图像的相似程度进行排名。通过相似性对结果进行排序，然后进行检查。</span><br></pre></td></tr></table></figure><p>1.定义描述符</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Color</span><br><span class="line">Texture：Gray-Level Co-occurrence Matrix (GLCM).</span><br><span class="line">Shape</span><br></pre></td></tr></table></figure><p>2.为数据集建立索引</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.实例化您的描述符</span><br><span class="line">2.串行还是并行？</span><br><span class="line">3.写入磁盘</span><br></pre></td></tr></table></figure><p>3.定义相似性指标 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">需要满足条件：</span><br><span class="line">1.非负数： d(x, y) &gt;= 0。这仅表示我们的距离必须为非负数。</span><br><span class="line">2.d(x, y) = 0符合公理：当且仅当x = y。只有当两个向量具有相同的值时，零距离（意味着向量是相同的）才可能。</span><br><span class="line">3.对称性： d(x, y) = d(y, x)。为了将距离函数视为距离度量，距离中参数的顺序应该无关紧要。指定d(x, y)而d(y, x)不是对我们的距离度量无关紧要，并且两个函数调用应返回相同的值。</span><br><span class="line">4.三角不等式： d(x, z) &lt;= d(x, y) + d(y, z)。您还记得回到高中的三角课吗？所有这些条件表明，任意两个边的长度之和必须大于其余边的长度。</span><br><span class="line"></span><br><span class="line">常用的指标：</span><br><span class="line">欧几里得：可以说是最著名且必须使用的距离度量。欧几里德距离通常被描述为“乌鸦飞过”两点之间的距离。</span><br><span class="line">曼哈顿：也称为“城市街区”距离。想象一下自己在一辆出租车上，沿着城市街区转弯，直到到达目的地。</span><br><span class="line">切比雪夫（Chebyshev）：任意单个维度中点之间的最大距离。</span><br><span class="line">余弦：在进入向量空间模型，tf-idf加权和高维正空间之前，我们不会使用太多相似性函数，但是余弦相似性函数非常重要。值得注意的是，余弦相似度函数不是适当的距离量度，它违反了三角形不等式和重合公理。</span><br><span class="line">汉明（ Hamming）：给定两个（通常为二进制）矢量，汉明距离测量两个矢量之间的“分歧”数。两个相同的向量的分歧为零，因此完全相似。</span><br></pre></td></tr></table></figure><p>4.搜索和排名</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.接受来自用户的查询图像</span><br><span class="line">2.描述查询图像</span><br><span class="line">3.执行搜索</span><br><span class="line">4.向用户显示结果</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;使用Python构建第一个图像搜索引擎的操作指南&quot;&gt;&lt;a href=&quot;#使用Python构建第一个图像搜索引擎的操作指南&quot; class=&quot;headerlink&quot; title=&quot;使用Python构建第一个图像搜索引擎的操作指南&quot;&gt;&lt;/a&gt;使用Python构建第一个图
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>基于内容的图像检索</title>
-    <link href="https://yanyubing.xyz/2020/10/28/%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E7%9A%84%E5%9B%BE%E5%83%8F%E6%A3%80%E7%B4%A2/"/>
-    <id>https://yanyubing.xyz/2020/10/28/%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E7%9A%84%E5%9B%BE%E5%83%8F%E6%A3%80%E7%B4%A2/</id>
-    <published>2020-10-28T02:43:09.629Z</published>
-    <updated>2020-10-28T02:54:05.161Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="基于内容的图像检索"><a href="#基于内容的图像检索" class="headerlink" title="基于内容的图像检索"></a>基于内容的图像检索</h1><p> <strong>基于内容的图像检索</strong>，也称为<strong>按图像内容查询</strong>（<strong><a href="https://en.wikipedia.org/wiki/Content-based_image_retrieval#QBIC" target="_blank" rel="noopener">QBIC</a></strong>）和<strong>基于内容的视觉信息检索</strong>（<strong>CBVIR</strong>），是<a href="https://en.wikipedia.org/wiki/Computer_vision" target="_blank" rel="noopener">计算机视觉</a>技术在<a href="https://en.wikipedia.org/wiki/Image_retrieval" target="_blank" rel="noopener">图像检索</a>问题（即搜索<a href="https://en.wikipedia.org/wiki/Digital_image" target="_blank" rel="noopener">数字图像</a>的问题）中的应用大型<a href="https://en.wikipedia.org/wiki/Database" target="_blank" rel="noopener">数据库中</a>（有关CBIR领域的最新科学概述，请参见本调查<a href="https://en.wikipedia.org/wiki/Content-based_image_retrieval#cite_note-Survey-1" target="_blank" rel="noopener">[1]</a>）。基于内容的图像检索与传统<strong>的基于概念的方法</strong>相反（请参阅<strong><a href="https://en.wikipedia.org/wiki/Concept-based_image_indexing" target="_blank" rel="noopener">基于概念的图像索引</a></strong>）。 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">图像直方图构建搜索引擎：</span><br><span class="line">首先，根据定义，颜色直方图会忽略图像中对象的形状和纹理。这意味着颜色直方图不具有对象形状或对象纹理的概念。此外，直方图也无视任何空间信息（即像素值来自图像的位置）。直方图的扩展（颜色相关图）可用于编码像素之间的空间关系。</span><br><span class="line">然而，所有这些，直方图仍被广泛用作图像描述符。它们非常容易实现，并且计算速度非常快。尽管它们有其局限性，但如果在正确的环境中正确使用它们，它们将非常强大。</span><br></pre></td></tr></table></figure><h1 id="基于概念的图像索引"><a href="#基于概念的图像索引" class="headerlink" title="基于概念的图像索引"></a>基于概念的图像索引</h1><p><strong>基于概念的图像索引</strong>，也可变地称为“<strong>基于描述</strong>”或“<strong>基于文本</strong>”的<strong>图像索引</strong>/<strong>检索</strong>，是指从基于文本的<strong>图像索引中**</strong>检索<strong>可能使用关键字，主题词，标题或自然语言文本的图像（Chen＆Rasmussen，1999）。它</strong><a href="https://en.wikipedia.org/wiki/Content-based_image_retrieval" target="_blank" rel="noopener">与基于内容的图像检索</a>**相反。索引是CBIR中使用的一种技术。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;基于内容的图像检索&quot;&gt;&lt;a href=&quot;#基于内容的图像检索&quot; class=&quot;headerlink&quot; title=&quot;基于内容的图像检索&quot;&gt;&lt;/a&gt;基于内容的图像检索&lt;/h1&gt;&lt;p&gt; &lt;strong&gt;基于内容的图像检索&lt;/strong&gt;，也称为&lt;strong&gt;按图像
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>实例分割</title>
-    <link href="https://yanyubing.xyz/2020/10/20/%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2/"/>
-    <id>https://yanyubing.xyz/2020/10/20/%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2/</id>
-    <published>2020-10-20T09:16:23.229Z</published>
-    <updated>2020-10-20T09:23:30.567Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="实例分割"><a href="#实例分割" class="headerlink" title="实例分割"></a>实例分割</h1><p>1.对比与目标检测，更加的精确，获取的每个像素值对应的对象，基于pytorch框架</p><p>yolact</p><p>源码：<a href="https://github.com/dbolya/yolact" target="_blank" rel="noopener">https://github.com/dbolya/yolact</a></p><p>教程：<a href="https://www.youtube.com/watch?v=KEHVHHnNDv0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=KEHVHHnNDv0</a></p><p>mask rcnn</p><p>源码：<a href="https://github.com/facebookresearch/maskrcnn-benchmark" target="_blank" rel="noopener">https://github.com/facebookresearch/maskrcnn-benchmark</a></p><p>教程：<a href="https://www.youtube.com/watch?v=yltGEJxrrqQ" target="_blank" rel="noopener">https://www.youtube.com/watch?v=yltGEJxrrqQ</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;实例分割&quot;&gt;&lt;a href=&quot;#实例分割&quot; class=&quot;headerlink&quot; title=&quot;实例分割&quot;&gt;&lt;/a&gt;实例分割&lt;/h1&gt;&lt;p&gt;1.对比与目标检测，更加的精确，获取的每个像素值对应的对象，基于pytorch框架&lt;/p&gt;
-&lt;p&gt;yolact&lt;/p&gt;
-&lt;p
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据读取</title>
-    <link href="https://yanyubing.xyz/2020/10/20/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96/"/>
-    <id>https://yanyubing.xyz/2020/10/20/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96/</id>
-    <published>2020-10-20T06:13:50.788Z</published>
-    <updated>2020-10-20T07:43:57.681Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="python进行数据的读取，储存"><a href="#python进行数据的读取，储存" class="headerlink" title="python进行数据的读取，储存"></a>python进行数据的读取，储存</h1><p>一：数据的主要形式</p><p>文本，视频，音频，MySQL数据库</p><p>二：文本</p><p><a href="https://zhuanlan.zhihu.com/p/25087295" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25087295</a></p><p>三：视频</p><p><a href="https://blog.csdn.net/qq_25436597/article/details/79621833" target="_blank" rel="noopener">https://blog.csdn.net/qq_25436597/article/details/79621833</a></p><p>四：音频</p><p><a href="https://blog.csdn.net/luolinll1212/article/details/97954215" target="_blank" rel="noopener">https://blog.csdn.net/luolinll1212/article/details/97954215</a></p><p>五：MySQL</p><p><a href="https://my.oschina.net/u/3750423/blog/4315037" target="_blank" rel="noopener">https://my.oschina.net/u/3750423/blog/4315037</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;python进行数据的读取，储存&quot;&gt;&lt;a href=&quot;#python进行数据的读取，储存&quot; class=&quot;headerlink&quot; title=&quot;python进行数据的读取，储存&quot;&gt;&lt;/a&gt;python进行数据的读取，储存&lt;/h1&gt;&lt;p&gt;一：数据的主要形式&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>torch环境准备</title>
-    <link href="https://yanyubing.xyz/2020/10/19/torch%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/"/>
-    <id>https://yanyubing.xyz/2020/10/19/torch%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</id>
-    <published>2020-10-19T09:28:17.185Z</published>
-    <updated>2020-10-22T08:55:39.199Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="torch环境准备"><a href="#torch环境准备" class="headerlink" title="torch环境准备"></a>torch环境准备</h1><p>①装系统(windows10操作逻辑同理)</p><p><a href="https://blog.csdn.net/baidu_36602427/article/details/86548203" target="_blank" rel="noopener">https://blog.csdn.net/baidu_36602427/article/details/86548203</a></p><p><a href="https://blog.csdn.net/qq_38949027/article/details/102854940华硕主板启动黑屏" target="_blank" rel="noopener">https://blog.csdn.net/qq_38949027/article/details/102854940华硕主板启动黑屏</a></p><p>②安装向日葵</p><p>方便远程，可以继续安装其他比较耗时的软件</p><p><a href="https://sunlogin.oray.com/download/" target="_blank" rel="noopener">https://sunlogin.oray.com/download/</a></p><p>③输入法</p><p><a href="https://www.jianshu.com/p/cafe12618293" target="_blank" rel="noopener">https://www.jianshu.com/p/cafe12618293</a></p><p>④安装pycharm</p><p><a href="https://blog.csdn.net/HelloZEX/article/details/80747274" target="_blank" rel="noopener">https://blog.csdn.net/HelloZEX/article/details/80747274</a></p><p>⑤安装anconda，创建yolov5虚拟环境</p><p><a href="https://blog.csdn.net/BigData_Mining/article/details/102954343" target="_blank" rel="noopener">https://blog.csdn.net/BigData_Mining/article/details/102954343</a></p><p>⑥下载yolov5源码</p><p><a href="https://github.com/ultralytics/yolov5" target="_blank" rel="noopener">https://github.com/ultralytics/yolov5</a></p><p>⑦yolov5虚拟环境依赖包的配置<br>⑧配置cuda，cudnn，安装pytorch</p><p><a href="https://blog.csdn.net/u013084111/article/details/104167056" target="_blank" rel="noopener">https://blog.csdn.net/u013084111/article/details/104167056</a></p><p>⑨下载权重文件<br>⑩demo测试</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;torch环境准备&quot;&gt;&lt;a href=&quot;#torch环境准备&quot; class=&quot;headerlink&quot; title=&quot;torch环境准备&quot;&gt;&lt;/a&gt;torch环境准备&lt;/h1&gt;&lt;p&gt;①装系统(windows10操作逻辑同理)&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>course.fast.ai</title>
-    <link href="https://yanyubing.xyz/2020/10/19/course.fast.ai/"/>
-    <id>https://yanyubing.xyz/2020/10/19/course.fast.ai/</id>
-    <published>2020-10-19T08:13:12.180Z</published>
-    <updated>2020-10-21T03:08:44.502Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="course-fast-ai"><a href="#course-fast-ai" class="headerlink" title="course.fast.ai"></a>course.fast.ai</h1><p><a href="https://course.fast.ai" target="_blank" rel="noopener">https://course.fast.ai</a></p><h3 id="一：小tips"><a href="#一：小tips" class="headerlink" title="一：小tips"></a>一：小tips</h3><p>1.Mac不支持英伟达GPU</p><p>2.找模型的过程就是优化权值的过程：权值分配</p><p>3.SGD(随机梯度下降)：用来更新权值</p><p>4.神经网络的本质只是加法和乘法的运算，只是会运行很多很多次</p><p>5.本质：(输入,权值)得到预测值，预测值和label对比得到loss，loss反过来调整权值。我们需要的是data和label。</p><p>6.bing有搜索图片的API</p><h3 id="二：过拟合"><a href="#二：过拟合" class="headerlink" title="二：过拟合"></a>二：过拟合</h3><p>1.产生过拟合的原因</p><p>模型复杂程度是相对的，复杂的模型可能会造成过拟合。</p><p>2.过拟合的表现形式</p><p>训练损失继续下降，而验证集损失开始上升</p><h3 id="三：迁移学习"><a href="#三：迁移学习" class="headerlink" title="三：迁移学习"></a>三：迁移学习</h3><p>1.怎么做</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;course-fast-ai&quot;&gt;&lt;a href=&quot;#course-fast-ai&quot; class=&quot;headerlink&quot; title=&quot;course.fast.ai&quot;&gt;&lt;/a&gt;course.fast.ai&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://cours
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>瑕疵检测</title>
-    <link href="https://yanyubing.xyz/2020/10/19/%E7%91%95%E7%96%B5%E6%A3%80%E6%B5%8B/"/>
-    <id>https://yanyubing.xyz/2020/10/19/%E7%91%95%E7%96%B5%E6%A3%80%E6%B5%8B/</id>
-    <published>2020-10-19T05:54:04.809Z</published>
-    <updated>2020-10-19T05:57:13.674Z</updated>
-    
-    <content type="html"><![CDATA[<p>​                                                                   瓦片裂痕检测</p><h2 id="传统算法方向的选择"><a href="#传统算法方向的选择" class="headerlink" title="传统算法方向的选择"></a>传统算法方向的选择</h2><p>最近做图像处理与识别相关的事情，先从OpenCV/Matlab入手，看传统算法在瑕疵检测方向能做到什么程度。</p><p>因之前并没有相关的经验，乍开始生怕闭门造车，遂多方搜寻，相关的会议与论述很多，不乏深度学习或者深度学习与传统算法相结合的，以有限的资源来看，深度学习并没有特别大的优势：表现在</p><ol><li><p>深度学习对训练图库的要求很高，很难得到很好的训练结果</p></li><li><p>深度学习的灵活度较低，若适用场景有些许改变，均需要重新训练，这在商用时会是很大的问题</p></li><li><p>深度学习的部署成本较高，同时对部署场景有较高要求（光线/摄像效果等）*<br>当然，深度学习大势所趋，也不必因噎废食，万一是一时的浅见呢。后续也会投身到这个方向去。</p></li></ol><h2 id="瑕疵检测关注的两个问题"><a href="#瑕疵检测关注的两个问题" class="headerlink" title="瑕疵检测关注的两个问题"></a>瑕疵检测关注的两个问题</h2><h3 id="瑕疵的标注"><a href="#瑕疵的标注" class="headerlink" title="瑕疵的标注"></a>瑕疵的标注</h3><p>对瑕疵的标注是为了更直观的展示，主要是给人看的</p><h3 id="瑕疵的量化"><a href="#瑕疵的量化" class="headerlink" title="瑕疵的量化"></a>瑕疵的量化</h3><p>真正机器关心的是怎么量化，是用数量表示还是百分比是个值得考虑的问题</p><h2 id="历程"><a href="#历程" class="headerlink" title="历程"></a>历程</h2><h3 id="1-图像去噪-gt-灰度化-gt-二值化"><a href="#1-图像去噪-gt-灰度化-gt-二值化" class="headerlink" title="1.图像去噪-&gt;灰度化-&gt;二值化"></a>1.图像去噪-&gt;灰度化-&gt;二值化</h3><p>二值化之后就可以看到绝大部分的瑕疵点已经凸显出来了，但是有三个问题：</p><ol><li>黑点瑕疵与白点瑕疵是二值化的两个极端，故无法同时出现。</li><li>量化如何去除Logo与其他印刷的干扰<br>问题1后续用边缘检测替代<br>问题2采用像素点计数的方法，计算百分比，然后与无瑕疵的百分比作比较，准确度不高，也显得 low的。</li></ol><h3 id="2-图像去噪-gt-灰度化-gt-canny-gt-形态学（闭运算）-gt-连通域"><a href="#2-图像去噪-gt-灰度化-gt-canny-gt-形态学（闭运算）-gt-连通域" class="headerlink" title="2.图像去噪-&gt;灰度化-&gt;canny-&gt;形态学（闭运算）-&gt;连通域"></a>2.图像去噪-&gt;灰度化-&gt;canny-&gt;形态学（闭运算）-&gt;连通域</h3><p>边缘检测后进行闭运算，瑕疵会形成大大小小的连通域，可以统计连通域的个数，然后与无瑕疵logo与其他印刷形成的连通域个数作比较，这种情况几乎不会漏掉。这是感觉可行的选择之一。</p><h3 id="3-OpenCV-matchTemplate"><a href="#3-OpenCV-matchTemplate" class="headerlink" title="3.OpenCV matchTemplate"></a>3.OpenCV matchTemplate</h3><p>实验室条件下，可以营造比较理想的条件，所以考虑了OpenCV的模板匹配，同时也测试了模板匹配在不理想情况下的表现。<br>结果证明因为手机瑕疵检测的需求目标较低，模板匹配是比较能够胜任的一个办法。只要模板与识别目标的拍摄角度差别不是太大，都可以很好的识别瑕疵。图片的轻微缩放大多也可以应付。</p><h2 id="其他处理"><a href="#其他处理" class="headerlink" title="其他处理"></a>其他处理</h2><p>前面都是软件方面处理的流程，在如何获得更加理想的图片方面也做了一些尝试：</p><ol><li>采用各种不同颜色的光源，如蓝光/红光，区别不大</li><li>对图片进行白平衡调整，有改善</li><li>摄像头加偏振镜防止图像反光，有改善但不明显</li><li>图片浮雕处理，肉眼看上去瑕疵显著了，但对机器而言并没有区别，故没有采纳</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;​                                                                   瓦片裂痕检测&lt;/p&gt;
-&lt;h2 id=&quot;传统算法方向的选择&quot;&gt;&lt;a href=&quot;#传统算法方向的选择&quot; class=&quot;headerlink&quot;
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>数据集</title>
-    <link href="https://yanyubing.xyz/2020/08/28/%E6%95%B0%E6%8D%AE%E9%9B%86/"/>
-    <id>https://yanyubing.xyz/2020/08/28/%E6%95%B0%E6%8D%AE%E9%9B%86/</id>
-    <published>2020-08-28T02:10:47.267Z</published>
-    <updated>2020-08-28T02:33:26.869Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><p>1.数据是算法的粮食，没有好的数据，算法再优秀，也生产不出来好的模型；作为AI工程师，最开始就要了解公司数据的产生过程，才可以很好的把控模型的优劣</p><p>2.目标检测/分类、数据集制作过程应该有详细的生成流程，包括如下：</p><p>①数据集产生的基本要求（应当与模型实际工作环境尽量保持一致或者，同时需要包含到工作环境中的一切可能性，例如图片的输入大小。。。）</p><p>②数据集的产生，采样过程（如无人机飞行录制视频、拍照等形式）</p><p>③定标注种类，定标注要求（与实际业务挂钩）</p><p>④组织标注人员，审查人员（对工作量的预估，每天可以生产多少数据，费用计算。。。）</p><p>⑤数据集合格之后进行模型训练，对比训练效果，进行微调来增加精度</p><p>⑥精度达到一定程度的时候，开始直接使用模型来标注数据集，标注错误的地方人工修改</p><p>3.补充</p><p>①数据的生成过程中需要大量的人工操作，其中部分可以使用代码处理可以节约大量的时间</p><p>如：</p><p>数据标注文本规范的检查（yolo对应的box字段为5个，如果哪一行出现了10个字段，则会导致代码报错）</p><p>类别的检测（裁剪出box保存到对应类别目录下，box文件名中包含原始图片的文件名，检测标注类别是否准确，修改），同时也做了类别的统计</p><p>②数据生产过程应当作为一个流水线的工作形态，直到完成最优模型之前，一直需要；标注的数据出问题，会导致耗费大量的精力来修改，更正，得不偿失!</p><p>③为了达到最优的模型，数据集上面不能掉链子</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;数据集&quot;&gt;&lt;a href=&quot;#数据集&quot; class=&quot;headerlink&quot; title=&quot;数据集&quot;&gt;&lt;/a&gt;数据集&lt;/h1&gt;&lt;p&gt;1.数据是算法的粮食，没有好的数据，算法再优秀，也生产不出来好的模型；作为AI工程师，最开始就要了解公司数据的产生过程，才可以很好的
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>wordpress搭建</title>
-    <link href="https://yanyubing.xyz/2020/08/13/wordpress%E6%90%AD%E5%BB%BA/"/>
-    <id>https://yanyubing.xyz/2020/08/13/wordpress%E6%90%AD%E5%BB%BA/</id>
-    <published>2020-08-13T02:47:04.590Z</published>
-    <updated>2020-08-13T02:48:18.180Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="—————-环境安装————–"><a href="#—————-环境安装————–" class="headerlink" title="—————-环境安装————–"></a>—————-环境安装————–</h2><p>——–数据库（无法安装成功）<br>sudo apt install mariadb-server mariadb-client -y</p><p>启动mariadb<br>sudo systemctl start mariadb</p><p>查看状态<br>sudo systemctl status mariadb</p><p>######apache2安装<br>sudo apt install apache</p><p>———-php安装<br>sudo apt install php</p><h2 id="—————环境安装—————"><a href="#—————环境安装—————" class="headerlink" title="—————环境安装—————-"></a>—————环境安装—————-</h2><p>参考：<br>注意ubutun18.04LTS直接安装mariadb无法成功：<br><a href="https://computingforgeeks.com/install-mariadb-10-on-ubuntu-18-04-and-centos-7/" target="_blank" rel="noopener">https://computingforgeeks.com/install-mariadb-10-on-ubuntu-18-04-and-centos-7/</a></p><p>主要流程的参考：<br><a href="https://www.youtube.com/watch?v=na-fT9ZgWPM" target="_blank" rel="noopener">https://www.youtube.com/watch?v=na-fT9ZgWPM</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;—————-环境安装————–&quot;&gt;&lt;a href=&quot;#—————-环境安装————–&quot; class=&quot;headerlink&quot; title=&quot;—————-环境安装————–&quot;&gt;&lt;/a&gt;—————-环境安装————–&lt;/h2&gt;&lt;p&gt;——–数据库（无法安装成功）&lt;br&gt;
       
     
     </summary>
