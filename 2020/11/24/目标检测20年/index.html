@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="目标检测20年一：应用方向 1234instance segmentationimage captioningobject trackingsuch as autonomous driving, robot vision, video surveillance, etc. Fig  二：研究方向 1From the application point of view, object detecti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="目标检测20年">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2020&#x2F;11&#x2F;24&#x2F;%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B20%E5%B9%B4&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="目标检测20年一：应用方向 1234instance segmentationimage captioningobject trackingsuch as autonomous driving, robot vision, video surveillance, etc. Fig  二：研究方向 1From the application point of view, object detecti">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-12-01T08:14:09.351Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2020/11/24/目标检测20年/"/>
+
+
+
+
+
+  <title>目标检测20年 | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2020/11/24/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B20%E5%B9%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">目标检测20年</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-24T17:10:26+08:00">
+                2020-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="目标检测20年"><a href="#目标检测20年" class="headerlink" title="目标检测20年"></a>目标检测20年</h1><p>一：应用方向</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">instance segmentation</span><br><span class="line">image captioning</span><br><span class="line">object tracking</span><br><span class="line">such as autonomous driving, robot vision, video surveillance, etc. Fig</span><br></pre></td></tr></table></figure>
+
+<p>二：研究方向</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">From the application point of view, object detection can be grouped into two research topics “general object detection&quot; and “detection applications”, where the former one aims to explore the methods of detecting different types of objects under a unified framework to simulate the human vision and cognition, and the later one refers to the detection under specific application scenarios, such as pedestrian detection, face detection, text detection, etc.</span><br></pre></td></tr></table></figure>
+
+<p>三：阶段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~-2012年：传统方式</span><br><span class="line">2012-~：深度学习阶段（分为one stage 与two stage）GPU技术美学</span><br></pre></td></tr></table></figure>
+
+<p>四：速度优化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">detection pipeline：cascaded detection, feature map shared computation</span><br><span class="line">detection backbone：network compression, lightweight network design</span><br><span class="line">numerical computation：integral image, vector quantization</span><br></pre></td></tr></table></figure>
+
+<p>五：目标检测的困难和挑战</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">object rotation and scale changes </span><br><span class="line">accurate object localization</span><br><span class="line">dense and occluded object detection</span><br><span class="line">speed up of detection</span><br></pre></td></tr></table></figure>
+
+<p>六：发展史</p>
+<p>6.1：VJ detector（2001）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">特点：速度快</span><br><span class="line">技术：“integral image”，“feature selection”, and “detection cascades”</span><br><span class="line">主要用于人脸检测，这个方法在OpenCV中被实现为cvHaarDetectObjects()。</span><br></pre></td></tr></table></figure>
+
+<p>6.2： HOG Detector（2005）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">特点：多尺度</span><br><span class="line">出发点用于行人检测</span><br></pre></td></tr></table></figure>
+
+<p>6.3：DPM（ Deformable Part-based Model ）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">特点：For example, the problem of detecting a “car” can be considered as the detection of its window, body, and wheels. This part of the work, a.k.a. “star-model”, was completed by P. Felzenszwalb et al. </span><br><span class="line">技术： mixture models, hard negative mining, bounding box regression</span><br><span class="line">传统检测的最高点</span><br></pre></td></tr></table></figure>
+
+<p>6.4：RCNN（Regions with CNN features 2014年）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RCNN原理：它首先通过选择性搜索[42]提取一组对象提案(对象候选框。 然后将每个建议重新缩放到一个固定大小的图像，并将其输入在Image Net(例如AlexNet[40]上训练的CNN模型，以提取特征。 最后，线性SVM分类器用于预测每个区域内存在一个对象，并识别对象类别</span><br><span class="line">特点：速度慢，尺度固定（224x224 image for AlexNet）。the redundant feature computations on a large number of overlapped proposals (over 2000 boxes from one image) leads to an extremely slow detection speed (14s per image with GPU).</span><br></pre></td></tr></table></figure>
+
+<p>6.5：SPPNet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">When using SPPNet for object detection, the feature maps can be computed from the entire image only once, and then fixed- length representations of arbitrary regions can be generated for training the detectors, which avoids repeatedly computing the convolutional features</span><br><span class="line">特点：SPPNet is more than 20 times faster than R-CNN without</span><br><span class="line">问题：first, the training is still multi-stage, second, SPPNet only fine-tunes its fully connected layers while simply ignores all previous layers.</span><br></pre></td></tr></table></figure>
+
+<p>6.6：Fast RCNN（2015）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Fast RCNN increased the mAP from 58.5% (RCNN) to 70.0% while with a detection speed over 200 times faster than R-CNN.</span><br></pre></td></tr></table></figure>
+
+<p>6.6：Faster RCNN（2015）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">第一个接近实时的深度学习检测器</span><br><span class="line">技术：Region Proposal Network(RPN)，proposal detection, feature extraction, bounding box regression, etc,</span><br></pre></td></tr></table></figure>
+
+<p>6.7：Feature Pyramid Networks</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">特征金字塔，多尺度</span><br></pre></td></tr></table></figure>
+
+<p>6.8：YOLO</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">特点：使用单层神经将整个图片划分为区域，并同时预测每个区域的边界框和概率</span><br><span class="line">问题：在检测小目标物体上定位不准确</span><br><span class="line">It was the first one-stage detector in deep learning era</span><br><span class="line">放弃了检验范式：proposal detection + verification</span><br></pre></td></tr></table></figure>
+
+<p>6.9：Single Shot MultiBox Detector (SSD)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The main contribution of SSD is the introduction of the multi-reference and multi-resolution detection techniques。</span><br><span class="line">It was the second one-stage detector in deep learning era</span><br></pre></td></tr></table></figure>
+
+<p>6.10：RetinaNet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">引入了focal loss</span><br></pre></td></tr></table></figure>
+
+<p>七：数据集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">•Pascal VOC</span><br><span class="line">•ILSVRC</span><br><span class="line">•MS-COCO</span><br><span class="line">•Open Images</span><br><span class="line"></span><br><span class="line">•Datasets of Other Detection Tasks：</span><br><span class="line">In addition to general object detection, the past 20 years also witness the prosperity of detection applications in specific areas, such as pedestrian detection, face detection, text detection, traffic sign/light detection, and remote sensing target detection. Tables 2-6 list some of the popular datasets of these detection tasks[ The #Cites shows statistics as of Feb. 2019.]. A detailed introduction of the detection methods of these tasks can be found in Section</span><br></pre></td></tr></table></figure>
+
+<p>八：评判标准</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">早期为：漏检率和假阳性</span><br><span class="line">近期：近年来，最常用的目标检测评价是“平均精度(AP)”，最初是在VOC2007中引入的。 AP被定义为不同召回下的平均检测精度，通常以特定类别的方式进行评估。 为了比较所有对象类别的性能，通常使用所有对象类别上平均AP(MAP)作为性能的最终度量。 为了测量对象的定位精度，使用(IoU)检查预测框和地面真相框之间的IoU是否大于预定义的阈值，例如0.5。 如果是，对象将被标识为“成功检测到”，否则将被标识为“错过”。 基于0.5-IoU的mAP已经成为目标检测问题的事实度量多年。</span><br><span class="line">Map0.5-0.95被引入（IOU为0.5-0.95之间的精度）</span><br></pre></td></tr></table></figure>
+
+<p>九：检测技术的演变</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Components, shapes and edges（before2000）：基于特征的，使得机器学习的兴起</span><br><span class="line">Early time&apos;s CNN for object detection（Y.LeCun）：全卷积网络的提出，相当于全连接层</span><br></pre></td></tr></table></figure>
+
+<p>十：多尺度检测技术的演变</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">feature pyramids and sliding windows (before 2014)：</span><br><span class="line">可以解决长宽比固定的物体</span><br><span class="line">detection with object proposals (2010-2015)：</span><br><span class="line">deep regression (2013-2016)</span><br><span class="line">multi-reference detection (after 2015)</span><br><span class="line">multi-resolution detection (after 2016)</span><br></pre></td></tr></table></figure>
+
+<p>十一：非极大值抑制技术的演变</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">贪婪的选择：</span><br><span class="line">贪婪选择是一种老式的，但最流行的方法来执行NMS在对象检测。 这个过程背后的思想是简单和直观的：对于一组重叠检测，选择具有最大检测分数的包围框，而其相邻框则根据预定义的重叠阈值（例如0.5)删除）。 上述处理是以贪婪的方式迭代执行的。（现在基本在使用此种方式）</span><br><span class="line">Bbox聚合：</span><br><span class="line">BB聚合是NMS[10,103,156,157]的另一组技术，其思想是将多个重叠包围盒组合或聚类成一个最终检测。 这种方法的优点是它充分考虑了对象关系及其空间布局。 有一些著名的检测器使用这种方法，如VJ检测器[10]和Overfeat[103]。</span><br><span class="line">Learning to NMS：</span><br></pre></td></tr></table></figure>
+
+<p>十二：Technical Evolution of Hard Negative Mining</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">假设给你一堆包含一个或多个人物的图片，并且每一个人都给你一个bounding box做标记，如果要训练一个分类器去做分类的话，你的分类器需要既包含正训练样本（人）和负训练样本（背景）。</span><br><span class="line">你通过观察bounding box去创建一个有用的正训练样本，那么怎么做才能创建一个有用的负训练样本呢？</span><br><span class="line">一个很好的方式就是去在开始时随机创建一堆的bounding box候选框，并且不能与你的正样本有任何的重叠，把这些未与正样本重叠的新的bounding box作为你的负样本。</span><br><span class="line">好了，这样你的正负样本都有了，可以训练可以用的分类器了，你用滑动窗口在你的训练图片上进行运行，但是你会发现你的分类器并不是很好用，分类的效果并不是很好，因为它会抛出一堆的错误的正样本（当检测到人时实际上却并不是实际的人），这就问题来了，你训练了一个用于分类的分类器，然而这个分类器却并不能达到你想要的效果，那么应该怎么办呢？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">使用滑动窗口的时候，出现的问题是：负样本/正样本的比例可能高达10^5以上，严重导致数据不平衡</span><br><span class="line"></span><br><span class="line">Bootstrap：</span><br><span class="line">当你得到错误的检测patch时，会明确的从这个patch中创建一个负样本，并把这个负样本添加到你的训练集中去。当你重新训练你的分类器后，分类器会表现的更好，并且不会像之前那样产生多的错误的正样本。</span><br><span class="line"></span><br><span class="line">HNM in deep learning based detectors：</span><br><span class="line">例如，在SSD[21]和OHEM[166]中，只有极小部分样本（损失值最大的样本）的梯度才会反向传播。 在细化细节[55]中，设计了一个“锚精化模块”来过滤容易的底片。 另一个改进是[23,169,170]设计新的损失函数，通过重塑标准的交叉熵损失，使其更多地关注硬的、错误分类的示例</span><br></pre></td></tr></table></figure>
+
+<p>十三：检测速度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">分为：“加快探测管道”、“加快探测引擎”和“加快数值计算”</span><br><span class="line">“speed up of detection pipeline”，“speed up of detection engine”，and “speed up of numerical computation”</span><br><span class="line"></span><br><span class="line">13.1Feature Map Shared Computation（特征图共享计算）</span><br><span class="line">13.2Speed up of Classifiers</span><br><span class="line">13.3Cascaded Detection</span><br><span class="line">13.4Network Pruning and Quantification and Network Distillation:</span><br><span class="line">网络蒸馏：使用大网络来训练小网络</span><br></pre></td></tr></table></figure>
+
+<p>十四：主干网</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">AlexNet: AlexNet [40], an eight-layer deep network, was the first CNN model that started the deep learning revolution in computer vision. AlexNet famously won the 2012 ImageNet LSVRC-2012 competition by a large margin [15.3% VS 26.2% (second place) error rates]. As of Feb. 2019, the Alexnet paper has been cited over 30,000 times.</span><br><span class="line"></span><br><span class="line">VGG: VGG was proposed by Oxford&apos;s Visual Geometry Group (VGG) in 2014 [230]. VGG increased the model&apos;s depth to 16-19 layers and used very small (3x3) convolution filters instead of 5x5 and 7x7 those were previously used in AlexNet. VGG has achieved the state of the art performance on the ImageNet dataset of its time.</span><br><span class="line"></span><br><span class="line">GoogLeNet: GoogLeNet, a.k.a Inception [198, 231-233], is a big family of CNN models proposed by Google Inc. since 2014. GoogLeNet increased both of a CNN&apos;s width and depth (up to 22 layers). The main contribution of the Inception family is the introduction of factorizing convolution and batch normalization.</span><br><span class="line"></span><br><span class="line">ResNet: The Deep Residual Networks (ResNet) [234], proposed by K. He et al. in 2015, is a new type of convolutional network architecture that is substantially deeper (up to 152 layers) than those used previously. ResNet aims to ease the training of networks by reformulating its layers as learning residual functions with reference to the layer inputs. ResNet won multiple computer vision competitions in 2015, including ImageNet detection, ImageNet localization, COCO detection, and COCO segmentation.</span><br><span class="line"></span><br><span class="line">DenseNet: DenseNet [235] was proposed by G. Huang and Z. Liu et al. in 2017. The success of ResNet suggested that the short cut connection in CNN enables us to train deeper and more accurate models. The authors embraced this observation and introduced a densely connected block, which connects each layer to every other layer in a feedforward fashion.</span><br><span class="line"></span><br><span class="line">SENet: Squeeze and Excitation Networks (SENet) was proposed by J. Hu and L. Shen et al. in 2018 [236]. Its main contribution is the integration of global pooling and shuffling to learn channel-wise importance of the feature map. SENet won the 1st place in ILSVRC 2017 classification competition.</span><br><span class="line"></span><br><span class="line">• Object detectors with new engines</span><br><span class="line">In recent three years, many of the latest engines have been applied to object detection. For example, some latest object detection models such as STDN [237], DSOD [238], TinyDSOD [207], and Pelee [209] choose DenseNet [235] as their detection engine. The Mask RCNN [4], as the state of the art model for instance segmentation, applied the next generation of ResNet: ResNeXt [239] as its detection engine. Besides, to speed up detection, the depth-wise separable convolution operation, which was introduced by Xception [204], an improved version of Incepion, has also been used in detectors such as MobileNet [205] and LightHead RCNN [47].</span><br></pre></td></tr></table></figure>
+
+<p>十五：特征</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.Feature Fusion特征融合</span><br><span class="line">Invariance and equivariance are two important properties in image feature representations</span><br><span class="line">①不变性和等变性（分类过程需要不变性，定位过程需要等变性）</span><br><span class="line">②卷积层越深，特征的不变性越强，但是等变性较差；有利于目标识别</span><br><span class="line">③卷积层越浅，特征的等变性较好，轮廓等特征易于学习</span><br><span class="line">④综上，特征融合很重要</span><br><span class="line"></span><br><span class="line">2.learning high-resolution features with large receptive fields学习具有大接收场的高分辨率特征。</span><br></pre></td></tr></table></figure>
+
+<p>十六：定位方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.Sliding Window</span><br><span class="line">2.Detection as sub-region search</span><br><span class="line">3.Detection as key points localization</span><br></pre></td></tr></table></figure>
+
+<p>十七：提高定位准确度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.Bounding Box Refinement</span><br><span class="line">2.Improving Loss Functions forAccurate Localization</span><br></pre></td></tr></table></figure>
+
+<p>十八：语义分割semantic segmentation</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.Segmentation helps category recognition</span><br><span class="line">2.Segmentation helps accurate localization</span><br><span class="line">3.Segmentation can be embedded as context（飞机可能在天上，而不是在水中）</span><br></pre></td></tr></table></figure>
+
+<p>十九：旋转和尺度改变的鲁棒性检测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.旋转鲁棒性检测</span><br><span class="line">•Rotation invariant loss functions</span><br><span class="line">•Rotation calibration</span><br><span class="line">•Rotation Rol Pooling</span><br><span class="line">2.尺度鲁棒性检测</span><br><span class="line">•Scale adaptive training</span><br><span class="line">•Scale adaptive detection</span><br></pre></td></tr></table></figure>
+
+<p>二十：应用</p>
+<p>1.Pedestrian Detection行人检测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.挑战：</span><br><span class="line">①小像素（远处相机）</span><br><span class="line">②困难负样本（类似的物体）</span><br><span class="line">③遮挡的行人</span><br><span class="line">④实时检测</span><br><span class="line"></span><br><span class="line">2.发展历史</span><br><span class="line">①传统方式：haar</span><br><span class="line">②深度学习：fast-Rcnn</span><br></pre></td></tr></table></figure>
+
+<p>2.Face Detection脸部检测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.挑战</span><br><span class="line">①Intra-class variation人脸形变</span><br><span class="line">②遮挡</span><br><span class="line">③Multi-scale detection</span><br><span class="line">④实时检测</span><br></pre></td></tr></table></figure>
+
+<p>3.Text Detection文本检测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.挑战</span><br><span class="line">Different fonts and languages</span><br><span class="line">Text rotation and perspective distortion</span><br><span class="line">Densely arranged text localization</span><br><span class="line">Broken and blurred characters</span><br></pre></td></tr></table></figure>
+
+<p>4.Traffic Sign and Traffic Light Detection交通标志和交通灯检测（自动驾驶）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.挑战</span><br><span class="line">照明变换</span><br><span class="line">运动模糊</span><br><span class="line">雨雪天气</span><br><span class="line">实时检测</span><br></pre></td></tr></table></figure>
+
+<p>5.Remote Sensing Target Detection遥感目标检测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.大数据检测</span><br><span class="line">2.遮挡（云层）</span><br><span class="line">3.不同遥感分辨率差异</span><br></pre></td></tr></table></figure>
+
+<p>二十一：未来发展</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.轻量级网络</span><br><span class="line">2.自动化ML</span><br><span class="line">3.自适应环境</span><br><span class="line">4.弱监督检测</span><br><span class="line">5.小目标检测</span><br><span class="line">6.视频中检测</span><br><span class="line">7.检测与信息融合</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/24/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E6%B5%81%E7%A8%8B%EF%BC%88%E5%85%A8%EF%BC%89/" rel="next" title="数据采集流程（全）">
+                <i class="fa fa-chevron-left"></i> 数据采集流程（全）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/27/cv-track/" rel="prev" title="cv-track">
+                cv-track <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目标检测20年"><span class="nav-number">1.</span> <span class="nav-text">目标检测20年</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
