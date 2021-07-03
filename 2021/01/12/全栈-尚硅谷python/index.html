@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鄢玉兵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="全栈-尚硅谷python 12一：windows path环境变量注意：在任意位置都可以访问path环境变量  1二：纯文本与富文本  123456三：字符集字符转换为二进制码过程-编码二进制码转换为字符的过程-解码编码→解码：使用字符集规则每个国家有自己的字符集，现在统一使用Unicode（万国码）：万国码的实现使用最多的是utf-8  123四：浮点数计算精度问题0.1+0.2=0.30000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全栈-尚硅谷python">
+<meta property="og:url" content="https:&#x2F;&#x2F;yanyubing.xyz&#x2F;2021&#x2F;01&#x2F;12&#x2F;%E5%85%A8%E6%A0%88-%E5%B0%9A%E7%A1%85%E8%B0%B7python&#x2F;index.html">
+<meta property="og:site_name" content="鄢玉兵的博客">
+<meta property="og:description" content="全栈-尚硅谷python 12一：windows path环境变量注意：在任意位置都可以访问path环境变量  1二：纯文本与富文本  123456三：字符集字符转换为二进制码过程-编码二进制码转换为字符的过程-解码编码→解码：使用字符集规则每个国家有自己的字符集，现在统一使用Unicode（万国码）：万国码的实现使用最多的是utf-8  123四：浮点数计算精度问题0.1+0.2=0.30000">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-01-13T09:26:31.233Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yanyubing.xyz/2021/01/12/全栈-尚硅谷python/"/>
+
+
+
+
+
+  <title>全栈-尚硅谷python | 鄢玉兵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://yanyubing.xyz"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鄢玉兵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yanyubing.xyz/2021/01/12/%E5%85%A8%E6%A0%88-%E5%B0%9A%E7%A1%85%E8%B0%B7python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="鄢玉兵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鄢玉兵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">全栈-尚硅谷python</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-12T09:31:03+08:00">
+                2021-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>全栈-尚硅谷python</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">一：windows path环境变量</span><br><span class="line">注意：在任意位置都可以访问path环境变量</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二：纯文本与富文本</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">三：字符集</span><br><span class="line">字符转换为二进制码过程-编码</span><br><span class="line">二进制码转换为字符的过程-解码</span><br><span class="line"></span><br><span class="line">编码→解码：使用字符集规则</span><br><span class="line">每个国家有自己的字符集，现在统一使用Unicode（万国码）：万国码的实现使用最多的是utf-8</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">四：浮点数计算精度问题</span><br><span class="line">0.1+0.2=0.30000000000000004</span><br><span class="line">计算机中浮点数转换为二进制有精度损失</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">五：关系运算符</span><br><span class="line">== ：比较值</span><br><span class="line">is,is not ：比较的对象的id</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">六：列表获取索引值</span><br><span class="line">lists.index(&apos;xxx&apos;):返回第一个元素的索引值</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">七：可变序列与不可变序列</span><br><span class="line">list：可变序列，也只能改变值，无法改变对象的id</span><br><span class="line">str():不可变序列，可转为list修改之后改回str</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">八：元祖(不可变对象)</span><br><span class="line">元祖解包</span><br><span class="line">a,b,*c=my_tuple</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">九：复制</span><br><span class="line">浅复制会复制对象内部的值，如果值也是一个可变对象，这个可变对象不会被复制</span><br><span class="line">&gt;&gt;&gt;a = &#123;1: [1,2,3]&#125;</span><br><span class="line">&gt;&gt;&gt; b = a.copy()</span><br><span class="line">&gt;&gt;&gt; a, b</span><br><span class="line">(&#123;1: [1, 2, 3]&#125;, &#123;1: [1, 2, 3]&#125;)</span><br><span class="line">&gt;&gt;&gt; a[1].append(4)</span><br><span class="line">&gt;&gt;&gt; a, b</span><br><span class="line">(&#123;1: [1, 2, 3, 4]&#125;, &#123;1: [1, 2, 3, 4]&#125;)</span><br><span class="line">深复制会复制对象内部的值，如果值也是一个可变对象，这个可变对象也会被复制</span><br><span class="line">&gt;&gt;&gt;import copy</span><br><span class="line">&gt;&gt;&gt; c = copy.deepcopy(a)</span><br><span class="line">&gt;&gt;&gt; a, c</span><br><span class="line">(&#123;1: [1, 2, 3, 4]&#125;, &#123;1: [1, 2, 3, 4]&#125;)</span><br><span class="line">&gt;&gt;&gt; a[1].append(5)</span><br><span class="line">&gt;&gt;&gt; a, c</span><br><span class="line">(&#123;1: [1, 2, 3, 4, 5]&#125;, &#123;1: [1, 2, 3, 4]&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">十：集合</span><br><span class="line">集合中不储存重复元素；集合中只能存储不可变对象，str...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">十一：不定长参数</span><br><span class="line">def sum(*a):</span><br><span class="line">	pass</span><br><span class="line">可变参数不是必须写在最后，但是注意，带*的参数后的所有参数，必须以关键字参数的形式传递</span><br><span class="line">装包与解包：</span><br><span class="line">**形参只能有一个，必须写在所有参数的最后</span><br><span class="line">def sum(a,b,**c):</span><br><span class="line">	pass</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">十二：文档字符串</span><br><span class="line">def fn(a:int) -&gt; int:#提示传入参数a为int类型，返回值是int类型</span><br><span class="line">	&apos;&apos;&apos;</span><br><span class="line">	文档字符串...</span><br><span class="line">	&apos;&apos;&apos;</span><br><span class="line">	pass</span><br><span class="line">使用help(fn)查看文档字符串</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">十三：作用域</span><br><span class="line"># 在Python中一共有两种作用域</span><br><span class="line">#  全局作用域</span><br><span class="line">#   - 全局作用域在程序执行时创建，在程序执行结束时销毁</span><br><span class="line">#   - 所有函数以外的区域都是全局作用域</span><br><span class="line">#   - 在全局作用域中定义的变量，都属于全局变量，全局变量可以在程序的任意位置被访问</span><br><span class="line">#   </span><br><span class="line">#  函数作用域</span><br><span class="line">#   - 函数作用域在函数调用时创建，在调用结束时销毁</span><br><span class="line">#   - 函数每调用一次就会产生一个新的函数作用域</span><br><span class="line">#   - 在函数作用域中定义的变量，都是局部变量，它只能在函数内部被访问</span><br><span class="line">#  变量的查找</span><br><span class="line">#   - 当我们使用变量时，会优先在当前作用域中寻找该变量，如果有则使用，</span><br><span class="line">#       如果没有则继续去上一级作用域中寻找，如果有则使用，</span><br><span class="line">#       如果依然没有则继续去上一级作用域中寻找，以此类推</span><br><span class="line">#       直到找到全局作用域，依然没有找到，则会抛出异常</span><br><span class="line">#           NameError: name &apos;a&apos; is not defined</span><br><span class="line"></span><br><span class="line">a = 20</span><br><span class="line">def fn3():</span><br><span class="line">    # a = 10 # 在函数中为变量赋值时，默认都是为局部变量赋值</span><br><span class="line">    # 如果希望在函数内部修改全局变量，则需要使用global关键字，来声明变量</span><br><span class="line">    global a # 声明在函数内部的使用a是全局变量，此时再去修改a时，就是在修改全局的a</span><br><span class="line">    a = 10 # 修改全局变量</span><br><span class="line">    print(&apos;函数内部：&apos;,&apos;a =&apos;,a)</span><br><span class="line"></span><br><span class="line"># fn3()</span><br><span class="line"># print(&apos;函数外部：&apos;,&apos;a =&apos;,a)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">十四：命名空间</span><br><span class="line">scope=locals()#当前命名空间，scope为字典类型</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">十五：高阶函数</span><br><span class="line"># 高阶函数</span><br><span class="line"># 接收函数作为参数，或者将函数作为返回值的函数是高阶函数（称为闭包）</span><br><span class="line">def fn():</span><br><span class="line">    a = 10</span><br><span class="line">    # 函数内部再定义一个函数</span><br><span class="line">    def inner():</span><br><span class="line">        print(&apos;我是fn2&apos; , a)</span><br><span class="line">    # 将内部函数 inner作为返回值返回   </span><br><span class="line">    return inner</span><br><span class="line"># 当我们使用一个函数作为参数时，实际上是将指定的代码传递进了目标函数</span><br><span class="line">当函数中需要不同的函数功能时，内部函数可以抽离出来作为参数</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">十六：匿名函数（一般作为参数使用，其他地方不会使用）</span><br><span class="line"># filter()</span><br><span class="line"># filter()可以从序列中过滤出符合条件的元素，保存到一个新的序列中</span><br><span class="line"># 参数：</span><br><span class="line">#  1.函数，根据该函数来过滤序列（可迭代的结构）</span><br><span class="line">#  2.需要过滤的序列（可迭代的结构）</span><br><span class="line"># 返回值：</span><br><span class="line">#   过滤后的新序列（可迭代的结构）</span><br><span class="line"></span><br><span class="line"># fn4是作为参数传递进filter()函数中</span><br><span class="line">#   而fn4实际上只有一个作用，就是作为filter()的参数</span><br><span class="line">#   filter()调用完毕以后，fn4就已经没用</span><br><span class="line"># 匿名函数 lambda 函数表达式 （语法糖）</span><br><span class="line">#   lambda函数表达式专门用来创建一些简单的函数，他是函数创建的又一种方式</span><br><span class="line">#   语法：lambda 参数列表 : 返回值</span><br><span class="line">#   匿名函数一般都是作为参数使用，其他地方一般不会使用</span><br><span class="line"></span><br><span class="line"># map()函数可以对可跌倒对象中的所有元素做指定的操作，然后将其添加到一个新的对象中返回</span><br><span class="line">l = [1,2,3,4,5,6,7,8,9,10]</span><br><span class="line"></span><br><span class="line">r = map(lambda i : i ** 2 , l)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">十七：sort()</span><br><span class="line">sort()排序</span><br><span class="line">sorted()对任何序列都可以排序，返回值为新的序列</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">十八：装饰器</span><br><span class="line">程序的设计，要求开发对程序的扩展，要关闭对程序的修改</span><br><span class="line">def begin_end(old):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">        用来对其他函数进行扩展，使其他函数可以在执行前打印开始执行，执行后打印执行结束</span><br><span class="line">        参数：</span><br><span class="line">            old 要扩展的函数对象</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    # 创建一个新函数</span><br><span class="line">    def new_function(*args , **kwargs):</span><br><span class="line">        print(&apos;开始执行~~~~&apos;)</span><br><span class="line">        # 调用被扩展的函数</span><br><span class="line">        result = old(*args , **kwargs)</span><br><span class="line">        print(&apos;执行结束~~~~&apos;)</span><br><span class="line">        # 返回函数的执行结果</span><br><span class="line">        return result</span><br><span class="line">    # 返回新函数        </span><br><span class="line">    return new_function</span><br><span class="line">    </span><br><span class="line">@begin_end#可以为一个函数增加多个装饰器，内部先装饰</span><br><span class="line">def say_hello():</span><br><span class="line">    print(&apos;大家好~~~&apos;)</span><br><span class="line">#   在开发中，我们都是通过装饰器来扩展函数的功能的</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">十八：类</span><br><span class="line">class MyClass():</span><br><span class="line">	pass</span><br><span class="line">mc=MyClass()#创建一个MyClass的对象</span><br><span class="line"></span><br><span class="line">result=isinstance(mc,MyClass)#判断对象是不是该类的</span><br><span class="line"></span><br><span class="line"># 调用方法，对象.方法名()</span><br><span class="line"># 方法调用和函数调用的区别</span><br><span class="line"># 如果是函数调用，则调用时传几个参数，就会有几个实参</span><br><span class="line"># 但是如果是方法调用，默认传递一个参数，所以方法中至少要定义一个形参</span><br><span class="line"></span><br><span class="line">类的方法中，无法直接访问类的属性</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">十九：方法</span><br><span class="line">魔术方法：(双下划线开始，双下划线结尾__init__(self))</span><br><span class="line"></span><br><span class="line"># 创建对象的流程</span><br><span class="line"># p1 = Person()的运行流程</span><br><span class="line">#   1.创建一个变量</span><br><span class="line">#   2.在内存中创建一个新对象</span><br><span class="line">#   3.__init__(self)方法执行</span><br><span class="line">#   4.将对象的id赋值给变量</span><br><span class="line"></span><br><span class="line">class Person():</span><br><span class="line">    # init会在对象创建以后离开执行</span><br><span class="line">    # init可以用来向新创建的对象中初始化属性</span><br><span class="line">    # 调用类创建对象时，类后边的所有参数都会依次传递到init()中</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        # print(self)</span><br><span class="line">        # 通过self向新建的对象中初始化属性</span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line">    def say_hello(self):</span><br><span class="line">        print(&apos;大家好，我是%s&apos;%self.name)</span><br><span class="line"></span><br><span class="line">p=Person(&apos;swk&apos;)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+  
+    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+		
+
+    
+
+    
+
+
+	
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/09/opencv%E5%AE%9E%E6%88%9820/" rel="next" title="opencv实战20">
+                <i class="fa fa-chevron-left"></i> opencv实战20
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/14/%E8%8A%B1%E4%B9%A6/" rel="prev" title="花书">
+                花书 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">鄢玉兵</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">101</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">鄢玉兵</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

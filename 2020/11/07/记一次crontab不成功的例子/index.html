@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="鄢玉兵的博客">
 <meta property="og:description" content="crontab 不成功的解决方案系统：Ubuntu18.04lts crontab脚本本地执行没问题，放在定时任务失败 123456789101112查看日志：cat &#x2F;var&#x2F;log&#x2F;cron.log(CRON) info (No MTA installed, discarding output)安装 sudo apt-get install postfix定时任务55 9 * * * sh &#x2F;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-07T01:58:05.571Z">
+<meta property="og:updated_time" content="2021-01-14T02:06:46.409Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -293,7 +293,7 @@
 <p>crontab脚本本地执行没问题，放在定时任务失败</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">查看日志：cat /var/log/cron.log</span><br><span class="line">(CRON) info (No MTA installed, discarding output)</span><br><span class="line"></span><br><span class="line">安装 sudo apt-get install postfix</span><br><span class="line"></span><br><span class="line">定时任务</span><br><span class="line">55 9 * * * sh /home/crontab.sh &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">日志无问题，但是还是执行不成功，取消2&gt;&amp;1</span><br><span class="line">查看日志： cat /var/spool/mail/root</span><br><span class="line">Non-ASCII character &apos;\xe7&apos; in file moveFile.py on line 1</span><br><span class="line"></span><br><span class="line">发现python脚本开头注释问题，解决！</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注意：Ubuntu系统很容易出现这些类似的问题，注意查看日志！</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">注意：Ubuntu系统很容易出现这些类似的问题，注意查看日志！</span><br><span class="line">查看日志： cat /var/spool/mail/xxx</span><br></pre></td></tr></table></figure>
 
 
       
@@ -422,7 +422,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">101</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
